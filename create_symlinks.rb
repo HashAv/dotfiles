@@ -53,7 +53,7 @@ git config --global user.name "Hash Av"
 git config --global user.email me@nowhere.com
 git config --global alias.co checkout
 git config --global core.editor "vim"
-git config --global core.excludesfile = #{HOME}/.gitignore_global
-git config --global http.sslCAinfo = #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
+git config --global core.excludesfile #{HOME}/.gitignore_global
+git config --global http.sslCAinfo #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
 config
 end
