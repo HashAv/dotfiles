@@ -37,3 +37,9 @@ dot_files.each do |dot_file|
 end
 
 puts
+unless File.exist?("#{HOME}/.vim/bundle/vundle")
+  puts "\033[1;31mVundle is not installed\033[1;m"
+  puts "Please run the following commands"
+  puts %Q_git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle_
+  puts %Q_vim ; :BundleInstall_
+end
