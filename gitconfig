@@ -9,4 +9,4 @@
 
 # For CentOS
 # [http]
-# sslCAinfo = /home/benjamin/.curl-ca-bundle/cacert.pem
+# sslCAinfo = ~/.curl-ca-bundle/cacert.pem
