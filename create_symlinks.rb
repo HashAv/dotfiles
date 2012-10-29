@@ -20,16 +20,14 @@ dot_files.each do |dot_file|
 
     if File.exist?(dot_file_dest)
       if File.symlink?(dot_file_dest)
-        print "\033[1;31mSkipping: \033[1;m"
-        puts "\033[47;30m.#{dot_file_basename}\033[1;m"
+        puts "Exists   : .#{dot_file_basename}"
       else
-        puts "\n\033[1;31mStop! \033[1;m"
+        print "\033[1;31mWarning  ! \033[1;m"
         print "\033[47;30m.#{dot_file_basename}\033[1;m is not a symlink! "
         puts "Remove or backup this file before running this scripts again"
-        exit 1
       end
     else
-      print "\033[1;32mCreating: \033[1;m"
+      print "\033[1;32mCreating : \033[1;m"
       puts "\033[47;30m.#{dot_file_basename}\033[1;m"
       ln_s dot_file, dot_file_dest
     end
