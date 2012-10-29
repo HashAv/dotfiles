@@ -42,8 +42,11 @@ unless File.exist?("#{HOME}/.vim/bundle/vundle")
   puts %Q_vim ; :BundleInstall_
 end
 
-# Create git config since I don't want to give away my user's path
-# Git config does not support variable expansion
+git_config_path = "#{HOME}/.gitconfig"
+puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path) 
+if File.exist?(git_config_path)
+  # Create git config since I don't want to give away my user's path
+  # Git config does not support variable expansion
 puts <<config
 # Git config file creation. Copy and paste.
 git config --global user.name "Hash Av"
@@ -53,3 +56,4 @@ git config --global core.editor "vim"
 git config --global core.excludesfile = #{HOME}/.gitignore_global
 git config --global http.sslCAinfo = #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
 config
+end
