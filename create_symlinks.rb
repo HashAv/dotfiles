@@ -44,7 +44,7 @@ end
 
 git_config_path = "#{HOME}/.gitconfig"
 puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path) 
-if File.exist?(git_config_path)
+unless File.exist?(git_config_path)
   # Create git config since I don't want to give away my user's path
   # Git config does not support variable expansion
 puts <<config
