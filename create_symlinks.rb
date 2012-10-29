@@ -44,7 +44,7 @@ end
 
 # Create git config since I don't want to give away my user's path
 # Git config does not support variable expansion
-<<config
+puts <<config
 # Git config file creation. Copy and paste.
 git config --global user.name "Hash Av"
 git config --global user.email me@nowhere.com
