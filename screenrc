@@ -1,0 +1,38 @@
+shell -${SHELL}
+
+# no annoying audible bell, please
+vbell on
+
+# detach on hangup
+autodetach on
+
+# Change default scrollback value for new windows
+defscrollback 1024
+
+# don’t display the copyright page
+startup_message off
+
+# To toggle on and off, in screen do
+# <C-A>:hardstatus ignore
+# <C-A>:hardstatus alwayslastline
+caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+# Better to display window info with <C-A>w
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+# Fix the one real annoyance with screen... that scrollback in Putty doesn't work.
+termcapinfo xterm ti@:te@
+
+#termcap xterm
+term xterm
+
+# Alternative escape sequence (normally <C-A>
+#escape ^Bb
+
+# Alt-Left and Alt-Right to switch windows
+bindkey "\033[1;3D" prev
+bindkey "\033[1;3C" next
+
+# Special keys. C-a m will spawn Mutt, for example, on window 7 (if it
+# is available), or the next available window.
+bind m screen -t 'Mutt' 7 mutt
