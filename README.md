@@ -8,7 +8,7 @@ cd ~/.dotfiles
 ruby ./create_symlinks.rb
 ```
 
-## If push master is not accepted, run
+## If push master is not accepted by github, run
 ```
 git remote set-url origin git@github.com:HashAv/dotfiles.git
 ```
