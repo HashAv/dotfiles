@@ -1,3 +1,3 @@
 # Ignore vim/bundle folder since this folder will be maintained by vim's vundle plugin
 # I am not excluding the whole /vim folder since I want to keep vim/UltiSnips under revision control
-/vim/bundle/
+/vim/bundle/*
