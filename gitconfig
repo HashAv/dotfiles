@@ -1,0 +1,12 @@
+[user]
+        name = HashAv
+        email = me@nowhere.com
+[alias]
+        co = checkout
+[core]
+        editor = vim
+        excludesfile = ~/.gitignore_global
+
+# For CentOS
+# [http]
+# sslCAinfo = /home/benjamin/.curl-ca-bundle/cacert.pem
