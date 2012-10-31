@@ -52,6 +52,12 @@ Bundle "scrooloose/nerdtree"
 
 " vim-snipmate alternative
 Bundle "https://github.com/SirVer/ultisnips.git"
+let g:UltiSnipsExpandTrigger="<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsListSnippets="<S-F8>"
+
 " non github repos
 " Fast file search
 " Install then 

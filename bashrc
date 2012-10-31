@@ -84,6 +84,8 @@ alias la='ls -Alh --time-style=long-iso'
 alias man='man -L en'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-source ~/.rvm/scripts/rvm
+
+# This should be loaded with .bash_login
+# source ~/.rvm/scripts/rvm
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
