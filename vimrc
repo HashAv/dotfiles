@@ -58,6 +58,10 @@ let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<S-F8>"
 
+" Setting this variable allows me to override the default snippets with a bang!
+" Otherwise the default snippets still show up.
+let g:UltiSnipsDontReverseSearchPath="1"
+
 " non github repos
 " Fast file search
 " Install then 
@@ -159,8 +163,13 @@ endif
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 
 inoremap <C-O> <C-O>o
-imap <C-A> <HOME>
-imap <C-E> <END>
+inoremap <C-A> <HOME>
+inoremap <C-E> <END>
+inoremap <C-J> <DOWN>
+inoremap <C-K> <UP>
+inoremap <C-H> <LEFT>
+inoremap <C-L> <RIGHT>
+
 
 " NERDCommenter will add space after comment
 let NERDSpaceDelims = 1
