@@ -56,7 +56,7 @@ let g:UltiSnipsExpandTrigger="<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsListSnippets="<S-F8>"
+let g:UltiSnipsListSnippets="<F9>"
 
 " Setting this variable allows me to override the default snippets with a bang!
 " Otherwise the default snippets still show up.
