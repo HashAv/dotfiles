@@ -137,6 +137,7 @@ set softtabstop=2
 set bg=dark
 set t_Co=256
 colorscheme ir_black
+highlight Visual ctermfg=black
 
 set pastetoggle=<F8>
 
