@@ -16,6 +16,7 @@ Bundle 'tpope/vim-rails'
 
 " Move easily with <leader><leader>w
 Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = 'é'
 
 " Ruby syntax files, etc.
 Bundle 'vim-ruby/vim-ruby'
@@ -138,6 +139,7 @@ set bg=dark
 set t_Co=256
 colorscheme ir_black
 highlight Visual ctermfg=black
+highlight Search ctermfg=white ctermbg=darkblue
 
 set pastetoggle=<F8>
 
