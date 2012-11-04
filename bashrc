@@ -85,7 +85,9 @@ alias man='man -L en'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# This should be loaded with .bash_login
-# source ~/.rvm/scripts/rvm
+# This file should be sourced
+# 1. in ~/.bash_login for remote ssh sessions
+# 2. in ~/.bashrc for virtual terminal sessions (gnome-terminal, etc.)
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
