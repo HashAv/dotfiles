@@ -26,7 +26,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'spf13/vim-colors.git'
 
 Bundle 'Auto-Pairs'
-"let g:AutoPairsShortcutToggle = "<LEADER>p""
+let g:AutoPairsShortcutToggle = "<LEADER>p""
 
 Bundle 'matchit.zip'
 " Bundle 'neocomplcache'
@@ -153,7 +153,7 @@ au BufEnter * set fo=tcrq
 " Get rid of hidden non-breaking-space
 imap <CHAR-0x00a0> <CHAR-0x20>
 
-let mapleader = ","
+let mapleader = "ç"
 
 " Allow mouse use. This enables click select in normal mode + NERDTree click
 if has('mouse')                                            " Enable mouse in terminal, just in normal mode
