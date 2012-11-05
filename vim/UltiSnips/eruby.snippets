@@ -1,7 +1,11 @@
-snippet % "Create ERB tags"
+snippet % "Create ERB tags" i
 <% ${0} %>
 endsnippet
 
-snippet = "Create ERB insert tags"
+snippet = "Create ERB insert tags" i
 <%= ${0} %>
+endsnippet
+
+snippet : "hash rocket helper"
+:${1:key} => ${0:value}
 endsnippet
