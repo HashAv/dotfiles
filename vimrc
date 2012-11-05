@@ -256,7 +256,8 @@ set foldmethod=syntax
 " Don't close folds on file open (default=0 => all folds are closed)
 set foldlevel=20
 
-autocmd bufNewfile *.html 0r ~/.vim/my_skels/skel.html
+" Not needed anymore due to UtilSnip's html5 tag
+" autocmd bufNewfile *.html 0r ~/.vim/my_skels/skel.html
 
 autocmd bufEnter *.txt set tw=79
 
