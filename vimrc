@@ -58,6 +58,7 @@ let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
+autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
 
 " Setting this variable allows me to override the default snippets with a bang!
 " Otherwise the default snippets still show up.
