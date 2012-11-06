@@ -14,6 +14,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 
+" Haml and Sass syntax hl and indentation
+Bundle 'https://github.com/tpope/vim-haml.git'
+
 " Move easily with <leader><leader>w
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = 'é'
