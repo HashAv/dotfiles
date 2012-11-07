@@ -17,6 +17,19 @@ Bundle 'tpope/vim-rails'
 " Haml and Sass syntax hl and indentation
 Bundle 'https://github.com/tpope/vim-haml.git'
 
+" Alternate column colors. Toggle with <LEADER>ig
+Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+" I fixesd scss -> css indenting issues by copying a custom
+" vim.css in ~/.vim/indent/css.vim
+" I debugged the issue with ':verbose set indentexpr' inside vim
+
+" Don't think I need those for now
+" Bundle 'css3-syntax-plus'
+" Bundle 'https://github.com/cakebaker/scss-syntax.vim.git'
+
 " Move easily with <leader><leader>w
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = 'é'
@@ -27,7 +40,7 @@ Bundle 'vim-ruby/vim-ruby'
 " vim-scripts repos
 "Bundle 'vim-scripts/Align.git'
 
-Bundle 'spf13/vim-colors.git'
+Bundle 'https://github.com/spf13/vim-colors.git'
 
 Bundle 'Auto-Pairs'
 let g:AutoPairsShortcutToggle = "<LEADER>p""
