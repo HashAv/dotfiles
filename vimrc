@@ -66,6 +66,17 @@ map <F2> :Bufferlist<CR>
 " " snipmate --END
 " 
 Bundle "scrooloose/nerdtree"
+" Allow mouse use.
+" This enables click select in normal mode + NERDTree click
+if has('mouse')
+  " Enable mouse in terminal, just in normal mode
+  set mouse=a
+endif
+
+" Single click to open filepath elements
+let NERDTreeMouseMode = 3
+map <C-T> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 
 " vim-snipmate alternative
 Bundle "https://github.com/SirVer/ultisnips.git"
@@ -118,12 +129,6 @@ Bundle 'tComment'
  
 Bundle 'The-NERD-Commenter'
 
-" Single click to open filepath elements
-let NERDTreeMouseMode = 2
-map <C-T> :NERDTreeToggle<CR>
-
-autocmd FileType ruby let b:vimpipe_command="ruby"
-
 "=========================
 " Vim configuration
 " ========================
@@ -174,11 +179,6 @@ au BufEnter * set fo=tcrq
 imap <CHAR-0x00a0> <CHAR-0x20>
 
 let mapleader = "ç"
-
-" Allow mouse use. This enables click select in normal mode + NERDTree click
-if has('mouse')                                            " Enable mouse in terminal, just in normal mode
-  set mouse=a
-endif
 
 " Not sure what this one does anymore
 set backspace=indent,eol,start whichwrap+=<,>,[,]
