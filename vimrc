@@ -29,6 +29,10 @@ let g:indent_guides_guide_size = 1
 " Don't think I need those for now
 " Bundle 'css3-syntax-plus'
 " Bundle 'https://github.com/cakebaker/scss-syntax.vim.git'
+" Bundle 'https://github.com/hail2u/vim-css3-syntax.git'
+
+"Bundle 'https://github.com/othree/html5-syntax.vim.git'
+Bundle 'https://github.com/othree/html5.vim.git'
 
 " Move easily with <leader><leader>w
 Bundle 'Lokaltog/vim-easymotion'
@@ -49,6 +53,9 @@ Bundle 'matchit.zip'
 " Bundle 'neocomplcache'
 " Bundle 'neocomplcache-snippets_complete'
 " Bundle 'Syntastic'
+
+" Align double quotes
+" :Tabularize / "/l0"
 Bundle "https://github.com/godlygeek/tabular.git"
 
 Bundle 'xmledit'
@@ -66,17 +73,20 @@ map <F2> :Bufferlist<CR>
 " " snipmate --END
 " 
 Bundle "scrooloose/nerdtree"
+" Single click to open filepath elements
+let NERDTreeMouseMode = 3
+map <C-T> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+
+" Collapse all nodes
+" Select parent node and type 'X'
+
 " Allow mouse use.
 " This enables click select in normal mode + NERDTree click
 if has('mouse')
   " Enable mouse in terminal, just in normal mode
   set mouse=a
 endif
-
-" Single click to open filepath elements
-let NERDTreeMouseMode = 3
-map <C-T> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen = 1
 
 " vim-snipmate alternative
 Bundle "https://github.com/SirVer/ultisnips.git"
@@ -85,7 +95,11 @@ let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
-autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
+
+" autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
+" Snippets + syntax highlighting
+autocmd bufEnter *.html.erb set ft=eruby.html
+
 autocmd bufEnter *.scss UltiSnipsAddFiletypes scss.css
 
 " Setting this variable allows me to override the default snippets with a bang!
@@ -117,6 +131,16 @@ filetype plugin indent on     " required!
 " Bundles
 " ========================
 Bundle 'tComment'
+" tComment is probably better than NERDCommenter because it allows to user vim words/motion
+" gc Toggles, gC adds
+" gcap # Comment a paragrap
+" gc} # Comment until end of block
+" gcas # Comment a 'sentence' word
+" gcj # Comment current line and 1 below
+" gc2j # Comment current 3 lines from current line
+" gc% # Comment a ruby block for instance
+
+
 " First test the keymap
 " place 'stty -ixon' in bashrc first, to use <C-S>
 " map <C-S> :echo 'c-s ok'<CR>
@@ -128,6 +152,20 @@ Bundle 'tComment'
 "
  
 Bundle 'The-NERD-Commenter'
+" NERDCommenter will add space after comment
+" <leader>cA # Comment to end of line
+" <leader>c<space> # Toggle on and off
+" <leader>ci # Inverts commen state
+" <leader>cl # Comment symbol are aligned in line
+" <leader>ca # Switch to alternative comment symbol
+let NERDSpaceDelims = 1
+
+map <F3> :call NERDComment(0, 'uncomment')<CR>+
+map <S-F3> -:call NERDComment(0, 'uncomment')<CR>
+map <F4> :call NERDComment(0, 'norm')<CR>+
+map <S-F4> -:call NERDComment(0, 'norm')<CR>
+imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><ESC>==$xA
+
 
 "=========================
 " Vim configuration
@@ -191,15 +229,8 @@ inoremap <C-K> <UP>
 inoremap <C-H> <LEFT>
 inoremap <C-L> <RIGHT>
 
-
-" NERDCommenter will add space after comment
-let NERDSpaceDelims = 1
-
-map <F3> :call NERDComment(0, 'uncomment')<CR>+
-map <S-F3> -:call NERDComment(0, 'uncomment')<CR>
-map <F4> :call NERDComment(0, 'norm')<CR>+
-map <S-F4> -:call NERDComment(0, 'norm')<CR>
-imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><ESC>==$xA
+cnoremap <C-A> <HOME>
+cnoremap <C-E> <END>
 
 noremap <F1> :q<cr>
 noremap <S-F1> :qa!<cr>

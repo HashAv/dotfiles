@@ -7,3 +7,21 @@
 snippet : "hash rocket helper"
 :${1:key} => ${0:value}
 endsnippet
+
+snippet "\b(de)?f" "def <name>..." r!
+def ${1:function_name}
+  $0
+end
+endsnippet
+
+snippet do "do |<key>| ... end" i!
+do |${1:key}|
+  $0
+end
+endsnippet
+
+snippet doo "do ... end" i
+do
+  $0
+end
+endsnippet
