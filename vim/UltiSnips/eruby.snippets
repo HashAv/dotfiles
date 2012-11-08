@@ -9,3 +9,15 @@ endsnippet
 snippet : "hash rocket helper"
 :${1:key} => ${0:value}
 endsnippet
+
+snippet form_for "form_for" !b
+<%= form_for(@${1:var}${2:, html: { autocomplete: "off" }}) do |f| %>
+  $0
+<% end %>
+endsnippet
+
+# $1 in replacement string refers to the search string (regex match) and not the place holder
+snippet input "form input" !b
+<%= f.label :${2:name} %>
+<%= f.${1:type} :${2/(\w+).*/$1/} %>$0
+endsnippet

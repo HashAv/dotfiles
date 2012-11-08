@@ -1,3 +1,19 @@
+snippet descr "Rspec describe" !b
+describe "$1" do
+  $0
+end
+endsnippet
+
+snippet fill "Capybara fill_in" !b
+fill_in "${1:label}", with: "${0:data}"
+endsnippet
+
+snippet it "Rspec it" !b
+it "$1" do
+  $0
+end
+endsnippet
+
 snippet let "variable definition for rspec" !b
 let(:${1:varname}) { ${0:varvalue} }
 endsnippet
