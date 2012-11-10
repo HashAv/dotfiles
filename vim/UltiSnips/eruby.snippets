@@ -21,3 +21,9 @@ snippet input "form input" !b
 <%= f.label :${2:name} %>
 <%= f.${1:type} :${2/(\w+).*/$1/} %>$0
 endsnippet
+
+snippet if "if statement" !b
+<% if $1 %>
+  $0
+<% end %>
+endsnippet
