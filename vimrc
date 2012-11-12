@@ -34,8 +34,6 @@ let g:indent_guides_guide_size = 1
 "Bundle 'https://github.com/othree/html5-syntax.vim.git'
 Bundle 'https://github.com/othree/html5.vim.git'
 
-Bundle 'https://github.com/ervandew/supertab.git'
-
 " Move easily with <leader><leader>w
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = 'é'
@@ -201,8 +199,9 @@ set softtabstop=2
 set bg=dark
 set t_Co=256
 colorscheme ir_black
-highlight Visual ctermfg=black
-highlight Search ctermfg=white ctermbg=darkblue
+
+highlight Visual ctermfg=white
+highlight Search ctermfg=white ctermbg=6
 
 set pastetoggle=<F8>
 
