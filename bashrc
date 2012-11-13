@@ -48,6 +48,7 @@ fi
 
 export PATH=$PATH:/afs/home.lan/scripts:/var/lib/gems/1.8/bin/
 export EDITOR=vim
+export SHELL=/bin/bash
 
 # Pour que soit reconnu ~/.XCompose
 # export GTK_IM_MODULE=xim
@@ -92,5 +93,13 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # 1. in ~/.bash_login for remote ssh sessions
 # 2. in ~/.bashrc for virtual terminal sessions (gnome-terminal, etc.)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# if [[ $(which tmuxinator) ]]; then
+#   complete -W "$(tmuxinator list | tail -n +2)" tmuxinator start
+# fi
+
+# Doesn't seem to work
+# [[ -s `rvm gemdir`/bin/tmuxinator ]] && source `rvm gemdir`/bin/tmuxinator
+# [[ -s `rvm gemdir`/bin/tmuxinator_completion ]] && source `rvm gemdir`/bin/tmuxinator_completion
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
