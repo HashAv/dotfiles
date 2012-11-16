@@ -50,6 +50,7 @@ Bundle 'Auto-Pairs'
 let g:AutoPairsShortcutToggle = "<LEADER>p""
 
 Bundle 'matchit.zip'
+
 " Bundle 'neocomplcache'
 " Bundle 'neocomplcache-snippets_complete'
 " Bundle 'Syntastic'
@@ -312,10 +313,17 @@ set foldlevel=20
 autocmd bufEnter *.txt set tw=79
 
 " Cycle through folds easily
-nmap <c-up> zk
-nmap <c-down> zj
-nmap <c-left> zc
-nmap <c-right> zo
+if &term == "screen-256color" "tmux sessions
+  nmap <ESC>[1;2A zk
+  nmap <ESC>[1;2B zj
+  nmap <ESC>[1;2D zc
+  nmap <ESC>[1;2C zo
+else
+  nmap <s-up> zk
+  nmap <s-down> zj
+  nmap <s-left> zc
+  nmap <s-right> zo
+endif
 
 " Navigation
 nmap <space> <c-f>
