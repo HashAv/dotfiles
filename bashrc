@@ -94,8 +94,4 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # 2. in ~/.bashrc for virtual terminal sessions (gnome-terminal, etc.)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-if [[ $(which teamocil) ]]; then
-  complete -W "$(teamocil --list)" teamocil
-fi
-
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS

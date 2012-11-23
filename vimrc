@@ -86,7 +86,8 @@ let NERDTreeQuitOnOpen = 1
 " This enables click select in normal mode + NERDTree click
 if has('mouse')
   " Enable mouse in terminal, just in normal mode
-  set mouse=a
+  " set mouse=a
+  set mouse=n "n works better with NERDTree
 endif
 
 " vim-snipmate alternative
