@@ -1,3 +1,11 @@
+snippet ac "add_column" !b
+add_column :${1:table_name}, :${2:column_name}, :${0:data_type}
+endsnippet
+
+snippet ai "add_index" !b
+add_index :${1:table_name}, :${2:column_name}
+endsnippet
+
 snippet bef "Rspec before (long)" !b
 before do
   $0
