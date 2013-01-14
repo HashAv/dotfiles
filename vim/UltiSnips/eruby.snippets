@@ -1,13 +1,23 @@
 snippet % "Create ERB tags" i
-<% ${0} %>
+<% ${1} %>
 endsnippet
 
 snippet = "Create ERB insert tags" i
-<%= ${0} %>
+<%= ${1} %>
 endsnippet
 
 snippet : "hash rocket helper"
 :${1:key} => ${0:value}
+endsnippet
+
+snippet end "ERB end tag" !b
+<% end %>
+endsnippet
+
+# $1 in replacement string refers to the search string (regex match) and not the place holder
+snippet field "form fields" !b
+<%= f.label :${2:name} %>
+<%= f.${1:text}_field :${2/(\w+).*/$1/} %>$0
 endsnippet
 
 snippet form_for "form_for" !b
@@ -16,10 +26,10 @@ snippet form_for "form_for" !b
 <% end %>
 endsnippet
 
-# $1 in replacement string refers to the search string (regex match) and not the place holder
-snippet in "form input" !b
-<%= f.label :${2:name} %>
-<%= f.${1:type} :${2/(\w+).*/$1/} %>$0
+snippet form_tag "form_tag" !b
+<%= form_tag( ${1:named_route}${2:, { autocomplete: "off" }} ) do |f| %>
+  $0
+<% end %>
 endsnippet
 
 snippet if "if statement" !b
@@ -30,4 +40,16 @@ endsnippet
 
 snippet lt "link_to"
 link_to "${1:link text}", ${0:named_route}
+endsnippet
+
+# $1 in replacement string refers to the search string (regex match) and not the place holder
+snippet tag "form tags" !b
+<%= label_tag :${2:name} %>
+<%= ${1:text}_field_tag :${2/(\w+).*/$1/} %>$0
+endsnippet
+
+# $1 in replacement string refers to the search string (regex match) and not the place holder
+snippet tagd "form tags with default value" !b
+<%= label_tag :${2:name} %>
+<%= ${1:type}_field_tag :${2/(\w+).*/$1/}, params[:${2/(\w+).*/$1/}] %>$0
 endsnippet

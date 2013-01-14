@@ -3,9 +3,34 @@ filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+noremap <Silent> <C-L> :nohls<CR><C-L>
+
+" Swap those keys for inline searching
+nnoremap , ;
+nnoremap ; ,
+
+let mapleader = "è"
+
+" Set the ALT key (press <C-V> then <A-D> to get the raw value)
+set <A-D>=d
+
+inoremap <C-D> <Del>
+inoremap <A-D> <C-O>de
+
+" Annotate Ending Tag (with a comment -- relies matchit.vim and tComment)
+" I have to mark the original jump position since it gets lost (i.e. I can't
+" use ``)
+" mz  = mark z
+" yy  = copy line
+" g%  = cycle match backwards
+" p   = paste the copied line
+" gcc = comment it
+" kJ  = merget it
+" `z  = go back to where I was
+nmap _aet mzyyg%pgcckJ`z
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " Git wrapper
@@ -14,15 +39,26 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 
+" Simulates M-t emacs function
+Bundle 'transpose-words'
+nmap <Leader>t <Plug>Transposewords
+imap <Leader>t <Plug>Transposewords
+cmap <Leader>t <Plug>Transposewords
+
+" Like Emacs chords
+Bundle "https://github.com/kana/vim-arpeggio.git"
+Arpeggio inoremap ts  <Esc>
+
+
 " Haml and Sass syntax hl and indentation
 Bundle 'https://github.com/tpope/vim-haml.git'
 
-" Alternate column colors. Toggle with <LEADER>ig
+" Alternate column colors. Toggle with <Leader>ig
 Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-" I fixesd scss -> css indenting issues by copying a custom
+" I fixed scss -> css indenting issues by copying a custom
 " vim.css in ~/.vim/indent/css.vim
 " I debugged the issue with ':verbose set indentexpr' inside vim
 
@@ -32,11 +68,16 @@ let g:indent_guides_guide_size = 1
 " Bundle 'https://github.com/hail2u/vim-css3-syntax.git'
 
 "Bundle 'https://github.com/othree/html5-syntax.vim.git'
-Bundle 'https://github.com/othree/html5.vim.git'
+" Don't think I need this anymore since I user snippets now
+" Bundle 'https://github.com/othree/html5.vim.git'
 
-" Move easily with <leader><leader>w
-Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = 'é'
+" Move easily with <Leader><Leader>w
+" Seems to be buggy so I'm gone remove it
+" Bundle 'Lokaltog/vim-easymotion'
+" let g:EasyMotion_leader_key = '<Leader>'
+" let g:EasyMotion_mapping_f = '_f'
+" let g:EasyMotion_mapping_w = 'é'
+
 
 " Ruby syntax files, etc.
 Bundle 'vim-ruby/vim-ruby'
@@ -47,7 +88,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'https://github.com/spf13/vim-colors.git'
 
 Bundle 'Auto-Pairs'
-let g:AutoPairsShortcutToggle = "<LEADER>p""
+let g:AutoPairsShortcutToggle = "<Leader>p""
 
 Bundle 'matchit.zip'
 
@@ -72,7 +113,7 @@ map <F2> :Bufferlist<CR>
 " " Install
 " Bundle "garbas/vim-snipmate"
 " " snipmate --END
-" 
+"
 Bundle "scrooloose/nerdtree"
 " Single click to open filepath elements
 let NERDTreeMouseMode = 3
@@ -92,8 +133,8 @@ endif
 
 " vim-snipmate alternative
 Bundle "https://github.com/SirVer/ultisnips.git"
-let g:UltiSnipsExpandTrigger="<TAB>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
@@ -110,7 +151,7 @@ let g:UltiSnipsDontReverseSearchPath="1"
 
 " non github repos
 " Fast file search
-" Install then 
+" Install then
 " cd ~/.vim/bundle/command-t/ruby/command-t
 " rvm use system
 " ruby extconf.rb
@@ -128,7 +169,7 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
- 
+
 "=========================
 " Bundles
 " ========================
@@ -152,27 +193,32 @@ Bundle 'tComment'
 " noremap <C-S> <C-_>
 " map <C-C> :echo 'c-c ok'<CR>
 "
- 
-Bundle 'The-NERD-Commenter'
-" NERDCommenter will add space after comment
-" <leader>cA # Comment to end of line
-" <leader>c<space> # Toggle on and off
-" <leader>ci # Inverts commen state
-" <leader>cl # Comment symbol are aligned in line
-" <leader>ca # Switch to alternative comment symbol
-let NERDSpaceDelims = 1
 
-map <F3> :call NERDComment(0, 'uncomment')<CR>+
-map <S-F3> -:call NERDComment(0, 'uncomment')<CR>
-map <F4> :call NERDComment(0, 'norm')<CR>+
-map <S-F4> -:call NERDComment(0, 'norm')<CR>
-imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><ESC>==$xA
+" Should use tComment now
+" Bundle 'The-NERD-Commenter'
+" NERDCommenter will add space after comment
+" <Leader>cA # Comment to end of line
+" <Leader>c<Space> # Toggle on and off
+" <Leader>ci # Inverts commen state
+" <Leader>cl # Comment symbol are aligned in line
+" <Leader>ca # Switch to alternative comment symbol
+" let NERDSpaceDelims = 1
+
+" map <F3> :call NERDComment(0, 'uncomment')<CR>+
+" map <S-F3> :call NERDComment(0, 'uncomment')<CR>
+" map <F4> :call NERDComment(0, 'norm')<CR>+
+" map <S-F4> :call NERDComment(0, 'norm')<CR>
+" imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><Esc>==$xA
+"
+" Re-indent the whole file
+nmap <F6> gg=G``
+imap <F6> <Esc>gg=G``
 
 
 "=========================
 " Vim configuration
 " ========================
- 
+
 set history=1000          " Keep x lines of command line history
 set undolevels=1000       " Use many levels of undo                                        "
 set ruler                 " Show the cursor position all the time (normally on by default)
@@ -200,11 +246,15 @@ set softtabstop=2
 
 set bg=dark
 set t_Co=256
-colorscheme ir_black
 
+"Fix ir_black coloring inside terminals
+colorscheme ir_black
 highlight Visual ctermfg=white
 highlight Search ctermfg=white ctermbg=6
+highlight Pmenu ctermbg=238
+highlight PmenuSel ctermbg=DarkRed
 
+nmap <F7> :set hlsearch!<CR>
 set pastetoggle=<F8>
 
 " Display the annoying unicode char 00a0 (non-breaking space) with a '%'
@@ -219,41 +269,37 @@ au BufEnter * set fo=tcrq
 " Get rid of hidden non-breaking-space
 imap <CHAR-0x00a0> <CHAR-0x20>
 
-let mapleader = "ç"
-
 " Not sure what this one does anymore
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 
-inoremap <C-O> <C-O>o
-inoremap <C-A> <HOME>
-inoremap <C-E> <END>
-inoremap <C-J> <DOWN>
-inoremap <C-K> <UP>
-inoremap <C-H> <LEFT>
-inoremap <C-L> <RIGHT>
+" This is actually done with <ALT-O> by default
+" inoremap <C-O> <C-O>o
 
-cnoremap <C-A> <HOME>
-cnoremap <C-E> <END>
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-H> <Left>
+inoremap <C-L> <Right>
 
-noremap <F1> :q<cr>
-noremap <S-F1> :qa!<cr>
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+
+noremap <F1> :q<CR>
+noremap <S-F1> :qa!<CR>
 
 " Normal mode & save
-nmap <F5> :w<cr>:echo "File succesfully saved at" strftime("%H:%M:%S")<cr>
-imap <F5> <esc>:w<cr>:echo "File succesfully saved at" strftime("%H:%M:%S")<cr>
+nnoremap <F5> :w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
+inoremap <F5> <ESC>:w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
 imap <C-S> <F5>
 map <C-S> <F5>
 
 " Cycle quickly through buffers
-map <s-left> :bp<cr>
-map <s-right> :bn<cr>
-map <s-up> :ls<cr>:b
+map <S-LEFT> :bp<CR>
+map <S-RIGHT> :bn<CR>
+map <S-UP> :ls<CR>:b
 " This is the same like the built-in <C-S-6> shortcut
-map <s-down> :b#<cr>
-
-" Swap those keys
-nnoremap , ;
-nnoremap ; ,
+map <S-DOWN> :b#<CR>
 
 " ci" and ci' work even if I'm not inside the quotes range
 " ci< ci( and ci{ however require being inside the brackets range.
@@ -263,7 +309,7 @@ nnoremap ci) f(ci(
 nnoremap ci} f{ci{
 nnoremap ci] f[ci[
 
-if has("autocmd")                                          
+if has("autocmd")
   " Apply .vimrc modifications automatically
   autocmd! bufwritepost .vimrc source ~/.vimrc
 
@@ -274,7 +320,7 @@ if has("autocmd")
   "
   " This is already called by vundle but I'm leaving it there anyways
   filetype plugin indent on
-  
+
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
@@ -292,7 +338,7 @@ if has("autocmd")
 else
   " Always set autoindenting on
   " This mustn't load if filetype plugin indent is on
-  set autoindent                                           
+  set autoindent
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -315,20 +361,34 @@ autocmd bufEnter *.txt set tw=79
 
 " Cycle through folds easily
 if &term == "screen-256color" "tmux sessions
-  nmap <ESC>[1;2A zk
-  nmap <ESC>[1;2B zj
-  nmap <ESC>[1;2D zc
-  nmap <ESC>[1;2C zo
+  nmap <Esc>[1;2A zk
+  nmap <Esc>[1;2B zj
+  nmap <Esc>[1;2D zc
+  nmap <Esc>[1;2C zo
 else
-  nmap <s-up> zk
-  nmap <s-down> zj
-  nmap <s-left> zc
-  nmap <s-right> zo
+  nmap <S-UP> zk
+  nmap <S-DOWN> zj
+  nmap <S-LEFT> zc
+  nmap <S-RIGHT> zo
 endif
 
 " Navigation
-nmap <space> <c-f>
-nmap <BS> <c-b>
+nmap <Space> <C-F>
+nmap <BS> <C-B>
 
 " <cword> permet de désigner le mot sous le curseur.
 " :map <C-W> :!lynx http://fr.wikipedia.org/wiki/<cword><CR><CR>
+
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()

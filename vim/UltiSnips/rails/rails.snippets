@@ -1,0 +1,154 @@
+snippet ac "add_column" !b
+add_column :${1:table_name}, :${2:column_name}, :${0:data_type}
+endsnippet
+
+snippet ai "add_index" !b
+add_index :${1:table_name}, [:${2:column_name(s)}]
+endsnippet
+
+snippet afk "add_foreign_key (foreigner gem)" !b
+add_foreign_key :${1:child_table}, :${2:parent_table}${3:, dependent: :delete}${4:, column: "${5:col_name}"}
+endsnippet
+
+snippet bef "Rspec before (long)" !b
+before do
+  $1
+end
+endsnippet
+
+snippet beff "Rspec before (short)" !b
+before { $1 }
+endsnippet
+
+snippet bp "Description" !b
+binding.pry
+endsnippet
+
+snippet cl "Capybara click_link" !
+click_link(${1:link_path_or_string})
+endsnippet
+
+snippet des "Rspec describe" !b
+describe "$1" do
+  $0
+end
+endsnippet
+
+snippet exe "execute <<-HERE_STRING" !b
+execute <<-EOS
+  $1
+EOS
+endsnippet
+
+snippet exp "Rspec expect block" !b
+expect { $1 }
+endsnippet
+
+snippet fc "FactoryGirl.create(:options)" !
+FactoryGirl.create(:${1:factory_name})
+endsnippet
+
+snippet fil "Capybara fill_in" !b
+fill_in "${1:label}", with: ${0:data}
+endsnippet
+
+snippet fk "Rspec test foreign keys are indexed" !b
+describe "foreign keys" do
+  it "should be indexed" do
+    indexes = ActiveRecord::Base.connection.indexes($1.table_name).collect(&:columns).flatten
+    ${1:Model}.column_names.grep(/_id$/).each do |foreign_key|
+      indexes.include?(foreign_key).should be_true,
+        "Missing index for this column : #{foreign_key}"
+    end
+  end
+end
+endsnippet
+
+snippet hc "Capybara have_content"
+have_content('${1:content_text}')
+endsnippet
+
+snippet hl "Capybara have_link"
+have_link('${1:link_name}', href: ${0:named_route})
+endsnippet
+
+snippet hs "Capybara have_selector"
+have_selector('${1:tag.class}', text: "${0:tag_value}")
+endsnippet
+
+snippet it "Rspec it (long)" !b
+it "$1" do
+  $2
+end
+endsnippet
+
+snippet itt "Rspec it (short)" !b
+it { should $1 }
+endsnippet
+
+snippet let "lazy variable definition for rspec (long)" !b
+let(:${1:var_name}) do
+  ${2:var_definition}
+end
+endsnippet
+
+snippet lett "lazy variable definition for rspec" !b
+let(:${1:var_name}) { ${2:var_value} }
+endsnippet
+
+snippet lett! "persistent variable definition for rspec" !b
+let!(:${1:var_name}) { ${2:var_definition} }
+endsnippet
+
+snippet let! "persistent variable definition for rspec (long)" !b
+let!(:${1:var_name}) do
+  ${2:var_definition}
+end
+endsnippet
+
+snippet ma "Mass assignment test for rspec" !b
+describe "mass assignment" do
+  it "is not allowed for any foreign keys" do
+    ${1:Model}.column_names.grep(/_id$/).each do |foreign_key|
+      $1.accessible_attributes.include?(foreign_key).should be_false,
+        "This attribute should not be mass assignable: #{foreign_key}"
+    end   
+  end
+end
+endsnippet
+
+snippet nn "NOT NULL test for rspec" !b
+describe "NOT NULL" do
+  it "should not be allowed" do
+    exceptions = []
+    cols_with_potential_nulls = ActiveRecord::Base.connection.columns(${1:Model}.table_name).select{|col| col.null }.collect(&:name)
+    cols_with_missing_not_null = cols_with_potential_nulls - exceptions
+    cols_with_missing_not_null.should be_empty,
+      "Missing NOT NULL for the following column(s) : #{cols_with_missing_not_null}"
+  end
+end
+endsnippet
+
+snippet red "Rspec redirect_to" !
+redirect_to(${1:named_route})
+endsnippet
+
+snippet res "Rspec respond_to" !
+respond_to(:${1:attr_name})
+endsnippet
+
+snippet seq "FactoryGirl sequence" !b
+sequence(:${1:col}) { |n| "$2#{n}" }
+endsnippet
+
+snippet spec "Rspec specify block" !b
+specify { $1 }
+endsnippet
+
+snippet rs "Rspec response.should" !
+response.should $1
+endsnippet
+
+snippet sub "Rspec subject block" !b
+subject { ${1:subject_name} }
+endsnippet

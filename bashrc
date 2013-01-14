@@ -46,7 +46,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export PATH=$PATH:/afs/home.lan/scripts:/var/lib/gems/1.8/bin/
 export EDITOR=vim
 export SHELL=/bin/bash
 
@@ -86,12 +85,14 @@ alias ll='ls -l'
 alias l='ls -lh --time-style=long-iso'
 alias la='ls -Alh --time-style=long-iso'
 alias man='man -L en'
+alias emacs='LANG=en emacs -nw'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # This file should be sourced
 # 1. in ~/.bash_login for remote ssh sessions
 # 2. in ~/.bashrc for virtual terminal sessions (gnome-terminal, etc.)
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
+[[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion

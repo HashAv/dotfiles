@@ -1,0 +1,33 @@
+snippet ci "CREATE INDEX" !b
+CREATE INDEX ${1:column_name}_idx ON ${2:table_name}($1);
+endsnippet
+
+snippet cui "CREATE UNIQUE INDEX" !b
+CREATE UNIQUE INDEX ${1:column_name}_idx ON ${2:table_name}($1);
+endsnippet
+
+snippet ct "CREATE TABLE" !b
+CREATE TABLE ${1:plural_table_name} (
+  id SERIAL PRIMARY KEY,
+  $2
+
+  created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+  updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
+endsnippet
+
+snippet inn "INTEGER NOT NULL" !
+INTEGER NOT NULL
+endsnippet
+
+snippet int "INTEGER" !
+INTEGER
+endsnippet
+
+snippet nn "NOT NULL" !
+NOT NULL
+endsnippet
+
+snippet ref "REFERENCES table ON..." !
+REFERENCES ${1:plural_table_name}(id) ON DELETE CASCADE
+endsnippet

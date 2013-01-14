@@ -1,6 +1,7 @@
 # To get a list of available keys use 'bind -P'
 
 set completion-ignore-case on
+# set editing-mode vi
 
 # Replace hidden non-breaking-space with normal space
 # See hidden char with vim using :set list
