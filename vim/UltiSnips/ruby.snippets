@@ -14,6 +14,12 @@ def ${1:function_name}
 end
 endsnippet
 
+snippet debug "require debug with pry" !b
+#gem install debugger-pry debugger-completion
+require 'debugger/pry'
+debugger
+endsnippet
+
 snippet do "do |<key>| ... end" i!
 do |${1:key}|
   $0

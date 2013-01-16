@@ -45,10 +45,10 @@ nmap <Leader>t <Plug>Transposewords
 imap <Leader>t <Plug>Transposewords
 cmap <Leader>t <Plug>Transposewords
 
-" Like Emacs chords
+" Like Emacs chords.
+" Create maps inside the ~/.vim/plugin directory
+" Arpeggio inoremap ts  <Esc> # this will fail in vimrc
 Bundle "https://github.com/kana/vim-arpeggio.git"
-Arpeggio inoremap ts  <Esc>
-
 
 " Haml and Sass syntax hl and indentation
 Bundle 'https://github.com/tpope/vim-haml.git'

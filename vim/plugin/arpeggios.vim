@@ -1,0 +1,1 @@
+Arpeggio inoremap ts  <Esc>
