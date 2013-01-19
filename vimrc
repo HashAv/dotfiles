@@ -1,6 +1,17 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Windows instructions  "
+"  1. Clone my dotfiles
+"  2. Clone vundle in .dotfiles/vim/bundle/vundle
+"     (bundles are ignored by git)
+"  3. Create a ~/_vimrc with the following 2 lines
+"     set rtp+=~/.dotfiles/vim
+"     source ~/.dotfiles/vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" For windows comptatibility
 set rtp+=~/.dotfiles/vim/bundle/vundle/
 call vundle#rc()
 noremap <Silent> <C-L> :nohls<CR><C-L>
