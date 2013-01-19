@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=$HOME/.dotfiles/vim/bundle/vundle/
+set rtp+=~/.dotfiles/vim/bundle/vundle/
 call vundle#rc()
 noremap <Silent> <C-L> :nohls<CR><C-L>
 
