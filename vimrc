@@ -9,6 +9,17 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " For windows comptatibility
 set rtp+=~/.dotfiles/vim/bundle/vundle/
+if has("gui_running")
+  set guioptions-=m "menu bar
+  set guioptions-=T "tool bar
+
+  "Full screen
+  if has("gui_win32")
+    if $LANG == "FR"
+      au GUIEnter * simalt ~n
+    endif
+  endif
+endif
 
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -334,17 +345,17 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
   augroup END
 else
   " Always set autoindenting on
@@ -357,7 +368,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-    \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 " Folds text according to syntax highlighting rules
