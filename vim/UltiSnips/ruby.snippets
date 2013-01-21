@@ -20,14 +20,14 @@ require 'debugger/pry'
 debugger
 endsnippet
 
-snippet do "do |<key>| ... end" i!
-do |${1:key}|
+snippet do "do ... end" i!
+do
   $0
 end
 endsnippet
 
-snippet doo "do ... end" i
-do
+snippet doo "do |<key>| ... end" i!
+do |${1:key}|
   $0
 end
 endsnippet
