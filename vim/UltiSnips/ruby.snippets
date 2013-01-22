@@ -38,8 +38,40 @@ if $1
 end
 endsnippet
 
+snippet logd "log.debug {}" !b
+App::Logger.debug { "$1" }
+endsnippet
+
+snippet loge "log.error {}" !b
+App::Logger.error { "$1" }
+endsnippet
+
+snippet logf "log.fatal {}" !b
+App::Logger.fatal { "$1" }
+endsnippet
+
+snippet logi "log.info {}" !b
+App::Logger.info { "$1" }
+endsnippet
+
+snippet logw "log.warn {}" !b
+App::Logger.warn { "$1" }
+endsnippet
+
+snippet logger "Create log file" !b
+require 'logger'
+
+module App
+  log_filename = File.basename(__FILE__).gsub(/\.rb/, "") + ".log"
+  log_path = File.dirname(__FILE__) + "/../log/#{log_filename}"
+  Logger = Logger.new(log_path, "weekly")
+end
+endsnippet
+
 snippet pry "require pry and binding" !b
+
 require 'pry'
 binding.pry
-exit
+exit$0
+
 endsnippet

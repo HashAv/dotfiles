@@ -34,16 +34,16 @@ shopt -s nocaseglob
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 export EDITOR=vim
@@ -61,19 +61,18 @@ else
   export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
-say(){ mplayer -user-agent "Mozilla/5.0" "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
 dit(){ mplayer -user-agent "Mozilla/5.0" "http://translate.google.com/translate_tts?tl=fr&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
 
 export CHROMIUM_USER_FLAGS=--password-store=detect
 
-# Have vi behaviour 
-# set -o vi 
+# Have vi behaviour
+# set -o vi
 bind -m vi-insert "\C-l":clear-screen                 # ^l clear screen
 bind -m vi-insert "\C-n":menu-complete                # ^n cycle through the list of partial matches
 bind -m vi-insert "\C-p":menu-complete-krd            # ^p cycle through the list of partial matches, backwards
 bind -m vi-insert "\C-g":vi-movement-mode             # Other keys ^c, ^v, ^q, ^s don't work !
-bind -m vi-insert 'Control-a: beginning-of-line'      # Ctrl-A: insert at line start like in emacs mode 
-bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line end like in emacs mode 
+bind -m vi-insert 'Control-a: beginning-of-line'      # Ctrl-A: insert at line start like in emacs mode
+bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line end like in emacs mode
 
 # Needed for vim <C-S> mapping
 stty -ixon

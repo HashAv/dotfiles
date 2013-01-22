@@ -25,7 +25,7 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 call vundle#rc()
 
-noremap <Silent> <C-L> :nohls<CR><C-L>
+noremap <silent> <C-L> :nohls<CR><C-L>
 
 " Swap those keys for inline searching
 nnoremap , ;
