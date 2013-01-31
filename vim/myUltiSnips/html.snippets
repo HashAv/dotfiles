@@ -1,0 +1,40 @@
+snippet footer "" b
+<footer`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+   $0 
+</footer>
+endsnippet
+
+snippet header "" b
+<header`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+   $0 
+</header>
+endsnippet
+
+snippet html5shim "HTML5 shim tag" b
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+endsnippet
+
+snippet li "list item (overriden)" !
+<li>$1</li>
+endsnippet
+
+snippet jquery "jQuery template" !b
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <title>jQuery demo</title>
+ </head>
+ <body>
+   <a href="http://jquery.com/">jQuery</a>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script>
+     $(document).ready(function(){
+      $0
+     });
+   </script>
+ </body>
+ </html>
+endsnippet

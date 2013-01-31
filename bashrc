@@ -85,6 +85,7 @@ alias l='ls -lh --time-style=long-iso'
 alias la='ls -Alh --time-style=long-iso'
 alias man='man -L en'
 alias emacs='LANG=en emacs -nw'
+alias be='bundle exec'
 
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 

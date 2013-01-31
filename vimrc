@@ -161,6 +161,7 @@ let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
 
+
 " autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
 " Snippets + syntax highlighting
 autocmd bufEnter *.html.erb set ft=eruby.html
@@ -170,6 +171,16 @@ autocmd bufEnter *.scss UltiSnipsAddFiletypes scss.css
 " Setting this variable allows me to override the default snippets with a bang!
 " Otherwise the default snippets still show up.
 let g:UltiSnipsDontReverseSearchPath="1"
+
+" I tried to make a toggle function but the search path does not get updated
+" For now the best solution is to modify vimrc and restart vim
+let g:DefaultSnippetsInhibited=0
+if g:DefaultSnippetsInhibited
+  let g:UltiSnipsSnippetDirectories=["myUltiSnips"]
+else
+  let g:UltiSnipsSnippetDirectories=["myUltiSnips", "UltiSnips"]
+endif
+
 
 " non github repos
 " Fast file search
@@ -182,7 +193,7 @@ let g:UltiSnipsDontReverseSearchPath="1"
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 
 filetype plugin indent on     " required!
-"
+
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
