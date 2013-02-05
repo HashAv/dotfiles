@@ -288,9 +288,14 @@ colorscheme ir_black
 
 "Fix ir_black coloring inside terminals
 highlight Visual ctermfg=white
-highlight Search ctermfg=white ctermbg=6 gui=reverse
 highlight Pmenu ctermbg=238
 highlight PmenuSel ctermbg=DarkRed
+
+if has("gui_running")
+  highlight Search guifg=Cyan gui=reverse
+else
+  highlight Search ctermfg=white ctermbg=6
+endif
 
 nmap <F7> :set hlsearch!<CR>
 set pastetoggle=<F8>
