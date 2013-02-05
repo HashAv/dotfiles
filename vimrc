@@ -51,6 +51,10 @@ inoremap <A-D> <C-O>de
 " `z  = go back to where I was
 nmap _aet mzyyg%pgcckJ`z
 
+" Align a ruby hash (1.9)
+nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
+vmap _arh :Tabularize/\w:\zs/l0l1<CR>
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
@@ -280,10 +284,11 @@ set softtabstop=2
 set bg=dark
 set t_Co=256
 
-"Fix ir_black coloring inside terminals
 colorscheme ir_black
+
+"Fix ir_black coloring inside terminals
 highlight Visual ctermfg=white
-highlight Search ctermfg=white ctermbg=6
+highlight Search ctermfg=white ctermbg=6 gui=reverse
 highlight Pmenu ctermbg=238
 highlight PmenuSel ctermbg=DarkRed
 
@@ -322,10 +327,10 @@ noremap <F1> :q<CR>
 noremap <S-F1> :qa!<CR>
 
 " Normal mode & save
-nnoremap <F5> :w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
-inoremap <F5> <ESC>:w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
-imap <C-S> <F5>
-map <C-S> <F5>
+nnoremap <F4> :w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
+inoremap <F4> <ESC>:w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
+" imap <C-S> <F4>
+" map <C-S> <F4>
 
 " Cycle quickly through buffers
 map <S-LEFT> :bp<CR>
