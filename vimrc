@@ -165,6 +165,11 @@ let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
 
+" SQL formatting with <LEADER>sfs
+Bundle 'SQLUtilities'
+let g:sqlutil_align_comma = 1
+" Dependencie
+Bundle 'Align'
 
 " autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
 " Snippets + syntax highlighting
