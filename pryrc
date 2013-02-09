@@ -1,2 +1,1 @@
-require 'interactive_editor'
-require 'awesome_print'
+load File.expand_path '~/.irbrc'
