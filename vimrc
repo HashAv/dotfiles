@@ -76,7 +76,8 @@ cmap <Leader>t <Plug>Transposewords
 " Like Emacs chords.
 " Create maps inside the ~/.vim/plugin directory
 " Arpeggio inoremap ts  <Esc> # this will fail in vimrc
-Bundle "https://github.com/kana/vim-arpeggio.git"
+" This is causing pasting bugs (unless in paste mode) so I'm turning it off
+" Bundle "https://github.com/kana/vim-arpeggio.git"
 
 " Haml and Sass syntax hl and indentation
 Bundle 'https://github.com/tpope/vim-haml.git'
@@ -115,8 +116,13 @@ Bundle 'vim-ruby/vim-ruby'
 
 Bundle 'https://github.com/spf13/vim-colors.git'
 
-Bundle 'Auto-Pairs'
+Bundle 'https://github.com/jiangmiao/auto-pairs.git'
 let g:AutoPairsShortcutToggle = "<Leader>p""
+
+" Allows to type ("string") and go to the end if press )
+let g:AutoPairsFlyMode=1
+
+let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 
 Bundle 'matchit.zip'
 

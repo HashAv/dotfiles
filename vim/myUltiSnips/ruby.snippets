@@ -69,9 +69,18 @@ snippet exp "Rspec expect block" !b
 expect { $1 }
 endsnippet
 
-snippet fc "FactoryGirl.create(:options)" !
+snippet fgb "FactoryGirl.build(:options)" !
 FactoryGirl.create(:${1:factory_name})
 endsnippet
+
+snippet fgc "FactoryGirl.create(:options)" !
+FactoryGirl.create(:${1:factory_name})
+endsnippet
+
+snippet fgs "FactoryGirl sequence" !b
+sequence(:${1:col}) { |n| "$2#{n}" }
+endsnippet
+
 
 snippet fil "Capybara fill_in" !b
 fill_in "${1:label}", with: ${0:data}
@@ -120,10 +129,14 @@ module App
 end
 endsnippet
 
-snippet pry "require pry and binding" !b
-
-require 'pry'
+snippet bp "binding.pry" !b
 binding.pry
-exit$0
+endsnippet
 
+snippet pry "require pry and binding" !b
+require 'pry' ; binding.pry
+endsnippet
+
+snippet spec "specify {}" !b
+specify { $1 }
 endsnippet
