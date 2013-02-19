@@ -65,6 +65,10 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'tpope/vim-surround'
+
+" Repeat surround commands with .
+Bundle 'tpope/vim-repeat'
+
 Bundle 'tpope/vim-rails'
 
 " Simulates M-t emacs function
