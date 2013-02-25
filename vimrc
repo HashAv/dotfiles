@@ -91,6 +91,9 @@ Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+" Highligths matching tags
+Bundle 'https://github.com/gregsexton/MatchTag.git'
+
 " I fixed scss -> css indenting issues by copying a custom
 " vim.css in ~/.vim/indent/css.vim
 " I debugged the issue with ':verbose set indentexpr' inside vim
@@ -307,6 +310,7 @@ colorscheme ir_black
 highlight Visual ctermfg=white
 highlight Pmenu ctermbg=238
 highlight PmenuSel ctermbg=DarkRed
+highlight MatchParen cterm=bold ctermfg=red ctermbg=red
 
 if has("gui_running")
   highlight Search guifg=Cyan gui=reverse

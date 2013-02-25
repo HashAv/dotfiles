@@ -1,2 +1,4 @@
 *.swp
 *~
+.rbenv-version
+config/database.yml
