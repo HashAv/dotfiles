@@ -52,28 +52,7 @@ export SHELL=/bin/bash
 # Pour que soit reconnu ~/.XCompose
 # export GTK_IM_MODULE=xim
 
-__git_prompt(){
-  if [[ $(type -t git) ]]; then
-
-    NO_UNTRACKED_FILES='nothing to commit (working directory clean)'
-
-    __gitdir 2>/dev/null >&2 || exit 1
-
-    if [[ "$(git status | tail -n1)" == "$NO_UNTRACKED_FILES" ]]; then
-      echo -n "$(__git_ps1 ' [%s|clean]')"
-    else
-      echo -n "$(__git_ps1 ' [%s|dirty]')"
-    fi
-  fi
-}
-
 # Set custom prompt ; root = red ; others = green (case statement copied from begining of file)
-# WHITE='\033[0;m'
-# RED='\033[1;31m'
-# GREEN='\033[1;32m'
-# YELLOW='\033[1;33m'
-# BLUE='\033[1;34m'
-
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -82,15 +61,15 @@ PURPLE=$(tput setaf 5)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
+export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWSTASHSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1
+
 if [ $(id -un) == "root" ]; then
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   export PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   if [[ $(type -t __git_ps1) ]]; then
-    # export PS1="\u@\h\$"
-    # export PS1='\[$GREEN$BOLD\]\h\[$RESET\]:\[$BLUE$BOLD\]\w\[$RESET\]\$ '
-    export PS1="\[${GREEN}${BOLD}\]\u@\h\[${RESET}\]:\[${BLUE}${BOLD}\]\w\[${PURPLE}\]"'$(__git_prompt)'"\[${RESET}\]\$ "
+    export PS1="\[${GREEN}${BOLD}\]\u@\h\[${RESET}\]:\[${BLUE}${BOLD}\]\w\[${PURPLE}\]"'$(__git_ps1 " [%s]")'"\[${RESET}\]\$ "
     # export PS1="\[${GREEN}${BOLD}\]\u@\h\[${RESET}\]:\[${BLUE}${BOLD}\]\w"'$(__git_prompt)'"\[${RESET}\]\$ "
   else
     export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
