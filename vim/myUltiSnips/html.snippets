@@ -1,18 +1,18 @@
 snippet footer "" b
 <footer`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-   $0 
+   $0
 </footer>
 endsnippet
 
 snippet header "" b
 <header`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-   $0 
+   $0
 </header>
 endsnippet
 
-snippet html5shim "HTML5 shim tag" b
+snippet "\bhtml5shi(m|v)" "HTML5 shiv tag" r
 <!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 endsnippet
 

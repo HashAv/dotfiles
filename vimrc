@@ -94,6 +94,9 @@ let g:indent_guides_guide_size = 1
 " Highligths matching tags
 Bundle 'https://github.com/gregsexton/MatchTag.git'
 
+" less css syntax highlighting
+Bundle 'https://github.com/groenewege/vim-less.git'
+
 " I fixed scss -> css indenting issues by copying a custom
 " vim.css in ~/.vim/indent/css.vim
 " I debugged the issue with ':verbose set indentexpr' inside vim
@@ -104,7 +107,7 @@ Bundle 'https://github.com/gregsexton/MatchTag.git'
 " Bundle 'https://github.com/hail2u/vim-css3-syntax.git'
 
 "Bundle 'https://github.com/othree/html5-syntax.vim.git'
-" Don't think I need this anymore since I user snippets now
+" Don't think I need this anymore since I use snippets now
 " Bundle 'https://github.com/othree/html5.vim.git'
 
 " Move easily with <Leader><Leader>w
@@ -191,6 +194,9 @@ Bundle 'Align'
 autocmd bufEnter *.html.erb set ft=eruby.html
 
 autocmd bufEnter *.scss UltiSnipsAddFiletypes scss.css
+
+" Auto-complete on hyphens (only within current buffer)
+autocmd fileType html,eruby.html,css,scss setlocal iskeyword+=-
 
 " Setting this variable allows me to override the default snippets with a bang!
 " Otherwise the default snippets still show up.
@@ -353,10 +359,11 @@ noremap <F1> :q<CR>
 noremap <S-F1> :qa!<CR>
 
 " Normal mode & save
-nnoremap <F4> :w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
-inoremap <F4> <ESC>:w<CR>:echo "File succesfully saved at" strftime("%H:%M:%S")<CR>
-" imap <C-S> <F4>
-" map <C-S> <F4>
+nnoremap <F5> mz :update<CR> \| :echo "File succesfully saved at" strftime("%H:%M:%S")<CR>`z
+inoremap <F5> <ESC>lmz :update<CR>`z
+
+imap <C-S> <F5>
+map <C-S> <F5>
 
 " Cycle quickly through buffers
 map <S-LEFT> :bp<CR>
