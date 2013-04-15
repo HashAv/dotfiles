@@ -10,8 +10,15 @@ snippet : "hash rocket helper"
 :${1:key} => ${0:value}
 endsnippet
 
+snippet cf "content_for" !b
+<% content_for :${1:key} do %>
+  $0
+<% end %>
+endsnippet
+
 snippet end "ERB end tag" !b
 <% end %>
+$0
 endsnippet
 
 # $1 in replacement string refers to the search string (regex match) and not the place holder
