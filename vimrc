@@ -33,25 +33,12 @@ nnoremap ; ,
 
 " Default encoding is needed for Windows XP and this mapleader
 set encoding=utf8
-" let mapleader = "è"
 
 " Set the ALT key (press <C-V> then <A-D> to get the raw value)
 set <A-D>=d
 
 inoremap <C-D> <Del>
 inoremap <A-D> <C-O>de
-
-" Annotate Ending Tag (with a comment -- relies matchit.vim and tComment)
-" I have to mark the original jump position since it gets lost (i.e. I can't
-" use ``)
-" mz  = mark z
-" yy  = copy line
-" g%  = cycle match backwards
-" p   = paste the copied line
-" gcc = comment it
-" kJ  = merget it
-" `z  = go back to where I was
-nmap _aet mzyyg%pgcckJ`z
 
 " Align a ruby hash (1.9)
 nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
