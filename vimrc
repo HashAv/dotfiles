@@ -108,10 +108,8 @@ Bundle 'https://github.com/spf13/vim-colors.git'
 Bundle 'https://github.com/jiangmiao/auto-pairs.git'
 let g:AutoPairsShortcutToggle = "<Leader>p""
 
-" Allows to type ("string") and go to the end if press )
-" let g:AutoPairsFlyMode=1
-
 let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
+autocmd VimEnter * silent call AutoPairsToggle()
 
 Bundle 'matchit.zip'
 
