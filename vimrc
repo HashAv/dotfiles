@@ -33,7 +33,7 @@ nnoremap ; ,
 
 " Default encoding is needed for Windows XP and this mapleader
 set encoding=utf8
-let mapleader = "è"
+" let mapleader = "è"
 
 " Set the ALT key (press <C-V> then <A-D> to get the raw value)
 set <A-D>=d
