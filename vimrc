@@ -110,14 +110,6 @@ Bundle 'https://github.com/groenewege/vim-less.git'
 " Don't think I need this anymore since I use snippets now
 " Bundle 'https://github.com/othree/html5.vim.git'
 
-" Move easily with <Leader><Leader>w
-" Seems to be buggy so I'm gone remove it
-" Bundle 'Lokaltog/vim-easymotion'
-" let g:EasyMotion_leader_key = '<Leader>'
-" let g:EasyMotion_mapping_f = '_f'
-" let g:EasyMotion_mapping_w = 'é'
-
-
 " Ruby syntax files, etc.
 Bundle 'vim-ruby/vim-ruby'
 
