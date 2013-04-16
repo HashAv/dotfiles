@@ -64,12 +64,6 @@ nmap <Leader>t <Plug>Transposewords
 imap <Leader>t <Plug>Transposewords
 cmap <Leader>t <Plug>Transposewords
 
-" Like Emacs chords.
-" Create maps inside the ~/.vim/plugin directory
-" Arpeggio inoremap ts  <Esc> # this will fail in vimrc
-" This is causing pasting bugs (unless in paste mode) so I'm turning it off
-" Bundle "https://github.com/kana/vim-arpeggio.git"
-
 " Haml and Sass syntax hl and indentation
 Bundle 'https://github.com/tpope/vim-haml.git'
 
@@ -113,10 +107,6 @@ autocmd VimEnter * silent call AutoPairsToggle()
 
 Bundle 'matchit.zip'
 
-" Bundle 'neocomplcache'
-" Bundle 'neocomplcache-snippets_complete'
-" Bundle 'Syntastic'
-
 " Align double quotes
 " :Tabularize / "/l0"
 Bundle "https://github.com/godlygeek/tabular.git"
@@ -126,23 +116,11 @@ Bundle 'xmledit'
 Bundle 'buffet.vim'
 map <F2> :Bufferlist<CR>
 
-" " snipmate --START
-" " Install dependencies:
-" Bundle "MarcWeber/vim-addon-mw-utils"
-" Bundle "tomtom/tlib_vim"
-" Bundle "honza/snipmate-snippets"
-" " Install
-" Bundle "garbas/vim-snipmate"
-" " snipmate --END
-"
 Bundle "scrooloose/nerdtree"
 " Single click to open filepath elements
 let NERDTreeMouseMode = 3
 map <C-T> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
-
-" Collapse all nodes
-" Select parent node and type 'X'
 
 " Allow mouse use.
 " This enables click select in normal mode + NERDTree click
@@ -152,7 +130,7 @@ if has('mouse')
   set mouse=n "n works better with NERDTree
 endif
 
-" vim-snipmate alternative
+" vim-snipmate better alternative
 Bundle "https://github.com/SirVer/ultisnips.git"
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -163,10 +141,9 @@ let g:UltiSnipsListSnippets="<F9>"
 " SQL formatting with <LEADER>sfs
 Bundle 'SQLUtilities'
 let g:sqlutil_align_comma = 1
-" Dependencie
+" Dependency
 Bundle 'Align'
 
-" autocmd bufEnter *.html.erb UltiSnipsAddFiletypes eruby.html
 " Snippets + syntax highlighting
 autocmd bufEnter *.html.erb set ft=eruby.html
 
@@ -189,14 +166,6 @@ else
 endif
 
 
-" non github repos
-" Fast file search
-" Install then
-" cd ~/.vim/bundle/command-t/ruby/command-t
-" rvm use system
-" ruby extconf.rb
-" make
-" Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 
 filetype plugin indent on     " required!
