@@ -182,36 +182,23 @@ filetype plugin indent on     " required!
 "=========================
 " Bundles
 " ========================
-Bundle 'tComment'
-" tComment is probably better than NERDCommenter because it allows to user vim words/motion
-" gc Toggles, gC adds
-" gcap # Comment a paragrap
-" gc} # Comment until end of block
-" gcas # Comment a 'sentence' word
-" gcj # Comment current line and 1 below
-" gc2j # Comment current 3 lines from current line
-" gc% # Comment a ruby block for instance
-
-
-" First test the keymap
 " place 'stty -ixon' in bashrc first, to use <C-S>
 " map <C-S> :echo 'c-s ok'<CR>
-" check the value inside vim with :echo g:tcommentMapLeader1
-" let g:tcommentMapLeader1 = '<C-S>'
-" let g:tcommentMapLeader1 = '<F6>'
-" noremap <C-S> <C-_>
 " map <C-C> :echo 'c-c ok'<CR>
-"
 
-" Should use tComment now
-" Bundle 'The-NERD-Commenter'
+" NERD-Commenter is more flexible than tComment
+Bundle 'The-NERD-Commenter'
 " NERDCommenter will add space after comment
+" <Leader>cc # Comment line or selection
+" 3<Leader>cc # Comment next 3 lines
+" <Leader>cu # Uncomment line or selection
+" <Leader>ci # Inverts comment state
+"
+" <Leader>c<Space> # Toggle state on and off
 " <Leader>cA # Comment to end of line
-" <Leader>c<Space> # Toggle on and off
-" <Leader>ci # Inverts commen state
 " <Leader>cl # Comment symbol are aligned in line
 " <Leader>ca # Switch to alternative comment symbol
-" let NERDSpaceDelims = 1
+let NERDSpaceDelims = 1
 
 " map <F3> :call NERDComment(0, 'uncomment')<CR>+
 " map <S-F3> :call NERDComment(0, 'uncomment')<CR>
