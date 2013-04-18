@@ -167,6 +167,12 @@ endif
 
 
 Bundle 'https://github.com/kien/ctrlp.vim.git'
+" Set this to 1 to set searching by filename (as opposed to full path) as the default: >
+" Toggle by filename or by filepath with <C-D>
+" Toggle regex mode with <C-R>
+let g:ctrlp_by_filename = 1
+nmap <F3> :CtrlPMRU<CR>
+
 
 filetype plugin indent on     " required!
 
@@ -310,9 +316,8 @@ set <F12>=[24~
 " nnoremap <F5> mz:update<CR> \| :echo "File succesfully saved at" strftime("%H:%M:%S")<CR>`z
 " inoremap <F5> <ESC>lmz:update<CR>`z
 
-" silent is important here. It prevents having 2 lines of output thus having to then press enter.
-inoremap <F5> <ESC>:silent update \| echo 'File succesfully saved at' strftime("%H:%M:%S")<CR>
-nnoremap <F5> :update \| echo 'File succesfully saved at' strftime("%H:%M:%S")<CR>
+inoremap <F5> <ESC>:update<CR>
+nnoremap <F5> :update<CR>
 
 imap <C-S> <F5>
 nmap <C-S> <F5>
