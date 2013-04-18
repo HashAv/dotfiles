@@ -42,3 +42,29 @@ setopt noautomenu
 # setopt nomenucomplete
 setopt nocorrect
 setopt nocorrectall
+
+export CHROMIUM_USER_FLAGS=--password-store=detect
+
+# This is bash specific
+# Have vi behaviour
+# set -o vi
+# bind -m vi-insert "\C-l":clear-screen                 # ^l clear screen
+# bind -m vi-insert "\C-n":menu-complete                # ^n cycle through the list of partial matches
+# bind -m vi-insert "\C-p":menu-complete-krd            # ^p cycle through the list of partial matches, backwards
+# bind -m vi-insert "\C-g":vi-movement-mode             # Other keys ^c, ^v, ^q, ^s don't work !
+# bind -m vi-insert 'Control-a: beginning-of-line'      # Ctrl-A: insert at line start like in emacs mode
+# bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line end like in emacs mode
+
+# Needed for vim <C-S> mapping
+# stty -ixon
+# bindkey -v
+# bindkey "^P" vi-up-line-or-history
+# bindkey "^N" vi-down-line-or-history
+
+# bindkey "^[[1~" vi-beginning-of-line   # Home
+# bindkey "^[[4~" vi-end-of-line         # End
+# bindkey '^[[2~' beep                   # Insert
+# bindkey '^[[3~' delete-char            # Del
+# bindkey '^[[5~' vi-backward-blank-word # Page Up
+# bindkey '^[[6~' vi-forward-blank-word  # Page Down
+

@@ -291,12 +291,31 @@ cnoremap <C-E> <End>
 noremap <F1> :q<CR>
 noremap <S-F1> :qa!<CR>
 
+" Enter with <C-V>key
+set <F1>=OP
+set <F2>=OQ
+set <F3>=OR
+set <F4>=OS
+set <F5>=[15~
+set <F6>=[17~
+set <F7>=[18~
+set <F8>=[19~
+set <F9>=[20~
+" set <F10>=(virtualbox host key)
+" set <F11>=(gnome-terminal full-screen)
+set <F12>=[24~
+
 " Normal mode & save
-nnoremap <F5> mz :update<CR> \| :echo "File succesfully saved at" strftime("%H:%M:%S")<CR>`z
-inoremap <F5> <ESC>lmz :update<CR>`z
+" buggy mz stuff
+" nnoremap <F5> mz:update<CR> \| :echo "File succesfully saved at" strftime("%H:%M:%S")<CR>`z
+" inoremap <F5> <ESC>lmz:update<CR>`z
+
+" silent is important here. It prevents having 2 lines of output thus having to then press enter.
+inoremap <F5> <ESC>:silent update \| echo 'File succesfully saved at' strftime("%H:%M:%S")<CR>
+nnoremap <F5> :update \| echo 'File succesfully saved at' strftime("%H:%M:%S")<CR>
 
 imap <C-S> <F5>
-map <C-S> <F5>
+nmap <C-S> <F5>
 
 " Cycle quickly through buffers
 map <S-LEFT> :bp<CR>
