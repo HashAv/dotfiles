@@ -42,8 +42,14 @@ unless File.exist?("#{HOME}/.vim/bundle/vundle")
   puts %Q_vim ; :BundleInstall_
 end
 
+puts
+unless Dir.exist?("#{HOME}/.oh-my-zsh")
+  puts "\033[1;31mOh-my-zsh repo not found\033[1;m"
+  puts %Q_git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh_
+end
+
 git_config_path = "#{HOME}/.gitconfig"
-puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path) 
+puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path)
 unless File.exist?(git_config_path)
   # Create git config since I don't want to give away my user's path
   # Git config does not support variable expansion
