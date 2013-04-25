@@ -266,6 +266,9 @@ endif
 nmap <F7> :set hlsearch!<CR>
 set pastetoggle=<F8>
 
+nnoremap n nzz
+nnoremap N Nzz
+
 " Display the annoying unicode char 00a0 (non-breaking space) with a '%'
 set listchars+=nbsp:%
 
