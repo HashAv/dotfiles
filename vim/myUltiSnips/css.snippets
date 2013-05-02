@@ -22,12 +22,12 @@ snippet rr "bootstrap responsive resolutions" !b
 }
 
 /* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
+@media (min-width: 480px) and (max-width: 767px) {
   border: 2px solid yellow;
 }
 
 /* Landscape phones and down */
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   border: 2px solid purple;
 }
 endsnippet
