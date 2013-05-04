@@ -99,11 +99,12 @@ Bundle 'vim-ruby/vim-ruby'
 
 Bundle 'https://github.com/spf13/vim-colors.git'
 
-" Bundle 'https://github.com/jiangmiao/auto-pairs.git'
+Bundle 'https://github.com/jiangmiao/auto-pairs.git'
 " let g:AutoPairsShortcutToggle = "<Leader>p""
 
 " let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 " autocmd VimEnter * silent call AutoPairsToggle()
+let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 
 Bundle 'matchit.zip'
 
