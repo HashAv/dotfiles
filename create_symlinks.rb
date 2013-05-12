@@ -55,8 +55,8 @@ unless File.exist?(git_config_path)
   # Git config does not support variable expansion
 puts <<config
 # Git config file creation. Copy and paste.
-git config --global user.name "Hash Av"
-git config --global user.email me@nowhere.com
+git config --global user.name "bgthomas"
+git config --global user.email benjamin.guy.thomas@gmail.com
 git config --global alias.co checkout
 git config --global core.editor "vim"
 git config --global core.excludesfile #{HOME}/.gitignore_global
