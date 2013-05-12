@@ -5,6 +5,41 @@ snippet : "css expand line helper"
 ${1:param}: ${2:value};
 endsnippet
 
+snippet bg "background" !b
+background: $1;
+endsnippet
+
+snippet di "display" !b
+display: $1;
+endsnippet
+
+snippet mq "media query" !b
+@media (${1:min|max}-width: ${2:num}px) {
+  $0;
+}
+endsnippet
+
+snippet mb "margin-bottom" !b
+margin-bottom: $1;
+endsnippet
+
+snippet ml "margin-left" !b
+margin-left: $1;
+endsnippet
+
+snippet mr "margin-right" !b
+margin-right: $1;
+endsnippet
+
+
+snippet pl "padding-left" !b
+padding-left: $1;
+endsnippet
+
+snippet po "position" !b
+position: $1;
+endsnippet
+
 snippet rr "bootstrap responsive resolutions" !b
 /* Large desktop */
 @media (min-width: 1200px) {

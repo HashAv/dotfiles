@@ -100,9 +100,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'https://github.com/spf13/vim-colors.git'
 
 Bundle 'https://github.com/jiangmiao/auto-pairs.git'
-" let g:AutoPairsShortcutToggle = "<Leader>p""
+let g:AutoPairsShortcutToggle = "<Leader>p""
 
-" let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 " autocmd VimEnter * silent call AutoPairsToggle()
 let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 
@@ -171,7 +170,7 @@ Bundle 'https://github.com/kien/ctrlp.vim.git'
 " Set this to 1 to set searching by filename (as opposed to full path) as the default: >
 " Toggle by filename or by filepath with <C-D>
 " Toggle regex mode with <C-R>
-let g:ctrlp_by_filename = 1
+" let g:ctrlp_by_filename = 1
 nmap <F3> :CtrlPMRU<CR>
 
 
