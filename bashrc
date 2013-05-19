@@ -113,3 +113,7 @@ alias be='bundle exec'
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
 [[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion
+
+ARCHLINUX_GIT_COMPLETION=/usr/share/git/completion/git-completion.bash
+[ -f $ARCHLINUX_GIT_COMPLETION ] && source $ARCHLINUX_GIT_COMPLETION
+

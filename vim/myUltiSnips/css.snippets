@@ -5,6 +5,10 @@ snippet : "css expand line helper"
 ${1:param}: ${2:value};
 endsnippet
 
+snippet bs "border 1px solid color" !b
+border: 1px solid $1;
+endsnippet
+
 snippet bg "background" !b
 background: $1;
 endsnippet
@@ -13,18 +17,23 @@ snippet di "display" !b
 display: $1;
 endsnippet
 
-snippet mq "media query" !b
-@media (${1:min|max}-width: ${2:num}px) {
-  $0;
-}
-endsnippet
 
 snippet mb "margin-bottom" !b
 margin-bottom: $1;
 endsnippet
 
+snippet ma "margin auto" !b
+margin: auto;
+endsnippet
+
 snippet ml "margin-left" !b
 margin-left: $1;
+endsnippet
+
+snippet mq "media query" !b
+@media (${1:min|max}-width: ${2:num}px) {
+  $0
+}
 endsnippet
 
 snippet mr "margin-right" !b
@@ -34,6 +43,10 @@ endsnippet
 
 snippet pl "padding-left" !b
 padding-left: $1;
+endsnippet
+
+snippet pr "padding-right" !b
+padding-right: $1;
 endsnippet
 
 snippet po "position" !b
