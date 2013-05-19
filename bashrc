@@ -115,5 +115,7 @@ alias be='bundle exec'
 [[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion
 
 ARCHLINUX_GIT_COMPLETION=/usr/share/git/completion/git-completion.bash
+ARCHLINUX_GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
 [ -f $ARCHLINUX_GIT_COMPLETION ] && source $ARCHLINUX_GIT_COMPLETION
+[ -f $ARCHLINUX_GIT_PROMPT ] && source $ARCHLINUX_GIT_PROMPT
 
