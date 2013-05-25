@@ -71,3 +71,9 @@ git config --global alias.st status
 git config --global http.sslCAinfo #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
 config
 end
+
+puts <<warning_msg
+========================
+Make sure to delete ~/.bash_profile since it has precedence over ~/.profile and will cause rbenv load problems
+========================
+warning_msg

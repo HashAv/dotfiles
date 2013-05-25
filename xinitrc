@@ -24,5 +24,7 @@ xset fp rehash
 setxkbmap fr bepo
 # exec xterm -geometry 1920x1080
 #exec awesome
-[[ -f ~/.profile ]] && source ~/.profile
+
+# May not be needed after all
+#[[ -f ~/.profile ]] && source ~/.profile
 exec startkde
