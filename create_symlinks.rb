@@ -55,11 +55,12 @@ unless File.exist?(git_config_path)
   # Git config does not support variable expansion
 puts <<config
 # Git config file creation. Copy and paste.
-git config --global user.name "bgthomas"
-git config --global user.email benjamin.guy.thomas@gmail.com
+git config --global user.name GitUserName
+git config --global user.email user@host.com
 git config --global alias.co checkout
 git config --global core.editor "vim"
 git config --global core.excludesfile #{HOME}/.gitignore_global
+git config --global alias.st status
 git config --global http.sslCAinfo #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
 config
 end
