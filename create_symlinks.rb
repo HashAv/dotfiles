@@ -48,6 +48,13 @@ unless Dir.exist?("#{HOME}/.oh-my-zsh")
   puts %Q_git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh_
 end
 
+puts
+unless Dir.exist?("#{HOME}/.rbenv")
+  puts "\033[1;31mrbenv repo not found\033[1;m"
+  puts %Q_git clone git://github.com/sstephenson/rbenv.git ~/.rbenv_
+  puts %Q_git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build_
+end
+
 git_config_path = "#{HOME}/.gitconfig"
 puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path)
 unless File.exist?(git_config_path)
