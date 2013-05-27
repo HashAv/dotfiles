@@ -423,3 +423,7 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" See https://github.com/sunaku/vim-ruby-minitest
+" Vim syntax highlighting and i_CTRL-X_CTRL-U completion of MiniTest methods and assertions.
+set completefunc=syntaxcomplete#Complete
