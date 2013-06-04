@@ -109,6 +109,7 @@ alias la='ls -Alh --time-style=long-iso'
 alias man='man -L en'
 alias emacs='LANG=en emacs -nw'
 alias be='bundle exec'
+which ack-grep >/dev/null && alias ack="ack-grep"
 
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
