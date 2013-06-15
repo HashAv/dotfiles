@@ -1,5 +1,4 @@
 requires = [
-  "interactive_editor",
   "awesome_print"
 ]
 

@@ -211,7 +211,12 @@ let NERDSpaceDelims = 1
 " map <F4> :call NERDComment(0, 'norm')<CR>+
 " map <S-F4> :call NERDComment(0, 'norm')<CR>
 " imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><Esc>==$xA
-"
+
+Bundle 'https://github.com/mattn/gist-vim'
+
+" gist-vim dependency
+Bundle 'https://github.com/mattn/webapi-vim'
+
 " Re-indent the whole file
 nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``
