@@ -38,8 +38,11 @@ plugins=(git bundler heroku)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-setopt noautomenu
+#setopt noautomenu
+setopt automenu
+bindkey '' complete-word
 # setopt nomenucomplete
+
 setopt nocorrect
 setopt nocorrectall
 
@@ -56,6 +59,8 @@ export CHROMIUM_USER_FLAGS=--password-store=detect
 # bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line end like in emacs mode
 
 # Needed for vim <C-S> mapping
+stty stop undef
+stty start undef
 # stty -ixon
 # bindkey -v
 # bindkey "^P" vi-up-line-or-history
