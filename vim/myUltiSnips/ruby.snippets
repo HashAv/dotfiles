@@ -59,7 +59,7 @@ do |${1:key}|
 end
 endsnippet
 
-snippet eos "<<-EOS" !b
+snippet eos "<<-EOS" !
 <<-EOS
   $1
 EOS
@@ -143,4 +143,8 @@ endsnippet
 
 snippet spec "specify {}" !b
 specify { $1 }
+endsnippet
+
+snippet x "temp report snippet" !b
+@report.$1 = curr_context.xpath('$3').text
 endsnippet
