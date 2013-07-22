@@ -217,6 +217,9 @@ Bundle 'https://github.com/mattn/gist-vim'
 " gist-vim dependency
 Bundle 'https://github.com/mattn/webapi-vim'
 
+" Better than grep
+Bundle 'https://github.com/mileszs/ack.vim'
+
 " Re-indent the whole file
 nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``

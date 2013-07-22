@@ -43,3 +43,9 @@ if defined? Hirb
 
   Hirb.enable
 end
+
+if defined? Rails
+  # http://www.hackhowtofaq.com/blog/how-to-enable-rubyrails-irb-console-autocomplete-history/
+  # Get all Models in [TAB]
+  Rails.application.eager_load!
+end
