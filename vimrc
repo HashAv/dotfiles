@@ -220,6 +220,9 @@ Bundle 'https://github.com/mattn/webapi-vim'
 " Better than grep
 Bundle 'https://github.com/mileszs/ack.vim'
 
+" Gives a 'Subvert' command to quickly search for ModelName and model_name
+Bundle 'https://github.com/tpope/vim-abolish'
+
 " Re-indent the whole file
 nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``
