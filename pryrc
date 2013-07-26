@@ -42,6 +42,11 @@ if defined? Hirb
   end
 
   Hirb.enable
+
+  # Helper method to display only specified fields
+  def hirb(object, *fields)
+    puts Hirb::Helpers::AutoTable.render(object, :fields => [*fields])
+  end
 end
 
 if defined? Rails
