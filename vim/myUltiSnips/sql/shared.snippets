@@ -1,9 +1,9 @@
 snippet ci "CREATE INDEX" !b
-CREATE INDEX ${1:table_name}_${2:column_name}_idx ON $1($2);
+CREATE INDEX ${1:table_name}_$2_uidx ON $1(${2});
 endsnippet
 
 snippet cui "CREATE UNIQUE INDEX" !b
-CREATE UNIQUE INDEX ${1:table_name}_${2:column_name}_idx ON $1($2);
+CREATE UNIQUE INDEX ${1:table_name}_$2_uidx ON $1(${2});
 endsnippet
 
 snippet ct "CREATE TABLE" !b

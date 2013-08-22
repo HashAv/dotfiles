@@ -113,9 +113,6 @@ Bundle "https://github.com/godlygeek/tabular.git"
 
 Bundle 'xmledit'
 
-Bundle 'buffet.vim'
-map <F2> :Bufferlist<CR>
-
 Bundle "scrooloose/nerdtree"
 " Single click to open filepath elements
 let NERDTreeMouseMode = 3
@@ -147,6 +144,10 @@ Bundle 'Align'
 " Snippets + syntax highlighting
 autocmd bufEnter *.html.erb set ft=eruby.html
 
+" psql command line utility
+"autocmd bufEnter,bufNewFile,bufRead *psql.edit* set ft=sql
+autocmd bufEnter *psql.edit* set ft=sql
+
 autocmd bufEnter *.scss UltiSnipsAddFiletypes scss.css
 
 " Auto-complete on hyphens (only within current buffer)
@@ -171,6 +172,7 @@ Bundle 'https://github.com/kien/ctrlp.vim.git'
 " Toggle by filename or by filepath with <C-D>
 " Toggle regex mode with <C-R>
 " let g:ctrlp_by_filename = 1
+nmap <F2> :CtrlP %:h<CR>
 nmap <F3> :CtrlPMRU<CR>
 
 
@@ -247,10 +249,13 @@ syntax on                 " Turns syntax highlighting on
 set hlsearch              " Highlight search
 set nobackup
 
-" old setup
-" set softtabstop=4
-" set shiftwidth=4
-" set tabstop=4
+" swp swapfiles dir
+" Trailing // makes vim build the swap file based upon the file's path
+let swap_dir=$HOME . "/.cache/vim/swap"
+if !isdirectory(swap_dir)
+  call mkdir(swap_dir, 'p', 0700)
+endif
+let &directory=swap_dir . '//'
 
 " This converts tabs to spaces. This should be better overall
 set expandtab
