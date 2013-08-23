@@ -443,5 +443,3 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " See https://github.com/sunaku/vim-ruby-minitest
 " Vim syntax highlighting and i_CTRL-X_CTRL-U completion of MiniTest methods and assertions.
 set completefunc=syntaxcomplete#Complete
-
-au FileType ruby set tw=80 ts=2
