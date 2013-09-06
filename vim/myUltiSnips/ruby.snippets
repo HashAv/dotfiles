@@ -4,8 +4,13 @@
 #  $0
 #end
 #endsnippet
-snippet "^#!" "Rbenv shebang" r!
-#!/usr/bin/env ruby-local-exec
+
+snippet = "double = double" !
+${1:var} = $1
+endsnippet
+
+snippet @ "@double = double" !
+@${1:ivar} = $1
 endsnippet
 
 snippet : "hash rocket helper"
