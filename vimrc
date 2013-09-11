@@ -21,6 +21,54 @@ if has("gui_running")
   endif
 endif
 
+if &term == "screen-256color" "tmux sessions
+  " Enter with <C-V>key
+  set <F1>=OP
+  set <S-F1>=[1;2P
+
+  set <F2>=OQ
+  set <S-F2>=[1;2Q
+
+  set <F3>=OR
+  set <S-F3>=[1;2R
+
+  set <F4>=OS
+  set <S-F4>=[1;2S
+
+  set <F5>=[15~
+  set <S-F5>=[15;2~
+
+  set <F6>=[17~
+  set <S-F6>=[17;2~
+
+  set <F7>=[18~
+  set <S-F7>=[18;2~
+
+  set <F8>=[19~
+  set <S-F8>=[19;2~
+
+  set <F9>=[20~
+  set <S-F9>=[20;2~
+  " set <F10>=(virtualbox host key)
+  " set <F11>=(gnome-terminal full-screen)
+  set <F12>=[24~
+  set <S-F12>=[24;2~
+
+  set <S-LEFT>=[1;2D
+  set <S-RIGHT>=[1;2C
+  set <S-UP>=[1;2A
+  set <S-DOWN>=[1;2B
+
+  " Alternate (meta) arrow keys
+  set <xLEFT>=[1;3D
+  set <xRIGHT>=[1;3C
+  set <xUP>=[1;3A
+  set <xDOWN>=[1;3B
+
+  " <A-D> doesn't seem to work inside gnome-terminal anyways
+  set <A-D>=d
+endif
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 call vundle#rc()
@@ -33,9 +81,6 @@ nnoremap ; ,
 
 " Default encoding is needed for Windows XP and this mapleader
 set encoding=utf8
-
-" Set the ALT key (press <C-V> then <A-D> to get the raw value)
-set <A-D>=d
 
 inoremap <C-D> <Del>
 inoremap <A-D> <C-O>de
@@ -94,15 +139,10 @@ Bundle 'https://github.com/groenewege/vim-less.git'
 " Ruby syntax files, etc.
 Bundle 'vim-ruby/vim-ruby'
 
-" vim-scripts repos
-"Bundle 'vim-scripts/Align.git'
-
 Bundle 'https://github.com/spf13/vim-colors.git'
 
 Bundle 'https://github.com/jiangmiao/auto-pairs.git'
 let g:AutoPairsShortcutToggle = "<Leader>p""
-
-" autocmd VimEnter * silent call AutoPairsToggle()
 let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 
 Bundle 'matchit.zip'
@@ -316,19 +356,6 @@ cnoremap <C-E> <End>
 noremap <F1> :q<CR>
 noremap <S-F1> :qa!<CR>
 
-" Enter with <C-V>key
-set <F1>=OP
-set <F2>=OQ
-set <F3>=OR
-set <F4>=OS
-set <F5>=[15~
-set <F6>=[17~
-set <F7>=[18~
-set <F8>=[19~
-set <F9>=[20~
-" set <F10>=(virtualbox host key)
-" set <F11>=(gnome-terminal full-screen)
-set <F12>=[24~
 
 " Normal mode & save
 " buggy mz stuff
@@ -340,6 +367,12 @@ nnoremap <F5> :update<CR>
 
 imap <C-S> <F5>
 nmap <C-S> <F5>
+
+" Cycle through folds easily
+nmap <xUP> zk
+nmap <xDOWN> zj
+nmap <xLEFT> zc
+nmap <xRIGHT> zo
 
 " Cycle quickly through buffers
 map <S-LEFT> :bp<CR>
@@ -407,17 +440,17 @@ set foldlevel=20
 autocmd bufEnter *.txt set tw=79
 
 " Cycle through folds easily
-if &term == "screen-256color" "tmux sessions
-  nmap <Esc>[1;2A zk
-  nmap <Esc>[1;2B zj
-  nmap <Esc>[1;2D zc
-  nmap <Esc>[1;2C zo
-else
-  nmap <S-UP> zk
-  nmap <S-DOWN> zj
-  nmap <S-LEFT> zc
-  nmap <S-RIGHT> zo
-endif
+" if &term == "screen-256color" "tmux sessions
+"   nmap <Esc>[1;2A zk
+"   nmap <Esc>[1;2B zj
+"   nmap <Esc>[1;2D zc
+"   nmap <Esc>[1;2C zo
+" else
+  nmap <C-S-UP> zk
+  nmap <C-S-DOWN> zj
+  nmap <C-S-LEFT> zc
+  nmap <C-S-RIGHT> zo
+" endif
 
 " Navigation
 nmap <Space> <C-F>
