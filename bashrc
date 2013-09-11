@@ -49,9 +49,6 @@ fi
 export EDITOR=vim
 export SHELL=/bin/bash
 
-# Pour que soit reconnu ~/.XCompose
-# export GTK_IM_MODULE=xim
-
 # Set custom prompt ; root = red ; others = green (case statement copied from begining of file)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
@@ -62,31 +59,12 @@ BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWSTASHSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=verbose GIT_PS1_DESCRIBE_STYLE=branch
 
 ARCHLINUX_GIT_COMPLETION=/usr/share/git/completion/git-completion.bash
 ARCHLINUX_GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
 [ -f $ARCHLINUX_GIT_COMPLETION ] && source $ARCHLINUX_GIT_COMPLETION
 [ -f $ARCHLINUX_GIT_PROMPT ] && source $ARCHLINUX_GIT_PROMPT
-
-
-if [ $(id -un) == "root" ]; then
-  # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  export PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  if [[ $(type -t __git_ps1) ]]; then
-    export PS1="\[${GREEN}${BOLD}\]\u@\h\[${RESET}\]:\[${BLUE}${BOLD}\]\w\[${PURPLE}\]"'$(__git_ps1 " [%s]")'"\[${RESET}\]\$ "
-    # export PS1="\[${GREEN}${BOLD}\]\u@\h\[${RESET}\]:\[${BLUE}${BOLD}\]\w"'$(__git_prompt)'"\[${RESET}\]\$ "
-  else
-    export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  fi
-  # export CURR_GIT_BRANCH_CMD = "git branch 2>/dev/null | grep '*' | awk '{print $2}'"
-  # export PS1='$("$CURR_GIT_BRANCH_CMD") \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-fi
-
-dit(){ mplayer -user-agent "Mozilla/5.0" "http://translate.google.com/translate_tts?tl=fr&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
-
-export CHROMIUM_USER_FLAGS=--password-store=detect
 
 # Have vi behaviour
 # set -o vi
@@ -100,23 +78,55 @@ bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line e
 # Needed for vim <C-S> mapping
 stty -ixon
 
-# This enables screen to read .bashrc
-alias s="screen -S $USER -T xterm -s /bin/bash"
-
 alias ll='ls -l'
 alias l='ls -lh --time-style=long-iso'
 alias la='ls -Alh --time-style=long-iso'
-alias man='man -L en'
-alias emacs='LANG=en emacs -nw'
 alias be='bundle exec'
-which ack-grep >/dev/null && alias ack="ack-grep"
-
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# This file should be sourced
-# 1. in ~/.bash_login for remote ssh sessions
-# 2. in ~/.bashrc for virtual terminal sessions (gnome-terminal, etc.)
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+which ack-grep &>/dev/null && alias ack="ack-grep"
 
 [[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
 [[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion
+
+
+######################################################################
+# Better bash prompt. Switches when inside a git repo automatically
+######################################################################
+function git_repo {
+curr_repo=$(git rev-parse --show-toplevel 2>/dev/null | sed 's:.*/::')
+if [[ $curr_repo != "" ]]; then
+  echo "[${curr_repo}]"
+fi
+}
+
+function ruby_version {
+  ruby_version=$(rbenv version | awk '{ print $1 }')
+  echo "‹${ruby_version}›"
+}
+
+function prompt_func() {
+   RED="\[\033[1;31m\]"
+ GREEN="\[\033[1;32m\]"
+YELLOW="\[\033[1;33m\]"
+  BLUE="\[\033[1;34m\]"
+
+ NO_COLOR="\[\e[0m\]"
+
+  if [ $(id -un) == "root"  ]; then
+    user_prompt="${RED}\u@\h${NO_COLOR}:${BLUE}\w"
+    prompt_tail="${NO_COLOR}# "
+  else
+    user_prompt="${GREEN}\u@\h${NO_COLOR}:${BLUE}\w"
+    prompt_tail="${NO_COLOR}$ "
+  fi
+
+  ruby_prompt="${RED}$(ruby_version)"
+  git_prompt="${YELLOW}$(git_repo)${GREEN}$(__git_ps1)"
+
+  if [[ $(git_repo) != "" ]]; then
+    PS1="${user_prompt} ${ruby_prompt} ${git_prompt} \n${prompt_tail}"
+  else
+    PS1="${user_prompt}${prompt_tail}"
+  fi
+}
+
+PROMPT_COMMAND=prompt_func
