@@ -130,3 +130,13 @@ YELLOW="\[\033[1;33m\]"
 }
 
 PROMPT_COMMAND=prompt_func
+
+function cd_into() {
+  SEARCHED_DIR=$(find . -name $1 -type d | sed 1q)
+
+  if [[ -d $SEARCHED_DIR ]]; then
+    cd "$SEARCHED_DIR"
+  else
+    echo "No match found for $1 (from `pwd`)"
+  fi
+}

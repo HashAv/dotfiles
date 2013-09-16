@@ -60,13 +60,14 @@ if &term == "screen-256color" "tmux sessions
   set <S-DOWN>=[1;2B
 
   " Alternate (meta) arrow keys
-  set <xLEFT>=[1;3D
-  set <xRIGHT>=[1;3C
-  set <xUP>=[1;3A
-  set <xDOWN>=[1;3B
+  " Seems buggy with tmux afterall
+  " set <xLEFT>=[1;3D
+  " set <xRIGHT>=[1;3C
+  " set <xUP>=[1;3A
+  " set <xDOWN>=[1;3B
 
-  " <A-D> doesn't seem to work inside gnome-terminal anyways
-  set <A-D>=d
+  " " <A-D> doesn't seem to work inside gnome-terminal anyways
+  " set <A-D>=d
 endif
 
 set nocompatible               " be iMproved
@@ -82,8 +83,8 @@ nnoremap ; ,
 " Default encoding is needed for Windows XP and this mapleader
 set encoding=utf8
 
-inoremap <C-D> <Del>
-inoremap <A-D> <C-O>de
+" inoremap <C-D> <Del>
+" inoremap <A-D> <C-O>de
 
 " Align a ruby hash (1.9)
 nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
@@ -369,17 +370,17 @@ imap <C-S> <F5>
 nmap <C-S> <F5>
 
 " Cycle through folds easily
-nmap <xUP> zk
-nmap <xDOWN> zj
-nmap <xLEFT> zc
-nmap <xRIGHT> zo
+nmap <S-UP> zk
+nmap <S-DOWN> zj
+nmap <S-LEFT> zc
+nmap <S-RIGHT> zo
 
-" Cycle quickly through buffers
-map <S-LEFT> :bp<CR>
-map <S-RIGHT> :bn<CR>
-map <S-UP> :ls<CR>:b
-" This is the same like the built-in <C-S-6> shortcut
-map <S-DOWN> :b#<CR>
+" " Cycle quickly through buffers
+" map <S-LEFT> :bp<CR>
+" map <S-RIGHT> :bn<CR>
+" map <S-UP> :ls<CR>:b
+" " This is the same like the built-in <C-S-6> shortcut
+" map <S-DOWN> :b#<CR>
 
 " ci" and ci' work even if I'm not inside the quotes range
 " ci< ci( and ci{ however require being inside the brackets range.
