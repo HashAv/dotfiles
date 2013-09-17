@@ -90,6 +90,9 @@ set encoding=utf8
 nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
 vmap _arh :Tabularize/\w:\zs/l0l1<CR>
 
+" Change to do (convert ruby block '{}' to 'do end' syntax)
+nmap _ctd 0f{sdo<ESC>2f\|ls<CR><ESC>f}s<CR>end<ESC>
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
