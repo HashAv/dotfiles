@@ -93,6 +93,12 @@ vmap _arh :Tabularize/\w:\zs/l0l1<CR>
 " Change to do (convert ruby block '{}' to 'do end' syntax)
 nmap _ctd 0f{sdo<ESC>2f\|ls<CR><ESC>f}s<CR>end<ESC>
 
+" Underlining (buffer makes the mapping apply only in the text file buffer)
+autocmd bufEnter *.txt imap <buffer> _= <ESC>yypVr=o<CR>
+autocmd bufEnter *.txt imap <buffer> _- <ESC>yypVr-o<CR>
+
+autocmd bufEnter *.txt imap <buffer> _dt <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
@@ -205,9 +211,9 @@ let g:UltiSnipsDontReverseSearchPath="1"
 " For now the best solution is to modify vimrc and restart vim
 let g:DefaultSnippetsInhibited=0
 if g:DefaultSnippetsInhibited
-  let g:UltiSnipsSnippetDirectories=["myUltiSnips"]
+  let g:UltiSnipsSnippetDirectories=["snippets"]
 else
-  let g:UltiSnipsSnippetDirectories=["myUltiSnips", "UltiSnips"]
+  let g:UltiSnipsSnippetDirectories=["snippets", "UltiSnips"]
 endif
 
 
@@ -269,6 +275,9 @@ Bundle 'https://github.com/mileszs/ack.vim'
 " Gives a 'Subvert' command to quickly search for ModelName and model_name
 Bundle 'https://github.com/tpope/vim-abolish'
 
+" Better javascript syntax highlighting and indentation
+Bundle "pangloss/vim-javascript"
+
 " Re-indent the whole file
 nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``
@@ -305,6 +314,9 @@ let &directory=swap_dir . '//'
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
+
+autocmd Filetype javascript setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 set bg=dark
 set t_Co=256
