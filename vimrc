@@ -278,6 +278,8 @@ Bundle 'https://github.com/tpope/vim-abolish'
 " Better javascript syntax highlighting and indentation
 Bundle "pangloss/vim-javascript"
 
+Bundle "scrooloose/syntastic"
+
 " Re-indent the whole file
 nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``
