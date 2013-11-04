@@ -140,3 +140,6 @@ function cd_into() {
     echo "No match found for $1 (from `pwd`)"
   fi
 }
+
+alias chrome_dev="google-chrome --user-data-dir=~/.config/google-chrome-dev/"
+alias firefox_dev="firefox -P dev"
