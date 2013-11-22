@@ -141,5 +141,5 @@ function cd_into() {
   fi
 }
 
-alias chrome_dev="google-chrome --user-data-dir=~/.config/google-chrome-dev/"
+alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/"
 alias firefox_dev="firefox -P dev"
