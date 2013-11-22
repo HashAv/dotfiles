@@ -20,6 +20,10 @@ snippet cf "content_for" !b
 <% end %>
 endsnippet
 
+snippet cff "content_for inline (prevents additional white space)" !b
+<% content_for :${1:key} do %>$2<% end %>$0
+endsnippet
+
 snippet end "ERB end tag" !b
 <% end %>
 $0
@@ -47,6 +51,11 @@ snippet if "if statement" !b
 <% if $1 %>
   $0
 <% end %>
+endsnippet
+
+snippet kw "content_for keywords" !b
+<% content_for :keywords do %>$0<% end %>
+
 endsnippet
 
 snippet lt "link_to"
