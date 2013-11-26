@@ -9,6 +9,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " For windows comptatibility
 set rtp+=~/.dotfiles/vim/bundle/vundle/
+set rtp+=~/.dotfiles/vim
 if has("gui_running")
   set guioptions-=m "menu bar
   set guioptions-=T "tool bar
