@@ -23,6 +23,12 @@ def ${1:function_name}
 end
 endsnippet
 
+snippet defi "method definition" !b
+def initialize$1
+  $0
+end
+endsnippet
+
 snippet ds "def self method" !b
 def self.${1:name}
   $2
@@ -142,6 +148,155 @@ endsnippet
 
 snippet bp "binding.pry" !b
 binding.pry
+endsnippet
+
+snippet @ "@double = double" !
+@${1:ivar} = $1
+endsnippet
+
+snippet : "hash rocket helper"
+:${1:key} => ${0:value}
+endsnippet
+
+snippet "\b(de)?f" "def <name>..." r!
+def ${1:function_name}
+  $0
+end
+endsnippet
+
+snippet d "Description" !b
+puts "DEBUG: ${1:var} = #{$1}"
+endsnippet
+
+snippet defi "method definition" !b
+def initialize$1
+  $0
+end
+endsnippet
+
+snippet ds "def self method" !b
+def self.${1:name}
+  $2
+end$0
+endsnippet
+
+snippet bef "Rspec before" !b
+before do
+  $1
+end
+endsnippet
+
+snippet cl "Capybara click_link" !
+click_link(${1:link_path_or_string})
+endsnippet
+
+snippet class "class..def init...end" !b
+class ${1:class_name}
+  $2
+end
+endsnippet
+
+snippet debug "require debug with pry" !b
+
+require 'debugger/pry'
+debugger
+
+endsnippet
+
+snippet des "Rspec describe" !b
+describe "$1" do
+  $0
+end
+endsnippet
+
+snippet do "do ... end" i!
+do
+  $0
+end
+endsnippet
+
+snippet doo "do |<key>| ... end" i!
+do |${1:key}|
+  $0
+end
+endsnippet
+
+snippet eos "<<-EOS" !
+<<-EOS
+  $1
+EOS
+endsnippet
+
+snippet exp "Rspec expect block" !b
+expect { $1 }
+endsnippet
+
+snippet fgb "FactoryGirl.build(:options)" !
+FactoryGirl.create(:${1:factory_name})
+endsnippet
+
+snippet fgc "FactoryGirl.create(:options)" !
+FactoryGirl.create(:${1:factory_name})
+endsnippet
+
+snippet fgs "FactoryGirl sequence" !b
+sequence(:${1:col}) { |n| "$2#{n}" }
+endsnippet
+
+
+snippet fil "Capybara fill_in" !b
+fill_in "${1:label}", with: ${0:data}
+endsnippet
+
+snippet if "if statement" !b
+if $1
+  $0
+end
+endsnippet
+
+snippet it "it block" !b
+it "$1" do
+  $2
+end
+endsnippet
+
+snippet logd "log.debug {}" !b
+App::LOGGER.debug { "$1" }
+endsnippet
+
+snippet loge "log.error {}" !b
+App::LOGGER.error { "$1" }
+endsnippet
+
+snippet logf "log.fatal {}" !b
+App::LOGGER.fatal { "$1" }
+endsnippet
+
+snippet logi "log.info {}" !b
+App::LOGGER.info { "$1" }
+endsnippet
+
+snippet logw "log.warn {}" !b
+App::LOGGER.warn { "$1" }
+endsnippet
+
+snippet logger "Create log file" !b
+require 'logger'
+
+module App
+  log_filename = File.basename(__FILE__).gsub(/\.rb/, "") + ".log"
+  log_path = File.dirname(__FILE__) + "/../log/#{log_filename}"
+  LOGGER = Logger.new(log_path, "weekly")
+  LOGGER.level = Logger::INFO
+end
+endsnippet
+
+snippet bp "binding.pry" !b
+binding.pry
+endsnippet
+
+snippet p "debug statements" !
+p({${1:var}: $1})
 endsnippet
 
 snippet pry "require pry and binding" !b

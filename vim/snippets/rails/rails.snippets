@@ -68,6 +68,18 @@ let!(:${1:var_name}) do
 end
 endsnippet
 
+snippet logd "Rails.logger.debug" !b
+Rails.logger.debug "#{self.class}: $1"$0
+endsnippet
+
+snippet logi "Rails.logger.info" !b
+Rails.logger.info "#{self.class}: $1"$0
+endsnippet
+
+snippet logw "Rails.logger.warn" !b
+Rails.logger.warn "#{self.class}: $1"$0
+endsnippet
+
 snippet ma "Mass assignment test for rspec" !b
 describe "mass assignment" do
   it "is not allowed for any foreign keys" do

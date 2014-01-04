@@ -113,6 +113,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-unimpaired'
 
 " Simulates M-t emacs function
 Bundle 'transpose-words'

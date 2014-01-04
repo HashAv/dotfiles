@@ -42,6 +42,8 @@ if defined? Hirb
   end
 
   Hirb.enable
+  # Gives me more space to visualize horizontally
+  Hirb::View.config[:width] = 1200
 
   # Helper method to display only specified fields
   def hirb(object, *fields)

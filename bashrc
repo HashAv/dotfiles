@@ -49,6 +49,9 @@ fi
 export EDITOR=vim
 export SHELL=/bin/bash
 
+# No line wraps (in Hirb/rails at least)
+export PAGER="less -S"
+
 # Set custom prompt ; root = red ; others = green (case statement copied from begining of file)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
