@@ -190,6 +190,10 @@ let g:UltiSnipsListSnippets="<F9>"
 " SQL formatting with <LEADER>sfs
 Bundle 'SQLUtilities'
 let g:sqlutil_align_comma = 1
+
+" Turn off this annoying key binding for sql stuff (<C-C> by default)
+" let g:ftplugin_sql_omni_key = 'F99'
+
 " Dependency
 Bundle 'Align'
 
@@ -281,6 +285,11 @@ Bundle 'https://github.com/tpope/vim-abolish'
 Bundle "pangloss/vim-javascript"
 
 Bundle "scrooloose/syntastic"
+
+" Vim plugins for Go
+Bundle 'jnwhiteh/vim-golang'
+autocmd bufEnter *.go set ft=go
+autocmd FileType go autocmd! BufWritePre <buffer> Fmt
 
 " Re-indent the whole file
 nmap <F6> gg=G``
@@ -419,7 +428,7 @@ if has("autocmd")
   " Also load indent files, to automatically do language-dependent indenting.
   "
   " This is already called by vundle but I'm leaving it there anyways
-  filetype plugin indent on
+  " filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx

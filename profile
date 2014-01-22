@@ -29,3 +29,7 @@ if [[ -d "$HOME/.rbenv" ]];then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
+
+if [[ -d /usr/local/go/bin ]]; then
+  PATH=$PATH:/usr/local/go/bin
+fi
