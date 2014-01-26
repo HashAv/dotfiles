@@ -1,9 +1,4 @@
 # In order to override with a bang, I must use exactly the syntax in ~/.vim/bundle/ultisnips/UltiSnip/language.snippets
-#snippet "\b(de)?f" "def <name>..." !r
-#def
-#  $0
-#end
-#endsnippet
 
 snippet = "double = double" !
 ${1:var} = $1
@@ -17,7 +12,7 @@ snippet : "hash rocket helper"
 :${1:key} => ${0:value}
 endsnippet
 
-snippet "\b(de)?f" "def <name>..." r!
+snippet "\b(de)?f" "def <name_local>..." !r
 def ${1:function_name}
   $0
 end
@@ -152,16 +147,6 @@ endsnippet
 
 snippet @ "@double = double" !
 @${1:ivar} = $1
-endsnippet
-
-snippet : "hash rocket helper"
-:${1:key} => ${0:value}
-endsnippet
-
-snippet "\b(de)?f" "def <name>..." r!
-def ${1:function_name}
-  $0
-end
 endsnippet
 
 snippet d "Description" !b

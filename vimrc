@@ -192,7 +192,7 @@ Bundle 'SQLUtilities'
 let g:sqlutil_align_comma = 1
 
 " Turn off this annoying key binding for sql stuff (<C-C> by default)
-" let g:ftplugin_sql_omni_key = 'F99'
+let g:ftplugin_sql_omni_key = 'F99'
 
 " Dependency
 Bundle 'Align'
@@ -211,7 +211,7 @@ autocmd fileType html,eruby.html,css,scss setlocal iskeyword+=-
 
 " Setting this variable allows me to override the default snippets with a bang!
 " Otherwise the default snippets still show up.
-let g:UltiSnipsDontReverseSearchPath="1"
+let g:UltiSnipsDontReverseSearchPath="0"
 
 " I tried to make a toggle function but the search path does not get updated
 " For now the best solution is to modify vimrc and restart vim
