@@ -1,0 +1,21 @@
+snippet main "main boiler plate" !b
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	$0
+}
+endsnippet
+
+snippet f "func {}" !b
+func $1 {
+	$0
+}
+endsnippet
+
+snippet p "fmt.Println"
+fmt.Println("$0")
+endsnippet

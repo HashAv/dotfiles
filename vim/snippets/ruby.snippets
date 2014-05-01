@@ -12,7 +12,7 @@ snippet : "hash rocket helper"
 :${1:key} => ${0:value}
 endsnippet
 
-snippet "\b(de)?f" "def <name_local>..." !r
+snippet def "def <name_local>..." !b
 def ${1:function_name}
   $0
 end
@@ -150,7 +150,7 @@ snippet @ "@double = double" !
 endsnippet
 
 snippet d "Description" !b
-puts "DEBUG: ${1:var} = #{$1}"
+$logger.debug { "${1:var} = #{$1}" }
 endsnippet
 
 snippet ds "def self method" !b
@@ -162,6 +162,12 @@ endsnippet
 snippet bef "Rspec before" !b
 before do
   $1
+end
+endsnippet
+
+snippet case
+case $1
+when $0
 end
 endsnippet
 
@@ -288,6 +294,26 @@ endsnippet
 
 snippet spec "specify {}" !b
 specify { $1 }
+endsnippet
+
+snippet ud "Quickly setsup up and down methods for writing an SQL migration" !b
+def up
+	execute <<-EOS
+		$0
+	EOS
+end
+
+def down
+	execute <<-EOS
+
+	EOS
+end
+endsnippet
+
+snippet test "Quickly setup TestUnit test cases (for rails)" !b
+test "$1" do
+	$0
+end
 endsnippet
 
 snippet x "temp report snippet" !b

@@ -2,3 +2,4 @@
 *~
 .rbenv-version
 config/database.yml
+.bundle

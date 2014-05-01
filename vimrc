@@ -215,12 +215,13 @@ let g:UltiSnipsDontReverseSearchPath="0"
 
 " I tried to make a toggle function but the search path does not get updated
 " For now the best solution is to modify vimrc and restart vim
-let g:DefaultSnippetsInhibited=0
-if g:DefaultSnippetsInhibited
-  let g:UltiSnipsSnippetDirectories=["snippets"]
-else
-  let g:UltiSnipsSnippetDirectories=["snippets", "UltiSnips"]
-endif
+" let g:DefaultSnippetsInhibited=1
+" if g:DefaultSnippetsInhibited
+"   let g:UltiSnipsSnippetDirectories=['snippets']
+" else
+"   let g:UltiSnipsSnippetDirectories=['snippets', 'UltiSnips']
+" endif
+let g:UltiSnipsSnippetDirectories=['snippets']
 
 
 Bundle 'https://github.com/kien/ctrlp.vim.git'
@@ -290,6 +291,10 @@ Bundle "scrooloose/syntastic"
 Bundle 'jnwhiteh/vim-golang'
 autocmd bufEnter *.go set ft=go
 autocmd FileType go autocmd! BufWritePre <buffer> Fmt
+autocmd FileType go nmap <F6> :!go run %<CR>
+" autocmd FileType go nmap <F6> :Fmt<CR>
+
+Bundle 'AndrewRadev/inline_edit.vim'
 
 " Re-indent the whole file
 nmap <F6> gg=G``
