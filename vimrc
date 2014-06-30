@@ -84,8 +84,13 @@ nnoremap ; ,
 " Default encoding is needed for Windows XP and this mapleader
 set encoding=utf8
 
+" For performance reason (default = syntax)
+set foldmethod=manual
+
 " inoremap <C-D> <Del>
 " inoremap <A-D> <C-O>de
+
+inoremap » <ESC>
 
 " Align a ruby hash (1.9)
 nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
@@ -106,6 +111,9 @@ Bundle 'gmarik/vundle'
 
 " Git wrapper
 Bundle 'tpope/vim-fugitive'
+
+" Increment/Decrement dates
+Bundle 'tpope/vim-speeddating'
 
 Bundle 'tpope/vim-surround'
 
@@ -294,7 +302,19 @@ autocmd FileType go autocmd! BufWritePre <buffer> Fmt
 autocmd FileType go nmap <F6> :!go run %<CR>
 " autocmd FileType go nmap <F6> :Fmt<CR>
 
+" Golang code completion
+" nsf/gocode dependency
+" go get -u github.com/nsf/gocode (-u flag for "update")
+" go get -u -ldflags -H=windowsgui github.com/nsf/gocode # windows
+Bundle 'nsf/gocode', {'rtp': 'vim/'}
+
 Bundle 'AndrewRadev/inline_edit.vim'
+
+" Bundle 'Valloric/YouCompleteMe'
+" " Override default TAB and S-TAB completion (want to keep them for snippets triggering)
+" " Use Up and Down or default C-N and C-P
+" let g:ycm_key_list_select_completion = ['<Down>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
 
 " Re-indent the whole file
 nmap <F6> gg=G``

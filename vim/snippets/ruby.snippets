@@ -110,35 +110,8 @@ it "$1" do
 end
 endsnippet
 
-snippet logd "log.debug {}" !b
-App::LOGGER.debug { "$1" }
-endsnippet
-
-snippet loge "log.error {}" !b
-App::LOGGER.error { "$1" }
-endsnippet
-
-snippet logf "log.fatal {}" !b
-App::LOGGER.fatal { "$1" }
-endsnippet
-
-snippet logi "log.info {}" !b
-App::LOGGER.info { "$1" }
-endsnippet
-
-snippet logw "log.warn {}" !b
-App::LOGGER.warn { "$1" }
-endsnippet
-
-snippet logger "Create log file" !b
-require 'logger'
-
-module App
-  log_filename = File.basename(__FILE__).gsub(/\.rb/, "") + ".log"
-  log_path = File.dirname(__FILE__) + "/../log/#{log_filename}"
-  LOGGER = Logger.new(log_path, "weekly")
-  LOGGER.level = Logger::INFO
-end
+snippet log "generic logger statement" !b
+logger.${1:level}(self.class { $0 })
 endsnippet
 
 snippet bp "binding.pry" !b

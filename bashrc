@@ -144,5 +144,9 @@ function cd_into() {
   fi
 }
 
+function clear_gems() {
+  gem list | grep -Ev 'test\-unit|rdoc|rake|psych|io\-console|bigdecimal|json|minitest' | cut -d' ' -f1 | xargs gem uninstall -Iax
+}
+
 alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/"
 alias firefox_dev="firefox -P dev"
