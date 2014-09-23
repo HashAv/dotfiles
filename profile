@@ -29,11 +29,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [[ -d "$HOME/.rbenv" ]];then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
 export GOPATH=~/code/go
 
 if [[ -d /usr/local/go/bin ]]; then

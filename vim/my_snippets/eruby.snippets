@@ -35,6 +35,12 @@ snippet field "form fields" !b
 <%= f.${1:text}_field :${2/(\w+).*/$1/} %>$0
 endsnippet
 
+snippet ff "custom field construct" !b
+<%= field_for(f, :${2:name}) do |f| %>
+	<%= f.${1:text}_field :${2/(\w+).*/$1/} %>
+<% end %>$0
+endsnippet
+
 snippet form_for "form_for" !b
 <%= form_for(@${1:model_instance}${2:, html: { autocomplete: "off" }}) do |f| %>
   $0

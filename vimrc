@@ -71,6 +71,26 @@ if &term == "screen-256color" "tmux sessions
   " set <A-D>=d
 endif
 
+" Tmux
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]12;orange\x7\x1b\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]12;red\x7\x1b\\"
+  silent !printf '\033Ptmux;\033\033]12;red\007\033\\'
+  autocmd VimLeave * silent !printf '\033Ptmux;\033\033]12;green\007\033\\'
+else
+  if &term =~ "xterm\\|rxvt"
+    " use an orange cursor in insert mode
+    let &t_SI = "\<Esc>]12;orange\x7"
+    " use a red cursor otherwise
+    let &t_EI = "\<Esc>]12;red\x7"
+    silent !echo -ne "\033]12;red\007"
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\033]12;green\007"
+    " use \003]12;gray\007 for gnome-terminal
+  endif
+endif
+
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 call vundle#rc()
@@ -229,7 +249,8 @@ let g:UltiSnipsDontReverseSearchPath="0"
 " else
 "   let g:UltiSnipsSnippetDirectories=['snippets', 'UltiSnips']
 " endif
-let g:UltiSnipsSnippetDirectories=['snippets']
+" snippets is a reserved directory name
+let g:UltiSnipsSnippetDirectories=['my_snippets']
 
 
 Bundle 'https://github.com/kien/ctrlp.vim.git'
@@ -294,6 +315,10 @@ Bundle 'https://github.com/tpope/vim-abolish'
 Bundle "pangloss/vim-javascript"
 
 Bundle "scrooloose/syntastic"
+
+" Not loading the plugin's ftdetect somehow so loading in manually for now.
+Bundle 'https://github.com/honza/dockerfile.vim.git'
+autocmd BufNewFile,BufRead Dockerfile set filetype=dockerfile
 
 " Vim plugins for Go
 Bundle 'jnwhiteh/vim-golang'

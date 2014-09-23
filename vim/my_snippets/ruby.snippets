@@ -1,0 +1,117 @@
+# In order to override with a bang, I must use exactly the syntax in ~/.vim/bundle/ultisnips/UltiSnip/language.snippets
+
+snippet = "double = double" !
+${1:var} = $1
+endsnippet
+
+snippet @ "@double = double" !
+@${1:ivar} = $1
+endsnippet
+
+snippet : "hash rocket helper"
+:${1:key} => ${0:value}
+endsnippet
+
+snippet def "def <name_local>..." !b
+def ${1:function_name}
+  $0
+end
+endsnippet
+
+snippet defi "method definition" !b
+def initialize$1
+  $0
+end
+endsnippet
+
+snippet ds "def self method" !b
+def self.${1:name}
+  $2
+end$0
+endsnippet
+
+snippet cl "Capybara click_link" !
+click_link(${1:link_path_or_string})
+endsnippet
+
+snippet class "class..def init...end" !b
+class ${1:class_name}
+  $2
+end
+endsnippet
+
+snippet do "do ... end" i!
+do
+  $0
+end
+endsnippet
+
+snippet doo "do |<key>| ... end" i!
+do |${1:key}|
+  $0
+end
+endsnippet
+
+snippet eos "<<-EOS" !
+<<-EOS
+  $1
+EOS
+endsnippet
+
+snippet fil "Capybara fill_in" !b
+fill_in "${1:label}", with: ${0:data}
+endsnippet
+
+snippet if "if statement" !b
+if $1
+  $0
+end
+endsnippet
+
+snippet log "generic logger statement" !b
+logger.${1:level}(self.class { $0 })
+endsnippet
+
+snippet bp "binding.pry" !b
+binding.pry
+endsnippet
+
+snippet d "Description" !b
+$logger.debug { "${1:var} = #{$1}" }
+endsnippet
+
+snippet case
+case $1
+when $0
+end
+endsnippet
+
+snippet bp "binding.pry" !b
+binding.pry
+endsnippet
+
+snippet p "debug statements" !
+p({${1:var}: $1})
+endsnippet
+
+snippet pry "require pry and binding" !b
+require 'pry' ; binding.pry
+endsnippet
+
+snippet rr "require_relative" !b
+require_relative $0
+endsnippet
+
+snippet ud "Quickly sets up up and down methods for writing an SQL migration" !b
+def up
+	execute <<-EOS
+		$0
+	EOS
+end
+
+def down
+	execute <<-EOS
+
+	EOS
+end
+endsnippet

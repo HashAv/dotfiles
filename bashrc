@@ -46,6 +46,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
+if [[ -d "$HOME/.rbenv" ]];then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+
 export EDITOR=vim
 export SHELL=/bin/bash
 
@@ -145,7 +151,7 @@ function cd_into() {
 }
 
 function clear_gems() {
-  gem list | grep -Ev 'test\-unit|rdoc|rake|psych|io\-console|bigdecimal|json|minitest' | cut -d' ' -f1 | xargs gem uninstall -Iax
+  gem list | grep -Ev 'test\-unit|bundler|rdoc|rake|psych|io\-console|bigdecimal|json|minitest|pry' | cut -d' ' -f1 | xargs gem uninstall -Iax
 }
 
 alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/"
