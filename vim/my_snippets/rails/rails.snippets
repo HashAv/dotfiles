@@ -122,3 +122,17 @@ endsnippet
 snippet sub "Rspec subject block" !b
 subject { ${1:subject_name} }
 endsnippet
+
+snippet updown "Rails migration helper" !b
+def up
+	execute %q{
+		$1
+	}
+end
+
+def down
+	execute %q{
+		$2
+	}
+end
+endsnippet

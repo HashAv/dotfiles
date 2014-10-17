@@ -8,8 +8,8 @@ snippet @ "@double = double" !
 @${1:ivar} = $1
 endsnippet
 
-snippet : "hash rocket helper"
-:${1:key} => ${0:value}
+snippet : "double: double"
+${1:ivar}: $1
 endsnippet
 
 snippet def "def <name_local>..." !b
@@ -69,15 +69,11 @@ end
 endsnippet
 
 snippet log "generic logger statement" !b
-logger.${1:level}(self.class { $0 })
+@logger.${1:level}(self.class) { $0 }
 endsnippet
 
 snippet bp "binding.pry" !b
 binding.pry
-endsnippet
-
-snippet d "Description" !b
-$logger.debug { "${1:var} = #{$1}" }
 endsnippet
 
 snippet case

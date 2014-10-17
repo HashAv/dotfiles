@@ -1,0 +1,93 @@
+# Many of the snippets here use a global option called
+# "g:ultisnips_java_brace_style" which, if set to "nl" will put a newline
+# before '{' braces.
+# Setting "g:ultisnips_java_junit" will change how the test method snippet
+# looks, it is defaulted to junit4, setting this option to 3 will remove the
+# @Test annotation from the method
+
+global !p
+def junit(snip):
+	if snip.opt("g:ultisnips_java_junit", "") == "3":
+		snip += ""
+	else:
+		snip.rv += "@Test\n\t"
+
+def nl(snip):
+	if snip.opt("g:ultisnips_java_brace_style", "") == "nl":
+		snip += ""
+	else:
+		snip.rv += " "
+def getArgs(group):
+	import re
+	word = re.compile('[a-zA-Z><.]+ \w+')
+	return [i.split(" ") for i in word.findall(group) ]
+
+def camel(word):
+	if not word: return ''
+	return word[0].upper() + word[1:]
+
+def mixedCase(word):
+	if not word: return ''
+	return word[0].lower() + word[1:]
+
+endglobal
+
+snippet Result "Play2 Controller method" b
+public static Result ${1:method_name}() {
+	return TODO;
+}
+endsnippet
+
+snippet Model "play2 model" b
+package models;
+
+import java.util.*;
+
+public class ${1:`!p snip.rv = snip.basename or "untitled"`} {
+
+	public ${2:Long id};
+  $0
+
+	public static List<$1> all() {
+    return new ArrayList<$1>();
+  }
+
+  public static void create($1 `!p snip.rv = mixedCase(t[1])`) {
+  }
+
+  public static void delete($2) {
+  }
+}
+endsnippet
+
+
+snippet clc "class with constructor, fields, setter and getters" b
+public class `!p
+snip.rv = snip.basename or "untitled"` {
+`!p
+args = getArgs(t[1])
+if len(args) == 0: snip.rv = ""
+for i in args:
+	snip.rv += "\n\tprivate " + i[0] + " " + i[1]+ ";"
+if len(args) > 0:
+	snip.rv += "\n"`
+	public `!p snip.rv = snip.basename or "unknown"`($1) { `!p
+args = getArgs(t[1])
+for i in args:
+	snip.rv += "\n\t\tthis." + i[1] + " = " + i[1] + ";"
+if len(args) == 0:
+	snip.rv += "\n"`
+	}$0
+`!p
+args = getArgs(t[1])
+if len(args) == 0: snip.rv = ""
+for i in args:
+	snip.rv += "\n\tpublic void set" + camel(i[1]) + "(" + i[0] + " " + i[1] + ") {\n" + "\
+	\tthis." + i[1] + " = " + i[1] + ";\n\t}\n"
+
+	snip.rv += "\n\tpublic " + i[0] + " get" + camel(i[1]) + "() {\
+	\n\t\treturn " + i[1] + ";\n\t}\n"
+`
+}
+endsnippet
+

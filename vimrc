@@ -227,6 +227,7 @@ Bundle 'Align'
 
 " Snippets + syntax highlighting
 autocmd bufEnter *.html.erb set ft=eruby.html
+autocmd bufEnter *.scala.html set ft=scala.html
 
 " psql command line utility
 "autocmd bufEnter,bufNewFile,bufRead *psql.edit* set ft=sql
@@ -316,6 +317,10 @@ Bundle "pangloss/vim-javascript"
 
 Bundle "scrooloose/syntastic"
 
+Plugin 'EasyMotion'
+" Normally 'S' is synonym for 'cc' (and I don't use it)
+let g:EasyMotion_leader_key = 'S'
+
 " Not loading the plugin's ftdetect somehow so loading in manually for now.
 Bundle 'https://github.com/honza/dockerfile.vim.git'
 autocmd BufNewFile,BufRead Dockerfile set filetype=dockerfile
@@ -335,11 +340,13 @@ Bundle 'nsf/gocode', {'rtp': 'vim/'}
 
 Bundle 'AndrewRadev/inline_edit.vim'
 
-" Bundle 'Valloric/YouCompleteMe'
-" " Override default TAB and S-TAB completion (want to keep them for snippets triggering)
-" " Use Up and Down or default C-N and C-P
-" let g:ycm_key_list_select_completion = ['<Down>']
-" let g:ycm_key_list_previous_completion = ['<Up>']
+Bundle 'scala.vim'
+
+Bundle 'Valloric/YouCompleteMe'
+" Override default TAB and S-TAB completion (want to keep them for snippets triggering)
+" Use Up and Down or default C-N and C-P
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
 
 " Re-indent the whole file
 nmap <F6> gg=G``
@@ -509,9 +516,10 @@ if !exists(":DiffOrig")
 endif
 
 " Folds text according to syntax highlighting rules
-set foldmethod=syntax
+"set foldmethod=syntax " This will make vim INCREDIBLY SLOW, don't do this!!
+set foldmethod=indent
 " Don't close folds on file open (default=0 => all folds are closed)
-set foldlevel=20
+set foldlevel=999
 
 " Not needed anymore due to UtilSnip's html5 tag
 " autocmd bufNewfile *.html 0r ~/.vim/my_skels/skel.html
