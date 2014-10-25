@@ -127,73 +127,73 @@ autocmd bufEnter *.txt imap <buffer> _dt <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Git wrapper
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Increment/Decrement dates
-Bundle 'tpope/vim-speeddating'
+Plugin 'tpope/vim-speeddating'
 
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 " Repeat surround commands with .
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-unimpaired'
 
 " Simulates M-t emacs function
-Bundle 'transpose-words'
+Plugin 'transpose-words'
 nmap <Leader>t <Plug>Transposewords
 imap <Leader>t <Plug>Transposewords
 cmap <Leader>t <Plug>Transposewords
 
 " Haml and Sass syntax hl and indentation
-Bundle 'https://github.com/tpope/vim-haml.git'
+Plugin 'https://github.com/tpope/vim-haml.git'
 
 " Alternate column colors. Toggle with <Leader>ig
-Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
+Plugin 'https://github.com/nathanaelkane/vim-indent-guides.git'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Highligths matching tags
-Bundle 'https://github.com/gregsexton/MatchTag.git'
+Plugin 'https://github.com/gregsexton/MatchTag.git'
 
 " less css syntax highlighting
-Bundle 'https://github.com/groenewege/vim-less.git'
+Plugin 'https://github.com/groenewege/vim-less.git'
 
 " I fixed scss -> css indenting issues by copying a custom
 " vim.css in ~/.vim/indent/css.vim
 " I debugged the issue with ':verbose set indentexpr' inside vim
 
 " Don't think I need those for now
-" Bundle 'css3-syntax-plus'
-" Bundle 'https://github.com/cakebaker/scss-syntax.vim.git'
-" Bundle 'https://github.com/hail2u/vim-css3-syntax.git'
+" Plugin 'css3-syntax-plus'
+" Plugin 'https://github.com/cakebaker/scss-syntax.vim.git'
+" Plugin 'https://github.com/hail2u/vim-css3-syntax.git'
 
-"Bundle 'https://github.com/othree/html5-syntax.vim.git'
+"Plugin 'https://github.com/othree/html5-syntax.vim.git'
 " Don't think I need this anymore since I use snippets now
-" Bundle 'https://github.com/othree/html5.vim.git'
+" Plugin 'https://github.com/othree/html5.vim.git'
 
 " Ruby syntax files, etc.
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby'
 
-Bundle 'https://github.com/spf13/vim-colors.git'
+Plugin 'https://github.com/spf13/vim-colors.git'
 
-Bundle 'https://github.com/jiangmiao/auto-pairs.git'
+Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 let g:AutoPairsShortcutToggle = "<Leader>p""
 let g:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '|': '|'}
 
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 
 " Align double quotes
 " :Tabularize / "/l0"
-Bundle "https://github.com/godlygeek/tabular.git"
+Plugin 'https://github.com/godlygeek/tabular.git'
 
-Bundle 'xmledit'
+Plugin 'xmledit'
 
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 " Single click to open filepath elements
 let NERDTreeMouseMode = 3
 map <C-T> :NERDTreeToggle<CR>
@@ -208,7 +208,7 @@ if has('mouse')
 endif
 
 " vim-snipmate better alternative
-Bundle "https://github.com/SirVer/ultisnips.git"
+Plugin 'https://github.com/SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
@@ -216,14 +216,14 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<F9>"
 
 " SQL formatting with <LEADER>sfs
-Bundle 'SQLUtilities'
+Plugin 'SQLUtilities'
 let g:sqlutil_align_comma = 1
 
 " Turn off this annoying key binding for sql stuff (<C-C> by default)
 let g:ftplugin_sql_omni_key = 'F99'
 
 " Dependency
-Bundle 'Align'
+Plugin 'Align'
 
 " Snippets + syntax highlighting
 autocmd bufEnter *.html.erb set ft=eruby.html
@@ -254,7 +254,7 @@ let g:UltiSnipsDontReverseSearchPath="0"
 let g:UltiSnipsSnippetDirectories=['my_snippets']
 
 
-Bundle 'https://github.com/kien/ctrlp.vim.git'
+Plugin 'https://github.com/kien/ctrlp.vim.git'
 " Set this to 1 to set searching by filename (as opposed to full path) as the default: >
 " Toggle by filename or by filepath with <C-D>
 " Toggle regex mode with <C-R>
@@ -265,24 +265,18 @@ nmap <F3> :CtrlPMRU<CR>
 
 filetype plugin indent on     " required!
 
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 
 "=========================
-" Bundles
+" Plugins
 " ========================
 " place 'stty -ixon' in bashrc first, to use <C-S>
 " map <C-S> :echo 'c-s ok'<CR>
 " map <C-C> :echo 'c-c ok'<CR>
 
 " NERD-Commenter is more flexible than tComment
-Bundle 'The-NERD-Commenter'
+Plugin 'The-NERD-Commenter'
 " NERDCommenter will add space after comment
 " <Leader>cc # Comment line or selection
 " 3<Leader>cc # Comment next 3 lines
@@ -301,48 +295,53 @@ let NERDSpaceDelims = 1
 " map <S-F4> :call NERDComment(0, 'norm')<CR>
 " imap <F4> <ESC>:call NERDComment(0, 'insert')<CR><Esc>==$xA
 
-Bundle 'https://github.com/mattn/gist-vim'
+Plugin 'https://github.com/mattn/gist-vim'
 
 " gist-vim dependency
-Bundle 'https://github.com/mattn/webapi-vim'
+Plugin 'https://github.com/mattn/webapi-vim'
 
 " Better than grep
-Bundle 'https://github.com/mileszs/ack.vim'
+Plugin 'https://github.com/mileszs/ack.vim'
 
 " Gives a 'Subvert' command to quickly search for ModelName and model_name
-Bundle 'https://github.com/tpope/vim-abolish'
+Plugin 'https://github.com/tpope/vim-abolish'
 
 " Better javascript syntax highlighting and indentation
-Bundle "pangloss/vim-javascript"
+Plugin 'pangloss/vim-javascript'
 
-Bundle "scrooloose/syntastic"
+Plugin 'scrooloose/syntastic'
+let g:syntastic_ruby_checkers=['rubocop']
 
 Plugin 'EasyMotion'
 " Normally 'S' is synonym for 'cc' (and I don't use it)
 let g:EasyMotion_leader_key = 'S'
+let g:EasyMotion_mapping_k = '<C-K>'
+let g:EasyMotion_mapping_j = '<C-J>'
+let g:EasyMotion_mapping_f = '<C-F>'
+let g:EasyMotion_mapping_F = '<C-B>'
 
 " Not loading the plugin's ftdetect somehow so loading in manually for now.
-Bundle 'https://github.com/honza/dockerfile.vim.git'
+Plugin 'https://github.com/honza/dockerfile.vim.git'
 autocmd BufNewFile,BufRead Dockerfile set filetype=dockerfile
 
 " Vim plugins for Go
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 autocmd bufEnter *.go set ft=go
-autocmd FileType go autocmd! BufWritePre <buffer> Fmt
-autocmd FileType go nmap <F6> :!go run %<CR>
+" autocmd FileType go autocmd! BufWritePre <buffer> Fmt
+" autocmd FileType go nmap <F6> :!go run %<CR>
 " autocmd FileType go nmap <F6> :Fmt<CR>
 
 " Golang code completion
 " nsf/gocode dependency
 " go get -u github.com/nsf/gocode (-u flag for "update")
 " go get -u -ldflags -H=windowsgui github.com/nsf/gocode # windows
-Bundle 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
-Bundle 'AndrewRadev/inline_edit.vim'
+Plugin 'AndrewRadev/inline_edit.vim'
 
-Bundle 'scala.vim'
+Plugin 'scala.vim'
 
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " Override default TAB and S-TAB completion (want to keep them for snippets triggering)
 " Use Up and Down or default C-N and C-P
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -540,8 +539,8 @@ autocmd bufEnter *.txt set tw=79
 " endif
 
 " Navigation
-nmap <Space> <C-F>
-nmap <BS> <C-B>
+nnoremap <Space> <C-F>
+nnoremap <BS> <C-B>
 
 " <cword> permet de désigner le mot sous le curseur.
 " :map <C-W> :!lynx http://fr.wikipedia.org/wiki/<cword><CR><CR>
