@@ -29,15 +29,12 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export GOPATH=~/code/go
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin:$HOME/go/bin
 
-if [[ -d /usr/local/go/bin ]]; then
-  export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+if [ -f $HOME/.config/exercism/exercism_completion.bash ]; then
+  . $HOME/.config/exercism/exercism_completion.bash
 fi
 
-if [ -f ~/.config/exercism/exercism_completion.bash ]; then
-  . ~/.config/exercism/exercism_completion.bash
-fi
-
-WORKON_HOME=~/.virtualenvs
-[[ -f ~/.local/bin/virtualenvwrapper_lazy.sh ]] && source ~/.local/bin/virtualenvwrapper_lazy.sh
+WORKON_HOME=$HOME/.virtualenvs
+[[ -f $HOME/.local/bin/virtualenvwrapper_lazy.sh ]] && source $HOME/.local/bin/virtualenvwrapper_lazy.sh

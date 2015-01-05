@@ -1,3 +1,59 @@
+snippet = "var = var" i
+"$1 =", ${1:var}
+endsnippet
+
+snippet d "Debug statement"
+println("DEBUG: ${1:var} =", $1)
+endsnippet
+
+snippet dd "Debug statement"
+println("DEBUG: $1")
+endsnippet
+
+snippet errlf "log.Fatal on err != nil"
+if err != nil {
+	log.Fatal(err)
+}
+endsnippet
+
+snippet f "func {}" !b
+func $1 {
+	$0
+}
+endsnippet
+
+snippet gf "glog.Fatalln()"
+glog.Fatalln($1)
+endsnippet
+
+snippet gff "glog.Fatalf()"
+glog.Fatalf($1)
+endsnippet
+
+snippet gi "glog.Infoln()"
+glog.Infoln($1)
+endsnippet
+
+snippet gif "glog.Infof()"
+glog.Infof($1)
+endsnippet
+
+snippet gw "glog.Warningln()"
+glog.Warningln($1)
+endsnippet
+
+snippet giwf "glog.Warningf()"
+glog.Warningf($1)
+endsnippet
+
+snippet lp "log.Println()"
+log.Println($1)
+endsnippet
+
+snippet lpf "log.Printf()"
+log.Printf($1)
+endsnippet
+
 snippet main "main boiler plate" !b
 package main
 
@@ -10,16 +66,14 @@ func main() {
 }
 endsnippet
 
-snippet f "func {}" !b
-func $1 {
-	$0
-}
+snippet pl "fmt.Println"
+fmt.Println($1)
 endsnippet
 
-snippet p "fmt.Println"
-fmt.Println("$0")
-endsnippet
+# snippet pl= "fmt.Println(var=var)" b
+# fmt.Println("${1:var} =", $1)
+# endsnippet
 
-snippet d "Debug statement with fmt.Println"
-fmt.Println("${1:var} =", $1)
+snippet pf "fmt.Printf(_)"
+fmt.Printf($1)
 endsnippet

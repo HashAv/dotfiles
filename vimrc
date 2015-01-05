@@ -311,22 +311,31 @@ Plugin 'pangloss/vim-javascript'
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_always_populate_loc_list = 1
 
 Plugin 'EasyMotion'
 " Normally 'S' is synonym for 'cc' (and I don't use it)
 let g:EasyMotion_leader_key = 'S'
-let g:EasyMotion_mapping_k = '<C-K>'
-let g:EasyMotion_mapping_j = '<C-J>'
-let g:EasyMotion_mapping_f = '<C-F>'
-let g:EasyMotion_mapping_F = '<C-B>'
+" let g:EasyMotion_mapping_k = '<C-K>'
+" let g:EasyMotion_mapping_j = '<C-J>'
+" let g:EasyMotion_mapping_f = '<C-F>'
+" let g:EasyMotion_mapping_F = '<C-B>'
+" let g:EasyMotion_mapping_k = 'k'
+" let g:EasyMotion_mapping_j = 'j'
+" let g:EasyMotion_mapping_f = 'f'
+" let g:EasyMotion_mapping_F = 'F'
 
 " Not loading the plugin's ftdetect somehow so loading in manually for now.
 Plugin 'https://github.com/honza/dockerfile.vim.git'
 autocmd BufNewFile,BufRead Dockerfile set filetype=dockerfile
 
 " Vim plugins for Go
+" Install required binaries with :GoInstallBinaries
 Plugin 'fatih/vim-go'
 autocmd bufEnter *.go set ft=go
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+
 " autocmd FileType go autocmd! BufWritePre <buffer> Fmt
 " autocmd FileType go nmap <F6> :!go run %<CR>
 " autocmd FileType go nmap <F6> :Fmt<CR>
@@ -346,6 +355,10 @@ Plugin 'Valloric/YouCompleteMe'
 " Use Up and Down or default C-N and C-P
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
+
+" Not related to ycm per se but this closes the preview 'scratch' buffer after
+" leaving insert mode -- the best option I'v found so far.
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Re-indent the whole file
 nmap <F6> gg=G``
@@ -562,3 +575,36 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " See https://github.com/sunaku/vim-ruby-minitest
 " Vim syntax highlighting and i_CTRL-X_CTRL-U completion of MiniTest methods and assertions.
 set completefunc=syntaxcomplete#Complete
+
+" Bubble lines START
+" Use in gvim
+function! s:swap_lines(n1, n2)
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+endfunction
+
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
+
+    call s:swap_lines(n, n - 1)
+    exec n - 1
+endfunction
+
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    exec n + 1
+endfunction
+
+noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
+noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
+" Bubble lines END
