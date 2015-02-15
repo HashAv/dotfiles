@@ -86,46 +86,12 @@ module DevTools
     system 'less -S /tmp/stdout_dump'
   end
 
-  def page(active_record_object)
+  def page_table(active_record_object)
     formatted_output = Hirb::View.formatter.format_output(active_record_object)
     inspect_mode = false
     Hirb::View.pager.page(formatted_output,inspect_mode)
   end
-  alias :t :page
-
-  def export(arr)
-    require 'axlsx'
-    p = Axlsx::Package.new
-    wb = p.workbook
-    wb.add_worksheet(:name => "db-export") do |sheet|
-      headers = arr.to_a.first.attributes.keys
-      sheet.add_row headers
-      arr.each do |ar_object|
-        sheet.add_row ar_object.attributes.values_at(*headers)
-      end
-    end
-    p.serialize(File.expand_path("~/db_export/#{Time.now.to_i}_export.xlsx"))
-  end
-  alias :e :export
-
-  def export2(arr)
-    # usage
-    # result = Report.where(serial_number: 'E70768M2N324309').usage(3.months.ago).map(&:attributes)
-    # result << Report.where(serial_number: 'other').usage(3.months.ago).map(&:attributes)
-    # export2 result.flatten
-    require 'axlsx'
-    p = Axlsx::Package.new
-    wb = p.workbook
-    wb.add_worksheet(:name => "db-export") do |sheet|
-      headers = arr.first.keys
-      sheet.add_row headers
-      arr.each do |elem|
-        sheet.add_row elem.values_at(*headers)
-      end
-    end
-    p.serialize(File.expand_path("~/db_export/#{Time.now.to_i}_export.xlsx"))
-  end
-  alias :ee :export
+  alias :pt :page_table
 end
 
-include DevTools
+#include DevTools
