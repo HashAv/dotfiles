@@ -158,21 +158,28 @@ alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/
 alias firefox_dev="firefox -P dev"
 
 function git_tree_check() {
-for file in $(find "$1" -name "*.git"); do
-  cd $(dirname $file)
-  if [ -z "$(git status --porcelain)" ]; then
-    echo -en "\033[1;32mCLEAN\033[1;m"
-  else
-    # Uncommitted changes
-    echo -en "\033[1;31mNOTOK\033[1;m"
-  fi
-  echo -n ": $(pwd) "
+  CWD=`pwd`
+  for file in $(find "$1" -name "*.git"); do
+    cd $(dirname $file)
+    if [ -z "$(git status --porcelain)" ]; then
+      echo -en "\033[1;32mCLEAN\033[1;m"
+      echo -n ": $(pwd) "
+    else
+      # Uncommitted changes
+      echo -en "\033[1;31mNOTOK\033[1;m"
+      echo -n ": $(pwd) "
+      echo
+      echo "Exiting!"
+      NEEDS_FIX=true
+      break
+    fi
 
-  if [ -z "$(git remote show)" ]; then
-    echo -en "\033[1;31m[MISSING REMOTE]\033[1;m"
-  else
-    echo -en "\033[1;33m[$(git remote -v show | grep push | awk '{ print $1":" $2 }' | xargs)]"
-  fi
-  echo
-done
+    if [ -z "$(git remote show)" ]; then
+      echo -en "\033[1;31m[MISSING REMOTE]\033[1;m"
+    else
+      echo -en "\033[1;33m[$(git remote -v show | grep push | awk '{ print $1":" $2 }' | xargs)]"
+    fi
+    echo
+  done
+  [ -z $NEEDS_FIX ] && cd $CWD
 }
