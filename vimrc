@@ -232,6 +232,7 @@ autocmd bufEnter *.scala.html set ft=scala.html
 " psql command line utility
 "autocmd bufEnter,bufNewFile,bufRead *psql.edit* set ft=sql
 autocmd bufEnter *psql.edit* set ft=sql
+autocmd bufEnter *.json.jbuilder set ft=ruby
 
 autocmd bufEnter *.scss UltiSnipsAddFiletypes scss.css
 
@@ -311,6 +312,7 @@ Plugin 'pangloss/vim-javascript'
 
 Plugin 'scrooloose/syntastic'
 let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list = 1
 
 Plugin 'EasyMotion'
