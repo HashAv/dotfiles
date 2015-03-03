@@ -30,7 +30,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin:$HOME/go/bin
+export GOROOT=$HOME/.local/software/go/
+export PATH=$PATH:$GOPATH/bin
 
 if [ -f $HOME/.config/exercism/exercism_completion.bash ]; then
   . $HOME/.config/exercism/exercism_completion.bash

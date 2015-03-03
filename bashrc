@@ -108,7 +108,11 @@ fi
 }
 
 function ruby_version {
-  ruby_version=$(rbenv version | awk '{ print $1 }')
+  if [[ -d "$HOME/.rbenv"  ]];then
+    ruby_version=$(rbenv version | awk '{ print $1 }')
+  else
+    ruby_version="system"
+  fi
   echo "‹${ruby_version}›"
 }
 

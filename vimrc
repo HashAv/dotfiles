@@ -310,6 +310,11 @@ Plugin 'https://github.com/tpope/vim-abolish'
 " Better javascript syntax highlighting and indentation
 Plugin 'pangloss/vim-javascript'
 
+" Typescript syntax highlighter
+Plugin 'leafgarland/typescript-vim'
+
+au BufRead,BufNewFile *.ts setlocal filetype=typescript
+
 Plugin 'scrooloose/syntastic'
 let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
