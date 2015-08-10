@@ -229,6 +229,9 @@ Plugin 'Align'
 autocmd bufEnter *.html.erb set ft=eruby.html
 autocmd bufEnter *.scala.html set ft=scala.html
 
+autocmd bufEnter *.cf.erb set ft=eruby.conf
+autocmd bufEnter *.arb set ft=ruby
+
 " psql command line utility
 "autocmd bufEnter,bufNewFile,bufRead *psql.edit* set ft=sql
 autocmd bufEnter *psql.edit* set ft=sql
@@ -319,6 +322,7 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_go_checkers = []
 
 Plugin 'EasyMotion'
 " Normally 'S' is synonym for 'cc' (and I don't use it)

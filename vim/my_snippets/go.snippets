@@ -16,6 +16,12 @@ if err != nil {
 }
 endsnippet
 
+snippet errlff "log.Fatalf on err != nil"
+if err != nil {
+	log.Fatalf("$0: %v\n", err)
+}
+endsnippet
+
 snippet f "func {}" !b
 func $1 {
 	$0

@@ -115,3 +115,11 @@ def down
 	EOS
 end
 endsnippet
+
+snippet mc "temp: make_column"
+parser.make_column($1, PRIVATE_OIDS.fetch($2)),$0
+endsnippet
+
+snippet mr "temp: make_row"
+parser.make_row($1, PRIVATE_OIDS.fetch($2)),$0
+endsnippet
