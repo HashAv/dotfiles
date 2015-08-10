@@ -1,0 +1,5 @@
+XTerm*faceName: Liberation Mono
+XTerm*faceSize: 12
+XTerm*background: black
+XTerm*foreground: white
+XTerm*metaSendsEscape: true

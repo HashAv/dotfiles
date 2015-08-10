@@ -13,7 +13,7 @@ dot_files = Dir["#{dot_files_path}/*"]
 # All (non hidden) files contained in $HOME/.dotfiles will be symlinked to $HOME/
 dot_files.each do |dot_file|
 
-  #don't symlink the script itself
+  # Don't symlink the script itself
   unless dot_file =~ /#{__FILE__}/ or dot_file =~ /README.md/
     dot_file_basename = File.basename(dot_file)
     dot_file_dest = "#{HOME}/.#{dot_file_basename}"
@@ -42,19 +42,6 @@ unless File.exist?("#{HOME}/.vim/bundle/vundle")
   puts %Q_vim ; :BundleInstall_
 end
 
-puts
-unless Dir.exist?("#{HOME}/.oh-my-zsh")
-  puts "\033[1;31mOh-my-zsh repo not found\033[1;m"
-  puts %Q_git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh_
-end
-
-puts
-unless Dir.exist?("#{HOME}/.rbenv")
-  puts "\033[1;31mrbenv repo not found\033[1;m"
-  puts %Q_git clone git://github.com/sstephenson/rbenv.git ~/.rbenv_
-  puts %Q_git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build_
-end
-
 git_config_path = "#{HOME}/.gitconfig"
 puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path)
 unless File.exist?(git_config_path)
@@ -62,18 +49,11 @@ unless File.exist?(git_config_path)
   # Git config does not support variable expansion
 puts <<config
 # Git config file creation. Copy and paste.
-git config --global user.name GitUserName
-git config --global user.email user@host.com
+git config --global user.name Benjamin Thomas
+git config --global user.email benjamin.guy.thomas@gmail.com
 git config --global alias.co checkout
 git config --global core.editor "vim"
 git config --global core.excludesfile #{HOME}/.gitignore_global
 git config --global alias.st status
-git config --global http.sslCAinfo #{HOME}/.curl-ca-bundle/cacert.pem # CentOS only
 config
 end
-
-puts <<warning_msg
-========================
-Make sure to delete ~/.bash_profile since it has precedence over ~/.profile and will cause rbenv load problems
-========================
-warning_msg
