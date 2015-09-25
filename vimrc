@@ -198,6 +198,16 @@ Plugin 'scrooloose/nerdtree'
 let NERDTreeMouseMode = 3
 map <C-T> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
+let g:NERDTreeDirArrows=0 " Fixes weird encoding issue when opening the tree
+" map <C-T> :Explore<CR>
+" let g:netrw_liststyle=3
+
+" lauch ctrl-p, then less ~/.cache/ctrlp/project
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|tmp|bower_components|fonts|vendor)$',
+  \ 'file': '\v\.(exe|so|dll|gif|jpg|jpeg|svg|png|eml|csv)$',
+  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  \ }
 
 " Allow mouse use.
 " This enables click select in normal mode + NERDTree click
@@ -265,6 +275,8 @@ Plugin 'https://github.com/kien/ctrlp.vim.git'
 " let g:ctrlp_by_filename = 1
 nmap <F2> :CtrlP %:h<CR>
 nmap <F3> :CtrlPMRU<CR>
+let g:ctrlp_clear_cache_on_exit = 0 " Refresh the cache with <F-5>
+
 
 
 filetype plugin indent on     " required!

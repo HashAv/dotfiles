@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/benjamin/code/inklusive/erp_inklusive'
+let g:netrw_dirhist_2='/home/benjamin/code/inklusive/erp_inklusive/app/models'
+let g:netrw_dirhist_3='/home/benjamin/code/inklusive/erp_inklusive/db'
+let g:netrw_dirhist_4='/home/benjamin/code/inklusive/prt_report/lib/prt_report/parser'
+let g:netrw_dirhist_5='/home/benjamin/code/inklusive/prt_report/lib/prt_report'

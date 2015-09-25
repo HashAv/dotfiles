@@ -2,3 +2,5 @@
 *~
 .rbenv-version
 .bundle
+.pry_history
+.lesshst

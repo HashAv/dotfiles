@@ -26,3 +26,20 @@ fi
 
 WORKON_HOME=$HOME/.virtualenvs
 [[ -f $HOME/.local/bin/virtualenvwrapper_lazy.sh ]] && source $HOME/.local/bin/virtualenvwrapper_lazy.sh
+
+if pgrep -u $UID ssh-agent &>/dev/null; then
+  if [ -z $SSH_AUTH_SOCK ];then
+    if [[ $(pgrep -u $UID ssh-agent | wc -l) != 1 ]];then
+      echo "bash_profile: Problem with ssh-agent!"
+    else
+      echo "Reconnecting to ssh-agent"
+      export SSH_AUTH_SOCK=$(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f2)
+      export SSH_AGENT_PID=$(pgrep -u $UID ssh-agent)
+    fi
+  fi
+else
+  echo "Setting up ssh-agent"
+  set -a
+  eval $(ssh-agent) &>/dev/null
+  set +a
+fi

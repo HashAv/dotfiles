@@ -142,6 +142,9 @@ YELLOW="\[\033[1;33m\]"
   fi
 }
 
+# pacman -S bash-completion
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
 PROMPT_COMMAND=prompt_func
 
 function cd_into() {

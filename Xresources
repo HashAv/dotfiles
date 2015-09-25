@@ -3,3 +3,5 @@ XTerm*faceSize: 12
 XTerm*background: black
 XTerm*foreground: white
 XTerm*metaSendsEscape: true
+XTerm*selectToClipboard: true
+XTerm*selectToClipboard: true
