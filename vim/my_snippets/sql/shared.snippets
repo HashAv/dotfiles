@@ -11,8 +11,8 @@ CREATE TABLE ${1:plural_table_name} (
   id SERIAL PRIMARY KEY,
   $2
 
-  created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-  updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
+  created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT current_timestamp,
+  updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT current_timestamp
 );
 endsnippet
 
