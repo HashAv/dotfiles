@@ -35,25 +35,9 @@ dot_files.each do |dot_file|
 end
 
 puts
-unless File.exist?("#{HOME}/.vim/bundle/vundle")
+unless File.exist?("#{HOME}/.vim/bundle/Vundle.vim")
   puts "\033[1;31mVundle is not installed\033[1;m"
   puts "Please run the following commands"
-  puts %Q_git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle_
+  puts %Q_git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim_
   puts %Q_vim ; :BundleInstall_
-end
-
-git_config_path = "#{HOME}/.gitconfig"
-puts "\n\033[1;31mPlease delete gitconfig symlink\033[1;m" if File.symlink?(git_config_path)
-unless File.exist?(git_config_path)
-  # Create git config since I don't want to give away my user's path
-  # Git config does not support variable expansion
-puts <<config
-# Git config file creation. Copy and paste.
-git config --global user.name Benjamin Thomas
-git config --global user.email benjamin.guy.thomas@gmail.com
-git config --global alias.co checkout
-git config --global core.editor "vim"
-git config --global core.excludesfile #{HOME}/.gitignore_global
-git config --global alias.st status
-config
 end
