@@ -46,12 +46,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
-if [[ -d "$HOME/.rbenv" ]];then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
-
 export EDITOR=vim
 export SHELL=/bin/bash
 
@@ -108,12 +102,8 @@ fi
 }
 
 function ruby_version {
-  if [[ -d "$HOME/.rbenv"  ]];then
-    ruby_version=$(rbenv version | awk '{ print $1 }')
-  else
-    ruby_version="system"
-  fi
-  echo "‹${ruby_version}›"
+  VERSION=$(ruby -v | awk '{ print $2}')
+  echo "‹${VERSION}›"
 }
 
 function prompt_func() {

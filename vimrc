@@ -8,7 +8,7 @@
 "     source ~/.dotfiles/vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " For windows comptatibility
-set rtp+=~/.dotfiles/vim/bundle/vundle/
+set rtp+=~/.dotfiles/vim/bundle/Vundle.vim/
 set rtp+=~/.dotfiles/vim
 if has("gui_running")
   set guioptions-=m "menu bar
@@ -127,7 +127,7 @@ autocmd bufEnter *.txt imap <buffer> _dt <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Git wrapper
 Plugin 'tpope/vim-fugitive'

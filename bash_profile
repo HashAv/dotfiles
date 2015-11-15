@@ -16,6 +16,14 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
+
+if [ ! -z $GEM_BIN_PATH ];then
+  PATH=$PATH:$GEM_BIN_PATH
+else
+  echo "~/.bash_profile: Could not generate GEM_BIN_PATH"
+fi
+
 export GOPATH=$HOME/code/go
 export GOROOT=$HOME/.local/software/go/
 export PATH=$PATH:$GOPATH/bin
@@ -42,4 +50,9 @@ else
   set -a
   eval $(ssh-agent) &>/dev/null
   set +a
+fi
+
+if [[ $LANG == "" || $LANG == "C" ]];then
+  echo "System locale not setup properly"
+  echo "Use: localectl set-locale LANG=en_US.utf8 && localectl status"
 fi

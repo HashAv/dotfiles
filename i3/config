@@ -168,4 +168,4 @@ bar {
     status_command i3status
 }
 
-exec --no-startup-id feh --bg-fill ~/Images/the_titan.jpg
+exec --no-startup-id feh --bg-fill ~/Images/bg
