@@ -1,0 +1,16 @@
+[user]
+	name = Benjamin
+	email = benjamin.guy.thomas@gmail.com
+[alias]
+	co = checkout
+	st = status
+	d = diff
+	br = branch
+	l = log --decorate --oneline --graph
+[core]
+	editor = vim
+	excludesfile = /home/benjamin/.gitignore_global
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
