@@ -92,6 +92,8 @@ endif
 
 
 set nocompatible               " be iMproved
+set nomodeline                 " for security
+
 filetype off                   " required!
 call vundle#rc()
 
@@ -236,6 +238,8 @@ let g:ftplugin_sql_omni_key = 'F99'
 Plugin 'Align'
 
 " Snippets + syntax highlighting
+autocmd bufEnter *.xml.erb set ft=eruby.html
+autocmd bufEnter *.pdf.erb set ft=eruby.html
 autocmd bufEnter *.html.erb set ft=eruby.html
 autocmd bufEnter *.scala.html set ft=scala.html
 

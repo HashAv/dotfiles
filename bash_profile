@@ -16,6 +16,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+[ -d $HOME/.local/software/node/bin ] && PATH="$PATH:$HOME/.local/software/node/bin"
+
 GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
 
 if [ ! -z $GEM_BIN_PATH ];then
@@ -54,5 +56,7 @@ fi
 
 if [[ $LANG == "" || $LANG == "C" ]];then
   echo "System locale not setup properly"
-  echo "Use: localectl set-locale LANG=en_US.utf8 && localectl status"
+  echo "Set globally: localectl set-locale LANG=en_US.utf8 && localectl status"
 fi
+
+# export LANG=fr_FR.utf8 LC_TIME=fr_FR.utf8 # override default for user programs
