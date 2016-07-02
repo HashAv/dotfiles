@@ -383,6 +383,8 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 
+Plugin 'elmcast/elm-vim'
+
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -635,3 +637,7 @@ endfunction
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
 " Bubble lines END
+
+highlight TrailingWhiteSpaceAndTabs ctermbg=red guibg=red
+autocmd fileType ruby match TrailingWhiteSpaceAndTabs /\s\+$\|\t/
+

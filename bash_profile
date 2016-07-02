@@ -51,6 +51,7 @@ else
   echo "Setting up ssh-agent"
   set -a
   eval $(ssh-agent) &>/dev/null
+  ssh-add
   set +a
 fi
 

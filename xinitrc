@@ -9,7 +9,7 @@ setxkbmap fr bepo
 xrandr --output VGA-0 --mode 1920x1080
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 which VBoxClient-all && VBoxClient-all
-numlockx &
+which numlockx && numlockx &
 clipit &
 sxhkd &
 
