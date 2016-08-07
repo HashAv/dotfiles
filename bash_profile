@@ -16,6 +16,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.npm-global" ] ; then
+    PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 [ -d $HOME/.local/software/node/bin ] && PATH="$PATH:$HOME/.local/software/node/bin"
 
 GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
@@ -27,7 +31,7 @@ else
 fi
 
 export GOPATH=$HOME/code/go
-export GOROOT=$HOME/.local/software/go/
+# export GOROOT=$HOME/.local/software/go/
 export PATH=$PATH:$GOPATH/bin
 
 if [ -f $HOME/.config/exercism/exercism_completion.bash ]; then
