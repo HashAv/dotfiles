@@ -23,6 +23,7 @@ fi
 [ -d $HOME/.local/software/node/bin ] && PATH="$PATH:$HOME/.local/software/node/bin"
 
 GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
+GEM_HOME=~/.cache/gems
 
 if [ ! -z $GEM_BIN_PATH ];then
   PATH=$PATH:$GEM_BIN_PATH
