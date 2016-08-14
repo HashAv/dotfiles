@@ -183,7 +183,7 @@ assign [class="firefox-developer"] 6
 assign [class="Thunderbird"] 7
 
 # assign [class="Firefox"] 2
-#assign [class="Firefox"] 10
+assign [class="Firefox"] 10
 
 
 # Source: http://i3wm.org/docs/userguide.html#_automatically_starting_applications_on_i3_startup
