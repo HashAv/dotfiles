@@ -4,4 +4,7 @@ XTerm*background: black
 XTerm*foreground: white
 XTerm*metaSendsEscape: true
 XTerm*selectToClipboard: true
-XTerm*selectToClipboard: true
+
+XTerm*on3Clicks: regex [^ \n]+
+XTerm*on4Clicks: regex .*
+XTerm*on5Clicks: line
