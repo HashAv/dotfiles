@@ -638,6 +638,8 @@ noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
 " Bubble lines END
 
+highlight TrailingWhiteSpace ctermbg=red guibg=red
+autocmd fileType go match TrailingWhiteSpaceAndTabs /\s\+$/
+
 highlight TrailingWhiteSpaceAndTabs ctermbg=red guibg=red
 autocmd fileType ruby match TrailingWhiteSpaceAndTabs /\s\+$\|\t/
-
