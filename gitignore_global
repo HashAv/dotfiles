@@ -4,3 +4,4 @@
 .pry_history
 .bash_history
 .lesshst
+/vendor
