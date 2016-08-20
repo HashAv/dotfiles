@@ -433,6 +433,7 @@ set bg=dark
 set t_Co=256
 
 colorscheme ir_black
+"colorscheme default
 
 "Fix ir_black coloring inside terminals
 highlight Visual ctermfg=white
