@@ -13,6 +13,7 @@ which numlockx && numlockx &
 which clipit && clipit &
 which sxhkd && sxhkd -c ~/.sxhkdrc &
 which dropbox && dropbox &
+which autokey-gtk && autokey-gtk &
 
 # Source: https://wiki.archlinux.org/index.php/Feh#As_a_desktop_wallpaper_manager
 # Update with `feh --bg-center --randomize ~/Images/Wallpapers/*`
