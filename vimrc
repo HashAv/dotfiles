@@ -50,7 +50,9 @@ if &term == "screen-256color" "tmux sessions
 
   set <F9>=[20~
   set <S-F9>=[20;2~
+
   " set <F10>=(virtualbox host key)
+  set <F10>=[21~
   " set <F11>=(gnome-terminal full-screen)
   set <F12>=[24~
   set <S-F12>=[24;2~
@@ -158,6 +160,8 @@ Plugin 'https://github.com/tpope/vim-haml.git'
 Plugin 'https://github.com/nathanaelkane/vim-indent-guides.git'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+hi IndentGuidesOdd  ctermbg=magenta
+hi IndentGuidesEven ctermbg=cyan
 
 " Highligths matching tags
 Plugin 'https://github.com/gregsexton/MatchTag.git'
@@ -197,10 +201,14 @@ Plugin 'xmledit'
 
 Plugin 'scrooloose/nerdtree'
 " Single click to open filepath elements
+set encoding=utf-8
 let NERDTreeMouseMode = 3
 map <C-T> :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
-let g:NERDTreeDirArrows=0 " Fixes weird encoding issue when opening the tree
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
+"let g:NERDTreeDirArrows=0 " Fixes weird encoding issue when opening the tree
 " map <C-T> :Explore<CR>
 " let g:netrw_liststyle=3
 
@@ -342,7 +350,7 @@ let g:syntastic_always_populate_loc_list = 1
 
 Plugin 'EasyMotion'
 " Normally 'S' is synonym for 'cc' (and I don't use it)
-let g:EasyMotion_leader_key = 'S'
+let g:EasyMotion_leader_key = '<F10>'
 " let g:EasyMotion_mapping_k = '<C-K>'
 " let g:EasyMotion_mapping_j = '<C-J>'
 " let g:EasyMotion_mapping_f = '<C-F>'
@@ -371,7 +379,15 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 " nsf/gocode dependency
 " go get -u github.com/nsf/gocode (-u flag for "update")
 " go get -u -ldflags -H=windowsgui github.com/nsf/gocode # windows
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+"Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" This is a Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+Plugin 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+Plugin 'racer-rust/vim-racer'
+let g:racer_cmd = "/usr/bin/racer"
+let $RUST_SRC_PATH="~/Downloads/rustc-1.13.0/src"
+let g:racer_experimental_completer = 1
 
 Plugin 'AndrewRadev/inline_edit.vim'
 
@@ -383,7 +399,8 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 
-Plugin 'elmcast/elm-vim'
+Plugin 'https://github.com/ElmCast/elm-vim'
+autocmd bufEnter *.elm set ft=elm
 
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
@@ -429,23 +446,12 @@ set tabstop=2
 
 autocmd Filetype javascript setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
-set bg=dark
 set t_Co=256
-
-colorscheme ir_black
-"colorscheme default
-
-"Fix ir_black coloring inside terminals
-highlight Visual ctermfg=white
-highlight Pmenu ctermbg=238
-highlight PmenuSel ctermbg=DarkRed
-highlight MatchParen cterm=bold ctermfg=red ctermbg=red
-
-if has("gui_running")
-  highlight Search guifg=Cyan gui=reverse
-else
-  highlight Search ctermfg=white ctermbg=6
-endif
+set bg=dark
+" pacman -S vim-molokai
+colorscheme molokai
+" override scheme paren highlight (ctermfg=curr, ctermbg=match)
+hi MatchParen cterm=none ctermfg=green ctermbg=none
 
 nmap <F7> :set hlsearch!<CR>
 set pastetoggle=<F8>

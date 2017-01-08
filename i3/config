@@ -33,7 +33,7 @@ font pango:monospace 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -151,12 +151,27 @@ mode "resize" {
         bindsym k resize grow height 10 px or 10 ppt
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
+        bindsym Shift+j resize shrink height 1 px or 1 ppt
+        bindsym Shift+k resize grow height 1 px or 1 ppt
+        bindsym Shift+h resize shrink width 1 px or 1 ppt
+        bindsym Shift+l resize grow width 1 px or 1 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Shift+Left resize shrink width 1 px or 1 ppt
+        bindsym Shift+Down resize grow height 1 px or 1 ppt
+        bindsym Shift+Up resize shrink height 1 px or 1 ppt
+        bindsym Shift+Right resize grow width 1 px or 1 ppt
+
+        bindsym Control+Left resize shrink width 20 px or 20 ppt
+        bindsym Control+Down resize grow height 20 px or 20 ppt
+        bindsym Control+Up resize shrink height 20 px or 20 ppt
+        bindsym Control+Right resize grow width 20 px or 20 ppt
+
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -178,12 +193,13 @@ exec --no-startup-id feh --bg-fill ~/Images/bg
 # Source: http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces
 # user:~$ xprop | grep WM_CLASS
 # WM_CLASS(STRING) = "Navigator", "firefox-developer"
-assign [class="chromium"] 1
-assign [class="firefox-developer"] 6
+#assign [class="chromium"] 1
 assign [class="Thunderbird"] 7
 
-# assign [class="Firefox"] 2
-assign [class="Firefox"] 10
+assign [class="Firefox"] 1
+
+# chromium --class=chromium-end2end
+assign [class="chromium-end2end"] 3
 
 
 # Source: http://i3wm.org/docs/userguide.html#_automatically_starting_applications_on_i3_startup
@@ -201,3 +217,9 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute exec amixer -q set Mic toggle
+
+# Use extra monitor
+# xrandr --auto --output VGA-1 --left-of LVDS-1
+# i3-msg move workspace to output left
+bindsym $mod+Control+Left move workspace to output left
+bindsym $mod+Control+Right move workspace to output right

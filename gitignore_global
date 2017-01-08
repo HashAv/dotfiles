@@ -2,6 +2,6 @@
 *~
 .rbenv-version
 .pry_history
+.byebug_history
 .bash_history
 .lesshst
-/vendor

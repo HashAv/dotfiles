@@ -2,7 +2,7 @@
 
 set -e
 
-#xset +fp /usr/share/fonts/local
+#xset +fp /usr/share/fonts/TTF
 #xset fp rehash
 
 setxkbmap fr bepo

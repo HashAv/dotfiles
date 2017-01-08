@@ -91,6 +91,17 @@ which ack-grep &>/dev/null && alias ack="ack-grep"
 [[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion
 
 
+function source_env() {
+  if ! [ -f $1 ];then
+    echo "Path is not valid!"
+    return
+  fi
+	set -a
+  source $1
+	set +a
+}
+alias se="source_env"
+
 ######################################################################
 # Better bash prompt. Switches when inside a git repo automatically
 ######################################################################
@@ -154,6 +165,10 @@ function clear_gems() {
 alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/"
 alias firefox_dev="firefox -P dev"
 
+# https://wiki.archlinux.org/index.php/tmux
+# Also, if tmux messes up, you can force tmux to assume that the terminal support 256 colors, by adding this in your .bashrc:
+alias tmux="tmux -2"
+
 function git_tree_check() {
   CWD=`pwd`
   for file in $(find "$1" -name "*.git"); do
@@ -179,4 +194,8 @@ function git_tree_check() {
     echo
   done
   [ -z $NEEDS_FIX ] && cd $CWD
+}
+
+function gotestcolor() {
+	go test $@ | colout '(PASS)|(FAIL)' green,red
 }

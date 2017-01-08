@@ -16,6 +16,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ];then
+    PATH="$PATH:$HOME/.cargo/bin"
+fi
+
 if [ -d "$HOME/.npm-global" ] ; then
     PATH="$HOME/.npm-global/bin:$PATH"
 fi
@@ -65,4 +69,24 @@ if [[ $LANG == "" || $LANG == "C" ]];then
   echo "Set globally: localectl set-locale LANG=en_US.utf8 && localectl status"
 fi
 
+export TERM=xterm-256color
+
 # export LANG=fr_FR.utf8 LC_TIME=fr_FR.utf8 # override default for user programs
+
+if [ $(which sync_repos) ];then
+  TOUCH_PATH="/run/user/$(id -u)/sync_repos"
+
+  if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hours
+    touch "$TOUCH_PATH"
+    sync_repos 1>/dev/null
+  fi
+fi
+
+if [ $(which check_hosts) ];then
+  TOUCH_PATH="/run/user/$(id -u)/check_hosts"
+
+  if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 5 )) 2>/dev/null) ];then # 5 minutes
+    touch "$TOUCH_PATH"
+    check_hosts
+  fi
+fi

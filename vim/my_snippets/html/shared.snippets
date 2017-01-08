@@ -30,4 +30,18 @@ snippet a "Link" i!
 <a href="${1:http://www.${2:url.com}}">${3:Anchor Text}</a>
 endsnippet
 
+snippet table "Basic table layout" b
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			$1
+		</tr>
+	</thead>
+
+	<tbody>
+		$0
+	</tbody>
+</table>
+endsnippet
+
 # vim:ft=snippets:
