@@ -78,7 +78,7 @@ if [ $(which sync_repos) ];then
 
   if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hours
     touch "$TOUCH_PATH"
-    sync_repos 1>/dev/null
+    sync_repos -e 1>/dev/null
   fi
 fi
 
