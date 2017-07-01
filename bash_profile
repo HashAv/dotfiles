@@ -73,12 +73,12 @@ export TERM=xterm-256color
 
 # export LANG=fr_FR.utf8 LC_TIME=fr_FR.utf8 # override default for user programs
 
-if [ $(which sync_repos) ];then
-  TOUCH_PATH="/run/user/$(id -u)/sync_repos"
+if [ $(which check_repos) ];then
+  TOUCH_PATH="/run/user/$(id -u)/check_repos"
 
   if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hours
     touch "$TOUCH_PATH"
-    sync_repos -e 1>/dev/null
+    check_repos -e 1>/dev/null
   fi
 fi
 
