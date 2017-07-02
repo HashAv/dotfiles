@@ -7,9 +7,8 @@
 "     set rtp+=~/.dotfiles/vim
 "     source ~/.dotfiles/vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" For windows comptatibility
-set rtp+=~/.dotfiles/vim/bundle/Vundle.vim/
-set rtp+=~/.dotfiles/vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 if has("gui_running")
   set guioptions-=m "menu bar
   set guioptions-=T "tool bar
@@ -97,7 +96,6 @@ set nocompatible               " be iMproved
 set nomodeline                 " for security
 
 filetype off                   " required!
-call vundle#rc()
 
 noremap <silent> <C-L> :nohls<CR><C-L>
 
@@ -411,6 +409,7 @@ nmap <F6> gg=G``
 imap <F6> <Esc>gg=G``
 
 
+call vundle#end()
 "=========================
 " Vim configuration
 " ========================
