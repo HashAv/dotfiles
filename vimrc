@@ -388,6 +388,7 @@ let $RUST_SRC_PATH="~/Downloads/rustc-1.13.0/src"
 let g:racer_experimental_completer = 1
 
 Plugin 'AndrewRadev/inline_edit.vim'
+let g:inline_edit_autowrite = 1
 
 Plugin 'scala.vim'
 
