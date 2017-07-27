@@ -241,8 +241,8 @@ bindsym button5 nop
 
 bindsym Print exec scrot -e 'mv $f ~/Images/Screenshots'
 
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute exec amixer -q set Mic toggle
 
