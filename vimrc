@@ -490,17 +490,11 @@ cnoremap <C-E> <End>
 noremap <F1> :q<CR>
 noremap <S-F1> :qa!<CR>
 
+inoremap <F5> <ESC>:silent update<CR>
+nnoremap <F5> :silent update<CR>
 
-" Normal mode & save
-" buggy mz stuff
-" nnoremap <F5> mz:update<CR> \| :echo "File succesfully saved at" strftime("%H:%M:%S")<CR>`z
-" inoremap <F5> <ESC>lmz:update<CR>`z
-
-inoremap <F5> <ESC>:update<CR>
-nnoremap <F5> :update<CR>
-
-imap <C-S> <F5>
-nmap <C-S> <F5>
+inoremap <C-S> <ESC>:update<CR>
+nnoremap <C-S> :update<CR>
 
 " Cycle through folds easily
 nmap <S-UP> zk
