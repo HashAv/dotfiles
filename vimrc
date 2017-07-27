@@ -401,14 +401,25 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 Plugin 'https://github.com/ElmCast/elm-vim'
 autocmd bufEnter *.elm set ft=elm
 
+Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
+" Enable seeing-is-believing mappings only for Ruby
+augroup seeingIsBelievingSettings
+  autocmd!
+
+  autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+  autocmd FileType ruby xmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+
+  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+
+  autocmd FileType ruby nmap <buffer> <F6> <Plug>(seeing-is-believing-run)
+  autocmd FileType ruby imap <buffer> <F6> <Plug>(seeing-is-believing-run)
+augroup END
+
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" Re-indent the whole file
-nmap <F6> gg=G``
-imap <F6> <Esc>gg=G``
-
 
 call vundle#end()
 "=========================
