@@ -398,6 +398,13 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 
+let g:ycm_filetype_whitelist = {
+      \ 'golang' : 1,
+      \ 'rust' : 1,
+      \ 'javascript' : 1,
+      \ 'java' : 1,
+      \}
+
 Plugin 'https://github.com/ElmCast/elm-vim'
 autocmd bufEnter *.elm set ft=elm
 

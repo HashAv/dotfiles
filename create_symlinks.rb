@@ -46,3 +46,17 @@ unless File.exist?("#{HOME}/.vim/bundle/Vundle.vim")
   puts %Q_git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim_
   puts %Q_vim ; :PluginInstall_
 end
+
+  puts <<EOS
+YouCompleteMe:
+--------------
+
+apt-get install build-essential cmake python-dev python3-dev
+
+apt-get install nodejs npm # for javascript completion
+apt-get install rustc cargo # for rust completion (super slow install)
+
+cd ~/.vim/bundle/YouCompleteMe/ && ./install.py --go-completer --rust-completer --js-completer --java-completer
+
+
+EOS
