@@ -46,17 +46,21 @@ fi
 WORKON_HOME=$HOME/.virtualenvs
 [[ -f $HOME/.local/bin/virtualenvwrapper_lazy.sh ]] && source $HOME/.local/bin/virtualenvwrapper_lazy.sh
 
-if [[ -z $SSH_AUTH_SOCK ]];then # otherwise agent forwarding...
+function ssh_auth_sock_refresh() {
+  if [[ -S "$SSH_AUTH_SOCK" ]];then
+    # using agent forwarding...
+    echo "SSH_AUTH_SOCK already set and active, exiting now."
+    return # return, not exit, otherwises closes session
+  fi
+
   if pgrep -u $UID ssh-agent &>/dev/null; then
-    if [ -z $SSH_AUTH_SOCK ];then
-      if [[ $(pgrep -u $UID ssh-agent | wc -l) != 1 ]];then
-        echo "bash_profile: Problem with ssh-agent!"
-      else
-        echo "Reconnecting to ssh-agent"
-        export SSH_AUTH_SOCK=$(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f2)
-        export SSH_AGENT_PID=$(pgrep -u $UID ssh-agent)
-      fi
+    if [[ $(pgrep -u $UID ssh-agent | wc -l) != 1 ]];then
+      echo "bash_profile: Problem with ssh-agent, exiting now!"
+      return
     fi
+    echo "Reconnecting to ssh-agent"
+    export SSH_AUTH_SOCK=$(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null | sort -n | tail -1 | cut -d' ' -f2)
+    export SSH_AGENT_PID=$(pgrep -u $UID ssh-agent)
   else
     echo "Setting up ssh-agent"
     set -a
@@ -64,7 +68,7 @@ if [[ -z $SSH_AUTH_SOCK ]];then # otherwise agent forwarding...
     ssh-add
     set +a
   fi
-fi
+}
 
 if [[ $LANG == "" || $LANG == "C" ]];then
   echo "System locale not setup properly"
