@@ -92,29 +92,31 @@ which ack-grep &>/dev/null && alias ack="ack-grep"
 
 
 function source_env() {
-  local FPATH=$1
+  for FPATH in "$@";do
 
-  if ! [ -f $FPATH ];then
-    echo "source_env: path is not valid!"
-    return 1
-  fi
+    echo "Sourcing: $FPATH"
+    if ! [ -f $FPATH ];then
+      echo "source_env: path is not valid!"
+      return 1
+    fi
 
-  local DPATH=$(dirname $FPATH)
+    local DPATH=$(dirname $FPATH)
 
-  local FPERM=$(stat -c '%a' $FPATH)
-  local DPERM=$(stat -c '%a' $DPATH)
+    local FPERM=$(stat -c '%a' $FPATH)
+    local DPERM=$(stat -c '%a' $DPATH)
 
-  if [[ $(stat -c '%a' $DPATH) != '700' ]];then
-    echo "source_env: invalid perm for: $DPATH ($DPERM)"
-  fi
+    if [[ $(stat -c '%a' $DPATH) != '700' ]];then
+      echo "source_env: invalid perm for: $DPATH ($DPERM)"
+    fi
 
-  if [[ $(stat -c '%a' $FPATH) != '600' ]];then
-    echo "source_env: invalid perm for: $FPATH ($FPERM)"
-  fi
+    if [[ $(stat -c '%a' $FPATH) != '600' ]];then
+      echo "source_env: invalid perm for: $FPATH ($FPERM)"
+    fi
 
-  set -a
-  source $1
-  set +a
+    set -a
+    source $FPATH
+    set +a
+  done
 }
 alias se="source_env"
 
