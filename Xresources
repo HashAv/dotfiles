@@ -10,3 +10,13 @@ XTerm*on4Clicks: regex .*
 XTerm*on5Clicks: line
 
 XTerm*locale: true
+
+URxvt.scrollBar: false
+URxvt*background: Black
+URxvt*foreground: White
+// URxvt*geometry: 80x30
+//URxvt.font:     xft:bitstream vera sans mono:size=13:antialias=true
+//URxvt.boldFont: xft:bitstream vera sans mono:bold:size=13:antialias=true
+//URxvt.font:     xft:Terminus:medium:size=12
+URxvt.letterSpace: -1
+URxvt.font:     xft:mono:medium:size=13:antialias=true

@@ -96,3 +96,5 @@ if [ $(which check_hosts) ];then
     check_hosts
   fi
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

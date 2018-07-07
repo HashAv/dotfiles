@@ -16,25 +16,29 @@ dot_files.each do |dot_file|
   # Don't symlink the script itself
   unless dot_file =~ /#{__FILE__}/ or dot_file =~ /README.md/
     dot_file_basename = File.basename(dot_file)
-    dot_file_dest = "#{HOME}/.#{dot_file_basename}"
+    dot_file_dest = if dot_file_basename == 'i3'
+                      "#{HOME}/.config/#{dot_file_basename}"
+                    else
+                      "#{HOME}/.#{dot_file_basename}"
+                    end
 
     if File.exist?(dot_file_dest)
       if File.symlink?(dot_file_dest)
-        puts "Exists  : .#{dot_file_basename}"
+        puts "Exists  : #{dot_file_dest}"
       else
         print "\033[1;31mWarning  ! \033[1;m"
-        print "\033[47;30m.#{dot_file_basename}\033[1;m is not a symlink! "
+        print "\033[47;30m#{dot_file_dest}\033[1;m is not a symlink! "
         puts "Remove or backup this file before running this scripts again"
       end
     else
       if File.symlink?(dot_file_dest)
         print "\033[1;31mBroken symlink  ! \033[1;m"
-        print "\033[47;30m.#{dot_file_basename}\033[1;m remove and run again! \n"
+        print "\033[47;30m#{dot_file_dest}\033[1;m remove and run again! \n"
         next
       end
       ln_s dot_file, dot_file_dest
       print "\033[1;32mCreated : \033[1;m"
-      puts "\033[47;30m.#{dot_file_basename}\033[1;m"
+      puts "\033[47;30m#{dot_file_dest}\033[1;m"
     end
   end
 end

@@ -112,7 +112,7 @@ set foldmethod=manual
 " inoremap <C-D> <Del>
 " inoremap <A-D> <C-O>de
 
-inoremap » <ESC>
+" inoremap » <ESC>
 
 " Align a ruby hash (1.9)
 nmap _arh vip:Tabularize/\w:\zs/l0l1<CR>
@@ -423,6 +423,14 @@ augroup seeingIsBelievingSettings
   autocmd FileType ruby nmap <buffer> <F6> <Plug>(seeing-is-believing-run)
   autocmd FileType ruby imap <buffer> <F6> <Plug>(seeing-is-believing-run)
 augroup END
+
+Plugin 'https://github.com/ledger/vim-ledger'
+autocmd bufEnter *.ledger set ft=ledger
+autocmd FileType ledger set relativenumber
+autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-ledger/bin/align_ledger_amounts
+" set formatprg=astyle\ --indent=spaces=2
+
+Plugin 'https://github.com/kburdett/vim-nuuid'
 
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
