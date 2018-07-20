@@ -428,9 +428,17 @@ Plugin 'https://github.com/ledger/vim-ledger'
 autocmd bufEnter *.ledger set ft=ledger
 autocmd FileType ledger set relativenumber
 autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-ledger/bin/align_ledger_amounts
+autocmd FileType ledger imap <buffer> _d <C-R>=strftime("%Y-%m-%d")<CR>
 " set formatprg=astyle\ --indent=spaces=2
 
 Plugin 'https://github.com/kburdett/vim-nuuid'
+
+
+" UML
+autocmd bufEnter *.uml set ft=plantuml
+Plugin 'aklt/plantuml-syntax'
+
+Plugin 'DrawIt'
 
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
