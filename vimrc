@@ -125,7 +125,7 @@ nmap _ctd 0f{sdo<ESC>2f\|ls<CR><ESC>f}s<CR>end<ESC>
 autocmd bufEnter *.txt imap <buffer> _= <ESC>yypVr=o<CR>
 autocmd bufEnter *.txt imap <buffer> _- <ESC>yypVr-o<CR>
 
-autocmd bufEnter *.txt imap <buffer> _dt <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+autocmd bufEnter *.txt imap <buffer> ^dt <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 
 " let Vundle manage Vundle
 " required!
@@ -428,11 +428,29 @@ Plugin 'https://github.com/ledger/vim-ledger'
 autocmd bufEnter *.ledger set ft=ledger
 autocmd FileType ledger set relativenumber
 autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-ledger/bin/align_ledger_amounts
-autocmd FileType ledger imap <buffer> _d <C-R>=strftime("%Y-%m-%d")<CR>
+autocmd FileType ledger imap <buffer> ^d <C-R>=strftime("%Y-%m-%d")<CR>
+autocmd FileType ledger imap <buffer> ^ac Assets:Clearing<ESC>gqip
+
+" copy paste date of transaction above, and increment `cnt` times
+function! InsertDate(cnt)
+  execute "normal {+yt }jp$"
+  call speeddating#increment(a:cnt)
+endfunction
+
+" Specify param manually
+autocmd FileType ledger imap <buffer> ^? <ESC>:call InsertDate()<LEFT>
+
+autocmd FileType ledger imap <buffer> ^0 <ESC>:call InsertDate(0)<CR>A
+autocmd FileType ledger imap <buffer> ^1 <ESC>:call InsertDate(1)<CR>A
+autocmd FileType ledger imap <buffer> ^2 <ESC>:call InsertDate(2)<CR>A
+autocmd FileType ledger imap <buffer> ^3 <ESC>:call InsertDate(3)<CR>A
+autocmd FileType ledger imap <buffer> ^4 <ESC>:call InsertDate(4)<CR>A
+autocmd FileType ledger imap <buffer> ^5 <ESC>:call InsertDate(5)<CR>A
+autocmd FileType ledger imap <buffer> ^6 <ESC>:call InsertDate(6)<CR>A
+autocmd FileType ledger imap <buffer> ^7 <ESC>:call InsertDate(7)<CR>A
+
 " set formatprg=astyle\ --indent=spaces=2
-
 Plugin 'https://github.com/kburdett/vim-nuuid'
-
 
 " UML
 autocmd bufEnter *.uml set ft=plantuml
