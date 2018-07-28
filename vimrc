@@ -433,6 +433,11 @@ autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-l
 autocmd FileType ledger imap <buffer> <F2> <CR>Assets:Clearing<ESC>gqip
 " sa -> same account
 autocmd FileType ledger imap <buffer> ^sa <ESC>yypWC
+autocmd FileType ledger noremap <buffer> <F3> k{+
+autocmd FileType ledger noremap <buffer> <F4> j}-
+
+" Overwrite last line of transaction with clipboard content, for ofx2ledger
+autocmd FileType ledger noremap <buffer> <F6> }-V"+p
 
 " copy paste date of transaction above, and increment `cnt` times
 function! InsertDate(cnt)
@@ -452,6 +457,8 @@ autocmd FileType ledger imap <buffer> ^4 <ESC>:call InsertDate(4)<CR>A
 autocmd FileType ledger imap <buffer> ^5 <ESC>:call InsertDate(5)<CR>A
 autocmd FileType ledger imap <buffer> ^6 <ESC>:call InsertDate(6)<CR>A
 autocmd FileType ledger imap <buffer> ^7 <ESC>:call InsertDate(7)<CR>A
+
+autocmd FileType ledger map <buffer>  <F7> :call ledger#transaction_state_toggle(line('.'), '!* ')<CR>
 
 " set formatprg=astyle\ --indent=spaces=2
 Plugin 'https://github.com/kburdett/vim-nuuid'
