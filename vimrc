@@ -408,22 +408,6 @@ let g:ycm_filetype_whitelist = {
 Plugin 'https://github.com/ElmCast/elm-vim'
 autocmd bufEnter *.elm set ft=elm
 
-Plugin 'https://github.com/hwartig/vim-seeing-is-believing'
-" Enable seeing-is-believing mappings only for Ruby
-augroup seeingIsBelievingSettings
-  autocmd!
-
-  autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
-  autocmd FileType ruby xmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
-
-  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
-
-  autocmd FileType ruby nmap <buffer> <F6> <Plug>(seeing-is-believing-run)
-  autocmd FileType ruby imap <buffer> <F6> <Plug>(seeing-is-believing-run)
-augroup END
-
 Plugin 'https://github.com/ledger/vim-ledger'
 autocmd bufEnter *.ledger set ft=ledger
 autocmd FileType ledger set relativenumber
@@ -437,7 +421,7 @@ autocmd FileType ledger noremap <buffer> <F3> k{+
 autocmd FileType ledger noremap <buffer> <F4> j}-
 
 " Overwrite last line of transaction with clipboard content, for ofx2ledger
-autocmd FileType ledger noremap <buffer> <F6> }-V"+p
+autocmd FileType ledger noremap <buffer> <F6> }-"zyEV"+p}-dE"zPgqip
 
 " copy paste date of transaction above, and increment `cnt` times
 function! InsertDate(cnt)
@@ -458,7 +442,7 @@ autocmd FileType ledger imap <buffer> ^5 <ESC>:call InsertDate(5)<CR>A
 autocmd FileType ledger imap <buffer> ^6 <ESC>:call InsertDate(6)<CR>A
 autocmd FileType ledger imap <buffer> ^7 <ESC>:call InsertDate(7)<CR>A
 
-autocmd FileType ledger map <buffer>  <F7> :call ledger#transaction_state_toggle(line('.'), '!* ')<CR>
+autocmd FileType ledger map <buffer>  <F7> :call ledger#transaction_state_toggle(line('.'), '! ')<CR>
 
 " set formatprg=astyle\ --indent=spaces=2
 Plugin 'https://github.com/kburdett/vim-nuuid'

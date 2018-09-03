@@ -285,8 +285,8 @@ bindsym $mod+Control+Right move workspace to output right
 bindsym $mod+Control+Up move workspace to output up
 bindsym $mod+Control+Down move workspace to output down
 
-bindsym $mod+Shift+F11 exec synclient TouchPadOff=1
-bindsym $mod+F11 exec synclient TouchPadOff=0
+bindsym $mod+Shift+F11 exec synclient TouchPadOff=0
+bindsym $mod+F11 exec synclient TouchPadOff=1
 
 exec_always urxvt -name time-tracker -e ~/init_or_open_tmux_utt
 
@@ -296,3 +296,5 @@ for_window [instance="^time-tracker$"] move scratchpad
 for_window [instance="^time-tracker$"] floating enable
 for_window [instance="^time-tracker$"] resize set 900 450
 for_window [instance="^time-tracker$"] border pixel 5
+
+for_window [workspace="10"] floating disable # Annoying TeamViewer
