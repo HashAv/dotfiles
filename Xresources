@@ -20,3 +20,7 @@ URxvt*foreground: White
 //URxvt.font:     xft:Terminus:medium:size=12
 URxvt.letterSpace: -1
 URxvt.font:     xft:mono:medium:size=13:antialias=true
+
+# https://stackoverflow.com/questions/43305190/how-to-change-the-default-shortcuts-for-copy-paste-in-urxvt
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

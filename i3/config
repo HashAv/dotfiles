@@ -186,7 +186,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+Control+Shift+r mode "resize"
 bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -215,6 +215,10 @@ exec "gnome-terminal -x bash -c 'rofi -key-run Mod4+d -key-window mod4+shift+d -
 
 for_window [class="Gnome-terminal"] border pixel 1
 
+for_window [instance="Dunst"] floating enable sticky enable
+# for_window [instance="twinkle"] floating enable sticky enable
+bindsym $mod+Shift+s sticky toggle
+
 set $mode_launcher Launch: [f]irefox [t]hunderbird
 bindsym $mod+shift+o mode "$mode_launcher"
 
@@ -230,9 +234,10 @@ mode "$mode_launcher" {
 # user:~$ xprop | grep WM_CLASS
 # WM_CLASS(STRING) = "Navigator", "firefox-developer"
 #assign [class="chromium"] 1
-assign [class="Thunderbird"] 7
 
 assign [class="Firefox"] 1
+assign [class="Thunderbird"] 7
+assign [class="twinkle"] 9
 
 # chromium --class=chromium-end2end
 assign [class="chromium-end2end"] 3
@@ -249,7 +254,8 @@ bindsym button5 nop
 
 # mkdir ~/Images/Screenshots first, or fails weirdly
 bindsym Print exec scrot --focused '%Y-%m-%d_%H:%M:%S.png' --exec 'mv $f ~/Images/Screenshots/ && notify-send -t 1000 -u low "Saved to ~/Images/Screenshots/$f"'
-bindsym Shift+Print exec shutter -s -n
+bindsym Shift+Print exec shutter -s
+# assign [class="Shutter"] 9
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && pkill -RTMIN+1 i3blocks
@@ -288,13 +294,22 @@ bindsym $mod+Control+Down move workspace to output down
 bindsym $mod+Shift+F11 exec synclient TouchPadOff=0
 bindsym $mod+F11 exec synclient TouchPadOff=1
 
-exec_always urxvt -name time-tracker -e ~/init_or_open_tmux_utt
+exec_always urxvt -name time-tracker -bg '#C11' -e ~/.init_or_open_tmux_utt
+exec_always urxvt -name reminders -bg '#415' -e ~/.init_or_open_tmux_reminders
+# exec_always urxvt -name time-tracker -tr -tint red -e ~/.init_or_open_tmux_utt
+# exec_always urxvt -name reminders -tr -tint purple -e ~/.init_or_open_tmux_reminders
 
 bindsym $mod+t [instance="^time-tracker$"] scratchpad show; [instance="^time-tracker$"] move position center
+bindsym $mod+r [instance="^reminders$"] scratchpad show; [instance="^reminders$"] move position center
 
 for_window [instance="^time-tracker$"] move scratchpad
 for_window [instance="^time-tracker$"] floating enable
-for_window [instance="^time-tracker$"] resize set 900 450
+for_window [instance="^time-tracker$"] resize set 1200 600
 for_window [instance="^time-tracker$"] border pixel 5
+
+for_window [instance="^reminders$"] move scratchpad
+for_window [instance="^reminders$"] floating enable
+for_window [instance="^reminders$"] resize set 1200 600
+for_window [instance="^reminders$"] border pixel 5
 
 for_window [workspace="10"] floating disable # Annoying TeamViewer

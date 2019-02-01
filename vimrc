@@ -378,6 +378,7 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 " go get -u github.com/nsf/gocode (-u flag for "update")
 " go get -u -ldflags -H=windowsgui github.com/nsf/gocode # windows
 "Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 
 " This is a Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 Plugin 'rust-lang/rust.vim'
@@ -417,11 +418,15 @@ autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-l
 autocmd FileType ledger imap <buffer> <F2> <CR>Assets:Clearing<ESC>gqip
 " sa -> same account
 autocmd FileType ledger imap <buffer> ^sa <ESC>yypWC
-autocmd FileType ledger noremap <buffer> <F3> k{+
-autocmd FileType ledger noremap <buffer> <F4> j}-
 
+" Expense -> Assets:Bank
+autocmd FileType ledger inoremap <buffer> <F4> <CR>  Assets:Bank<ESC>gqipgqap
+"autocmd FileType ledger inoremap <buffer> <F4> <ESC>{}-yypcwBudget<ESC>ElDgqip
+"autocmd FileType ledger noremap <buffer> <F4> {}-yypcwBudget<ESC>ElDgqip
 " Overwrite last line of transaction with clipboard content, for ofx2ledger
-autocmd FileType ledger noremap <buffer> <F6> }-"zyEV"+p}-dE"zPgqip
+"autocmd FileType ledger noremap <buffer> <F6> }-"zyEV"+p}-dE"zPgqip
+"autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>"zyEV"+p}-dE"zPgqip
+autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>V"+p:nohlsearch<CR>
 
 " copy paste date of transaction above, and increment `cnt` times
 function! InsertDate(cnt)
@@ -453,6 +458,13 @@ Plugin 'aklt/plantuml-syntax'
 
 Plugin 'DrawIt'
 
+" Colorize escape sequences
+" Usage: :AnsiEsc<ENTER>
+Plugin 'AnsiEsc.vim'
+
+Plugin 'leafo/moonscript-vim'
+autocmd bufEnter *.moon set ft=moon
+
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -467,7 +479,8 @@ set undolevels=1000       " Use many levels of undo                             
 set ruler                 " Show the cursor position all the time (normally on by default)
 set showcmd               " Displays incomplete commands and if the leader key was pressed
 set incsearch             " Do incremental searching (this moves the cursor as I search)
-set number                " Display line numbers
+set relativenumber
+set number  " after rel -> shows line number instead of 0
 set ic                    " Ignore case on search
 set scs                   " Smartcase
 set wildmode=list:longest " Prevent command line completion cycle effect

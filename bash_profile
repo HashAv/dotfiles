@@ -24,6 +24,10 @@ if [ -d "$HOME/.npm-global" ] ; then
     PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
+if [ -d "$HOME/.luarocks" ] ; then
+    PATH="$HOME/.luarocks/bin:$PATH"
+fi
+
 [ -d $HOME/.local/software/node/bin ] && PATH="$PATH:$HOME/.local/software/node/bin"
 
 GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
