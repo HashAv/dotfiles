@@ -22,6 +22,33 @@ def digest_dir(path)
   digests
 end
 
+def to_path(path, remove_from_final_path)
+  File.join(HOME, path.sub(remove_from_final_path, ''))
+end
+
+def ensure_file_is_symlinked(from_path, to_path)
+  if File.exist?(to_path)
+    if File.symlink?(to_path)
+      # Not to self: wanted to digest here, useless
+      puts "Exists  : #{to_path}"
+    else
+      print "\033[1;31mWarning  ! \033[1;m"
+      print "\033[47;30m#{to_path}\033[1;m is not a symlink! "
+      puts "Remove or backup this file before running this scripts again"
+    end
+  else
+    if File.symlink?(to_path)
+      print "\033[1;31mBroken symlink  ! \033[1;m"
+      print "\033[47;30m#{to_path}\033[1;m remove and run again! \n"
+      return
+    end
+    ln_s(from_path, to_path)
+    print "\033[1;32mCreated : \033[1;m"
+    puts "\033[47;30m#{to_path}\033[1;m"
+  end
+
+end
+
 def digest(path)
   if File.file?(path)
     return digest_file(path)
@@ -34,41 +61,27 @@ end
 
 HOME = ENV['HOME']
 
-dot_files_path = Dir.pwd
+basename_only_path = File.join(Dir.pwd, './symlink_basename_only') # full path is important later for symlinks
+Find.find(basename_only_path).each do |path|
+  next if path == basename_only_path
 
-dot_files = Dir["#{dot_files_path}/*"]
+  ensure_file_is_symlinked(path, to_path(path,basename_only_path))
+  Find.prune
+end
 
-# All (non hidden) files contained in $HOME/.dotfiles will be symlinked to $HOME/
-dot_files.each do |dot_file|
+symlink_every_file_path = File.join(Dir.pwd, './symlink_every_file') # full path is important later for symlink
+Find.find(symlink_every_file_path).each do |path|
+  next if path == symlink_every_file_path
 
-  # Don't symlink the script itself
-  unless dot_file =~ /#{__FILE__}/ or dot_file =~ /README.md/
-    dot_file_basename = File.basename(dot_file)
-    dot_file_dest = if dot_file_basename == 'i3'
-                      "#{HOME}/.config/#{dot_file_basename}"
-                    else
-                      "#{HOME}/.#{dot_file_basename}"
-                    end
-
-    if File.exist?(dot_file_dest)
-      if File.symlink?(dot_file_dest)
-        # Not to self: wanted to digest here, useless
-        puts "Exists  : #{dot_file_dest}"
-      else
-        print "\033[1;31mWarning  ! \033[1;m"
-        print "\033[47;30m#{dot_file_dest}\033[1;m is not a symlink! "
-        puts "Remove or backup this file before running this scripts again"
-      end
-    else
-      if File.symlink?(dot_file_dest)
-        print "\033[1;31mBroken symlink  ! \033[1;m"
-        print "\033[47;30m#{dot_file_dest}\033[1;m remove and run again! \n"
-        next
-      end
-      ln_s dot_file, dot_file_dest
-      print "\033[1;32mCreated : \033[1;m"
-      puts "\033[47;30m#{dot_file_dest}\033[1;m"
+  if File.directory?(path)
+    to_dir_path = to_path(path, symlink_every_file_path)
+    if !Dir.exist?(to_dir_path)
+      abort("\033[1;31mMust create dir:\033[1;m #{to_dir_path}")
     end
+  elsif File.file?(path)
+    ensure_file_is_symlinked(path, to_path(path, symlink_every_file_path))
+  else
+    fail 'Unknown file type'
   end
 end
 
