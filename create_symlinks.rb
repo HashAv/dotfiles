@@ -1,8 +1,36 @@
 #!/usr/bin/env ruby
 
 require 'fileutils'
+require 'digest'
+require 'find'
 
 include FileUtils
+
+# Oops digest is dum since everything is symlinked
+# Upon file change, I cannot pull without creating a git conflict
+def digest_file(path)
+  Digest::MD5.hexdigest(File.read(path))
+end
+
+def digest_dir(path)
+  digests = []
+  path += "/" if !path.end_with?('/') # Important for path (don't stop on the symlink)
+  Find.find(path) do |p|
+    next if File.directory?(p)
+    digests << digest_file(p)
+  end
+  digests
+end
+
+def digest(path)
+  if File.file?(path)
+    return digest_file(path)
+  elsif File.directory?(path)
+    return digest_dir(path)
+  else
+    fail "Should handle file: #{path}"
+  end
+end
 
 HOME = ENV['HOME']
 
@@ -24,6 +52,7 @@ dot_files.each do |dot_file|
 
     if File.exist?(dot_file_dest)
       if File.symlink?(dot_file_dest)
+        # Not to self: wanted to digest here, useless
         puts "Exists  : #{dot_file_dest}"
       else
         print "\033[1;31mWarning  ! \033[1;m"
