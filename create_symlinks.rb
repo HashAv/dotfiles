@@ -55,7 +55,7 @@ end
 YouCompleteMe:
 --------------
 
-apt-get install build-essential cmake python-dev python3-dev
+apt-get install build-essential cmake python-dev python3-dev curl
 
 apt-get install nodejs npm # for javascript completion
 apt-get install rustc cargo # for rust completion (super slow install)
