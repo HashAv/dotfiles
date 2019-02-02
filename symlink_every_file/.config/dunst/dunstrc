@@ -1,0 +1,43 @@
+# cp -vir ~/.config/dunst/ ~/Private2/config_bak/
+
+[global]
+    geometry = "300x17-30+20"
+    # geometry = "x99+0+0" # takes whole screen but will be over scratch area
+
+    padding = 8
+    horizontal_padding = 8
+    separator_color = auto
+    font = Monospace 10
+    show_age_threshold = 60
+    word_wrap = yes
+    startup_notification = true
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+dollar
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    timeout = 0
+
+# Reference color : https://clrs.cc/
+# But darker (bottom color=#000): https://www.w3schools.com/colors/colors_mixer.asp
+[Reminders]
+  summary = *Priority=*
+  # background = "#FF4136" # red
+  background = "#bf3128"
+
+[TaskRunner]
+  summary = FAIL*
+  # background = "#B10DC9" # purple
+  background = "#850a97"
