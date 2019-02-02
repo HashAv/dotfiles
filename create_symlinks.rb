@@ -61,6 +61,4 @@ apt-get install nodejs npm # for javascript completion
 apt-get install rustc cargo # for rust completion (super slow install)
 
 cd ~/.vim/bundle/YouCompleteMe/ && ./install.py --go-completer --rust-completer --js-completer --java-completer
-
-
 EOS
