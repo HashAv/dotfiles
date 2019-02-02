@@ -287,8 +287,8 @@ bindsym $mod+Control+Down move workspace to output down
 bindsym $mod+Shift+F11 exec synclient TouchPadOff=0
 bindsym $mod+F11 exec synclient TouchPadOff=1
 
-exec_always urxvt -name time-tracker -bg '#C11' -e ~/.init_or_open_tmux_utt
-exec_always urxvt -name reminders -bg '#415' -e ~/.init_or_open_tmux_reminders
+exec_always urxvt -name time-tracker -bg '#C11' -e ~/.local/bin/init_or_open_tmux_utt
+exec_always urxvt -name reminders -bg '#415' -e ~/.local/bin/init_or_open_tmux_reminders
 # exec_always urxvt -name time-tracker -tr -tint red -e ~/.init_or_open_tmux_utt
 # exec_always urxvt -name reminders -tr -tint purple -e ~/.init_or_open_tmux_reminders
 

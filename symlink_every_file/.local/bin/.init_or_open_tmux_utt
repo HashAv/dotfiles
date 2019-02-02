@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+
+if system('tmux', 'attach', '-t', 'TimeTracker:utt-cli')
+  exit
+end
+
+system('tmux', 'new', '-d', '-s', 'TimeTracker', '-n', 'utt-cli')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'utt-nag', '-t', 'TimeTracker:1')
+system('tmux', 'send-keys', './utt_nag', 'C-m')
+
+sleep 1
+system('tmux', 'select-window', '-t', 'utt-cli')
+system('tmux', 'send-keys', './utt_cli', 'C-m')
+
+sleep 1
+system('tmux', 'select-window', '-t', 'utt-cli')
+system('tmux', 'attach', '-t', 'TimeTracker:utt-cli')

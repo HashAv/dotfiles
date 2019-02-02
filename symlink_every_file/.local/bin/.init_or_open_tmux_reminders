@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# cp ~/Private2/bin/.init_or_open_tmux_reminders ~/.init_or_open_tmux_reminders
+
+if system('tmux', 'attach', '-t', 'Reminders:cli')
+  exit
+end
+
+sleep 5
+system('tmux', 'new', '-d', '-s', 'Reminders', '-n', 'cli')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'notifier', '-t', 'Reminders:1')
+system('tmux', 'send-keys', 'reminders --notify', 'C-m')
+
+sleep 1
+system('tmux', 'select-window', '-t', 'Reminders:cli')
+system('tmux', 'send-keys', 'reminders', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'tasks', '-t', 'Reminders:2')
+system('tmux', 'select-window', '-t', 'Reminders:tasks')
+system('tmux', 'send-keys', 'tasks_runner', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'syndaemon', '-t', 'Reminders:3')
+system('tmux', 'select-window', '-t', 'Reminders:syndaemon')
+system('tmux', 'send-keys', 'syndaemon -i 0.2 ', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'dunst', '-t', 'Reminders:4')
+system('tmux', 'select-window', '-t', 'Reminders:dunst')
+system('tmux', 'send-keys', 'while true; do pkill dunst ; dunst -print ; sleep 1 ; done', 'C-m')
+
+sleep 1
+system('tmux', 'select-window', '-t', 'Reminders:cli')
+system('tmux', 'attach', '-t', 'Reminders:cli')
