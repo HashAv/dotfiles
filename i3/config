@@ -199,19 +199,12 @@ bar {
 }
 
 #exec --no-startup-id feh --bg-fill ~/Images/bg
-
-#exec --no-startup-id rofi -key-run mod4+d -key-window mod4+Shift+d -key-ssh mod4+Control+d
-#exec rofi -key-run mod4+d -key-window mod4+Shift+d -key-ssh mod4+Control+d
-#exec --no-startup-id "rofi -key-run Mod4+d &"
-#exec /home/benjamin/.xinitrc.after
-#bindsym $mod+l exec --no-startup-id "~/.xinitrc.after"
-#bindsym $mod+l exec --no-startup-id "rofi -show run -key-run Mod4+d &"
-#exec --no-startup-id "rofi -key-run Mod4+d &"
 #exec firefox
 #exec gnome-terminal
 
-# I think sleep is required to give time for the rofi daemon to start
-exec "gnome-terminal -x bash -c 'rofi -key-run Mod4+d -key-window mod4+shift+d -key-ssh mod4+control+d & disown && sleep 120'"
+bindsym $mod+d exec --no-startup-id "rofi -show run"
+bindsym $mod+shift+d exec --no-startup-id "rofi -show window"
+bindsym $mod+control+d exec --no-startup-id "rofi -show ssh"
 
 for_window [class="Gnome-terminal"] border pixel 1
 

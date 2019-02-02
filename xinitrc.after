@@ -1,4 +1,0 @@
-#!/bin/bash
-
-pkill rofi
-rofi -key-run Mod4+d -key-window mod4+shift+d -key-ssh mod4+control+d &
