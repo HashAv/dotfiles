@@ -3,19 +3,14 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-# HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
-# ... or force ignoredups and ignorespace
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
 HISTCONTROL=ignoreboth
-
-# HISTSIZE: contains a number of lines which are remembered in the actual shell
-export HISTSIZE=65536
-
-# HISTFILESIZE: sets the maximum number of lines in your history file
-HISTFILESIZE=65536
 
 # Don't record those in .bash_history
 # export HISTIGNORE="history:pwd:ls:cd:vh:cal:"
@@ -24,50 +19,79 @@ HISTFILESIZE=65536
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=9999  # memory
+HISTFILESIZE=9999
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
 # globing for ls (not cd)
-shopt -s nocaseglob
+# shopt -s nocaseglob
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-  . /etc/bash_completion
-fi
-
-export EDITOR=vim
-export SHELL=/bin/bash
-
-# No line wraps (in Hirb/rails at least)
-export PAGER="less -S"
-
-# Set custom prompt ; root = red ; others = green (case statement copied from begining of file)
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
-PURPLE=$(tput setaf 5)
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
-
-export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWSTASHSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM=verbose GIT_PS1_DESCRIBE_STYLE=branch
-
-ARCHLINUX_GIT_COMPLETION=/usr/share/git/completion/git-completion.bash
-ARCHLINUX_GIT_PROMPT=/usr/share/git/completion/git-prompt.sh
-[ -f $ARCHLINUX_GIT_COMPLETION ] && source $ARCHLINUX_GIT_COMPLETION
-[ -f $ARCHLINUX_GIT_PROMPT ] && source $ARCHLINUX_GIT_PROMPT
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Have vi behaviour
 # set -o vi
@@ -81,15 +105,46 @@ bind -m vi-insert 'Control-e: end-of-line'            # Ctrl-E: append at line e
 # Needed for vim <C-S> mapping
 stty -ixon
 
-alias ll='ls -l'
-alias l='ls -lh --time-style=long-iso'
-alias la='ls -Alh --time-style=long-iso'
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias be='bundle exec'
-which ack-grep &>/dev/null && alias ack="ack-grep"
 
-[[ -s "$HOME/.curl-ca-bundle/cacert.pem" ]] && export CURL_CA_BUNDLE="$HOME/.curl-ca-bundle/cacert.pem" # For CentOS
-[[ -s ~/.rails.bash ]] && source ~/.rails.bash # bash autocompletion
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+alias batfull='upower -i /org/freedesktop/UPower/devices/battery_BAT0 && echo "---" && acpi -V | grep --color=never ^Battery'
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | egrep "state:|percentage:" | ruby -ne "puts \$_.split.map { |s| s.ljust(15)}.join" && echo "---" && acpi -V | grep --color=never ^Battery'
+
+alias rr='if [ -f /var/run/reboot-required  ]; then echo "Reboot required"; else echo "No reboot needed"; fi'
+alias rrr='find /etc/update-motd.d/{00-header,98-reboot}* | xargs -L1 bash'
+#security upgrade required
+alias sur='apt-get upgrade --dry-run | grep -i security || echo NO_SECURITY_UPDATES_REQUIRED'
+alias weather='curl http://wttr.in | less -RS'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 function source_env() {
   for FPATH in "$@";do
@@ -120,52 +175,6 @@ function source_env() {
 }
 alias se="source_env"
 
-######################################################################
-# Better bash prompt. Switches when inside a git repo automatically
-######################################################################
-function git_repo {
-curr_repo=$(git rev-parse --show-toplevel 2>/dev/null | sed 's:.*/::')
-if [[ $curr_repo != "" ]]; then
-  echo "[${curr_repo}]"
-fi
-}
-
-function ruby_version {
-  VERSION=$(ruby -v | awk '{ print $2}')
-  echo "‹${VERSION}›"
-}
-
-function prompt_func() {
-   RED="\[\033[1;31m\]"
- GREEN="\[\033[1;32m\]"
-YELLOW="\[\033[1;33m\]"
-  BLUE="\[\033[1;34m\]"
-
- NO_COLOR="\[\e[0m\]"
-
-  if [ $(id -un) == "root"  ]; then
-    user_prompt="${RED}\u@\h${NO_COLOR}:${BLUE}\w"
-    prompt_tail="${NO_COLOR}# "
-  else
-    user_prompt="${GREEN}\u@\h${NO_COLOR}:${BLUE}\w"
-    prompt_tail="${NO_COLOR}$ "
-  fi
-
-  ruby_prompt="${RED}$(ruby_version)"
-  git_prompt="${YELLOW}$(git_repo)${GREEN}$(__git_ps1)"
-
-  if [[ $(git_repo) != "" ]]; then
-    PS1="${user_prompt} ${ruby_prompt} ${git_prompt} \n${prompt_tail}"
-  else
-    PS1="${user_prompt}${prompt_tail}"
-  fi
-}
-
-# pacman -S bash-completion
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-
-PROMPT_COMMAND=prompt_func
-
 function cd_into() {
   SEARCHED_DIR=$(find . -name $1 -type d | sed 1q)
 
@@ -180,36 +189,31 @@ function clear_gems() {
   gem list | grep -Ev 'test\-unit|bundler|rdoc|rake|psych|io\-console|bigdecimal|json|minitest|pry|tmuxinator' | cut -d' ' -f1 | xargs gem uninstall -Iax
 }
 
-alias chrome_dev="google-chrome --user-data-dir=$HOME/.config/google-chrome-dev/"
-alias firefox_dev="firefox -P dev"
-
-function git_tree_check() {
-  CWD=`pwd`
-  for file in $(find "$1" -name "*.git"); do
-    cd $(dirname $file)
-    if [ -z "$(git status --porcelain)" ]; then
-      echo -en "\033[1;32mCLEAN\033[1;m"
-      echo -n ": $(pwd) "
-    else
-      # Uncommitted changes
-      echo -en "\033[1;31mNOTOK\033[1;m"
-      echo -n ": $(pwd) "
-      echo
-      echo "Exiting!"
-      NEEDS_FIX=true
-      break
-    fi
-
-    if [ -z "$(git remote show)" ]; then
-      echo -en "\033[1;31m[MISSING REMOTE]\033[1;m"
-    else
-      echo -en "\033[1;33m[$(git remote -v show | grep push | awk '{ print $1":" $2 }' | xargs)]"
-    fi
-    echo
-  done
-  [ -z $NEEDS_FIX ] && cd $CWD
-}
-
 function gotestcolor() {
 	go test $@ | colout '(PASS)|(FAIL)' green,red
 }
+
+function so() {
+  echo "Updating mlocate..."
+  sudo /etc/cron.daily/mlocate
+  export FZF_ALT_C_COMMAND="locate -r 'BonsDeLivraison/.\+pdf' -0 | xargs -0 dirname | grep -v '\.pdf$' | grep -F '/BL.' | sort -r -t/ -k10,10 | uniq"
+  echo "Now use Alt-C to search for shipping order folders"
+}
+
+export GOPATH=~/code/go
+export GOROOT=~/.local/software/go
+
+export PATH=$PATH:~/.local/software/go/bin/:~/code/go/bin/
+
+export LEDGER_FILE=~/Private2/Banking/main.ledger
+export LEDGER_FILE_EXPORT=~/Private2/Banking/export/main.json
+export EDITOR=vim
+export PAGER="less -RS" # For psql
+
+export REMINDERS_DB_PATH=~/Dropbox/PrivSync/.reminders.sqlite
+export TASKS_PATH=~/Private2/bin/tasks/
+
+echo "Ensure tasks_runner is running"
+# run-parts ~/Private2/bin/tasks
+
+alias utt_edit="vim -c 'normal G$' ~/.local/share/utt/utt.log"
