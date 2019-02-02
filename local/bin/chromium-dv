@@ -1,0 +1,6 @@
+#!/bin/bash
+
+exec chromium-browser --password-store=basic --user-data-dir=$HOME/.config/google-chrome-dev/
+
+#chromium-browser --password-store=gnome &
+#disown

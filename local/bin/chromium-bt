@@ -1,0 +1,4 @@
+#!/bin/bash
+
+chromium-browser --password-store=gnome &
+disown
