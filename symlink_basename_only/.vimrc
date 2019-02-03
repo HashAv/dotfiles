@@ -21,6 +21,8 @@ if has("gui_running")
   endif
 endif
 
+set guifont=Monospace\ 16
+
 if &term == "screen-256color" "tmux sessions
   " Enter with <C-V>key
   set <F1>=OP
