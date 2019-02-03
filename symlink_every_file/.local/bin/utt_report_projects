@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#utt report | grep -v 'break:' | grep -A999 Details
+DATE=$1
+
+utt report --no-current-activity $DATE | grep -v ^$ | grep -v 'break' | ruby -ne 'puts $_ if $_ =~ /-- Projects --/ .. /--- Activities/' | head -n-1 | tail -n+2 | ruby -ne 'puts $_.split(":").first' | sort -nr

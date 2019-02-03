@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+
+# cp ~/Private2/bin/utt_nag ~/utt_nag
+
+require 'date'
+require 'logger'
+
+LOGGER = Logger.new(STDOUT)
+
+MINUTE = 60
+HOUR = MINUTE * 60
+
+def human_sec(sec)
+  fmt = if sec < 3600
+          '%M:%S'
+        else
+          '%H:%M:%S'
+        end
+
+  Time.at(sec).utc.strftime(fmt) # utc is important!
+end
+
+
+def today
+  Date.today.to_time
+end
+
+def start_notify_at_am
+   today + 8*HOUR + 45*MINUTE
+end
+
+def end_notify_at_am
+  today + 13*HOUR + 0*MINUTE
+end
+
+def start_notify_at_pm
+  today + 14*HOUR + 0*MINUTE
+end
+
+def end_notify_at_pm
+  today + 16*HOUR + 45*MINUTE
+end
+
+def nil_or_int(str)
+  str && Integer(str)
+end
+
+NAG_EVERY_MIN = nil_or_int(ENV['NAG_EVERY_MIN'])# override, for week-ends
+
+if File.exist?("/tmp/notification_id")
+  File.unlink("/tmp/notification_id")
+end
+
+loop do
+  #system('killall -SIGUSR1 dunst') # pause
+  #system('killall -SIGUSR2 dunst') # resume
+  n = Time.now
+  is_notify_am = n.between?(start_notify_at_am, end_notify_at_am)
+  is_notify_pm = n.between?(start_notify_at_pm, end_notify_at_pm)
+
+  notify_state = "[#{is_notify_am}, #{is_notify_pm}] [#{n}, #{start_notify_at_am}-#{end_notify_at_am}, #{start_notify_at_pm}-#{end_notify_at_pm}]"
+  LOGGER.debug("[DEBUG] notify_state: #{notify_state}")
+
+  if !is_notify_am && !is_notify_pm && !NAG_EVERY_MIN
+    LOGGER.info("[SKIP] Will check again in 1s")
+    sleep(1)
+    next
+  end
+  retries = 0
+  last_updated_on = begin
+                      File.ctime(File.expand_path('~/.local/share/utt/utt.log'))
+                    rescue
+                      retries += 1
+                      if retries < 5
+                        warn('Retrying ctime...')
+                        sleep 1
+                        retry
+                      end
+                      fail 'Could not get ctime'
+                    end
+  require_update_on = last_updated_on + (NAG_EVERY_MIN || 5) * MINUTE
+  # elapsed_sec = Time.now - File.ctime(File.expand_path('~/.local/share/utt/utt.log'))
+  # dirty = !`find ~/.local/share/utt/utt.log -mmin +15`.empty?
+  # if elapsed_sec > (NAG_EVERY_MIN || 5)*MINUTE
+  now = Time.now
+  overdue_sec = Integer(now - require_update_on)
+  if now < require_update_on
+    LOGGER.info("[NOT_DIRTY] UTT is not dirty, next update in: #{human_sec(overdue_sec*-1)}")
+  else
+    LOGGER.info("[DIRTY] UTT is dirty, overdue: #{human_sec(overdue_sec)}s")
+    notification_id = `notify-send.sh -u critical --print-id "UTT needs updating"`
+    File.write("/tmp/notification_id", notification_id)
+  end
+  sleep(1)
+end

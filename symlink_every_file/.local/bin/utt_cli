@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+
+add_hist = false
+
+system('utt') || abort('pip install --user utt')
+
+categories_today = `utt_report_projects`.lines.map do
+  |l| l.split(')').last.strip + ': '
+end
+
+categories_today.sort.each do |cat|
+  Readline::HISTORY.push(cat)
+end
+
+while line = Readline.readline('> ', add_hist)
+  # overdue = `find ~/.local/share/utt/utt.log -mmin +15 | wc -l`.chomp == '1'
+  # if overdue
+  #   fork do
+  #     sleep 0.2
+  #     system('pkill','dunst')
+  #   end
+  # end
+
+  to_push = line.split(':').first
+  if to_push != line
+    to_push += ': '
+  end
+  last_history_item = Readline::HISTORY[-1] rescue nil
+  if to_push != last_history_item
+    Readline::HISTORY.push(to_push)
+  end
+
+  system('utt', 'add', line)
+
+  notify_id = File.read('/tmp/notification_id').chomp rescue nil
+  if notify_id
+    system('notify-send.sh', '--close', notify_id)
+  end
+  # system('xdotool mousemove 1200 40 click 1 mousemove restore')
+  # fork do
+  #   sleep 0.2
+  #   system('xdotool key "ctrl+space"')
+  # end
+  puts `utt report`
+end
