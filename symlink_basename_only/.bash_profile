@@ -102,3 +102,11 @@ if [ $(which check_hosts) ];then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+
+TOUCH_PATH="/run/user/$(id -u)/remove_bash_history_duplicates"
+if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hours
+  touch "$TOUCH_PATH"
+  echo "Removing non consecutive bash history duplicates"
+  ruby -i -e 'puts readlines.reverse.uniq.reverse' ~/.bash_history
+fi
