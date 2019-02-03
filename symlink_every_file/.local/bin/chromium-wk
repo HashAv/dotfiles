@@ -13,4 +13,4 @@
 # Then the associated app can be changed with Edit > Preferences > Attachments > Incoming
 
 
-chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-work/ "$@"
+exec chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-work/ "$@"
