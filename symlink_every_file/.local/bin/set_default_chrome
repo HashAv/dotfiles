@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+# To make thunderbird behave, force it to use /usr/bin/xdg-open!!!
+# https://community.linuxmint.com/tutorial/view/1391
+#
+# Thunderbird > Edit > Preferences > Config Editor
+# Set to true
+# network.protocol-handler.warn-external.http
+# network.protocol-handler.warn-external.https
+# network.protocol-handler.warn-external.ftp
+#
+# I couldn't find a way to pass $1 in my chromium-wk script
+# Then the associated app can be changed with Edit > Preferences > Attachments > Incoming
+
+app = case ARGV[0]
+      when 'mine'
+        # Default will open in same tab
+        'chromium-browser.desktop'
+      when 'work'
+        'chromium-work.desktop'
+      when 'dev'
+        'chromium-dev.desktop'
+      else
+        abort('Give one of: [mine, work, dev]')
+      end
+
+system('xdg-settings', 'set', 'default-web-browser', app)
+puts `xdg-mime query default x-scheme-handler/http`
+puts `xdg-mime query default x-scheme-handler/https`
+
+#`cd ~ && xdg-open 'http://www.freedesktop.org/'`

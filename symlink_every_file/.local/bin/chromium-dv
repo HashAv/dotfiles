@@ -1,6 +1,4 @@
 #!/bin/bash
 
-exec chromium-browser --password-store=basic --user-data-dir=$HOME/.config/google-chrome-dev/
-
-#chromium-browser --password-store=gnome &
-#disown
+# Shim, rofi does not read this dir (ubuntu 16.04)
+exo-open ~/.local/share/applications/chromium-dev.desktop
