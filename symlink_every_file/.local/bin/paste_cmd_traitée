@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+
+text =<<-EOS
+Bonjour,
+
+Nous avons bien traité votre commande.
+
+Cdt,
+EOS
+
+
+text.split("\n").each do |line|
+  if line.empty?
+    2.times do
+      system('xdotool', 'key', 'Return')
+    end
+    #system('xdotool', 'key', 'BackSpace')
+  else
+    system('xdotool', 'type', '--delay', '0', line)
+  end
+end

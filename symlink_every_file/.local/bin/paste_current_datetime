@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+# Put the selected string (without the trailing newline) into the paste buffer.
+#/bin/date '+%F %T (%A)' | xsel --clipboard --input
+
+STRING=$(/bin/date '+%F %T (%A)')
+xdotool type --delay 0 "$STRING"
+# Paste into the current application.
+#xdotool key ctrl+v    #gui paste
+#xdotool key ctrl+shift+v #cli

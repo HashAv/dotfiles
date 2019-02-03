@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+3.times do
+  system('xdotool', 'key', 'minus')
+end
+2.times do
+  system('xdotool', 'key', 'Return')
+end
+
+system('xdotool', 'type', '--delay', '0', '==attds_retour_client==')
+
+2.times do
+  system('xdotool', 'key', 'Return')
+end
+3.times do
+  system('xdotool', 'key', 'minus')
+end

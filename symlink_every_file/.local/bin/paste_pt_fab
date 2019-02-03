@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+
+# Put the selected string (without the trailing newline) into the paste buffer.
+#/bin/date '+%F %T (%A)' | xsel --clipboard --input
+
+#datetime = `/bin/date '+%F %T (%A)'`
+
+3.times do
+  system('xdotool', 'key', 'minus')
+end
+2.times do
+  system('xdotool', 'key', 'Return')
+end
+
+system('xdotool', 'type', '--delay', '0', '==pt_fab==')
+
+2.times do
+  system('xdotool', 'key', 'Return')
+end
+3.times do
+  system('xdotool', 'key', 'minus')
+end

@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# gem install --user clipboard
+require 'clipboard'
+
+text = Clipboard.paste
+
+new_lines =  text.split("\n").map do |line|
+  line.gsub!("\t", ' ') # important for chrome
+  line.prepend('    ')
+end
+
+Clipboard.copy(new_lines.join("\n"))
+system('xdotool', 'key', 'ctrl+v')
+Clipboard.copy(text)
+
+# Does not support UTF8, nor xautomation/xte
+# new_lines.each do |line|
+#   system('xdotool', 'type', '--delay', '0', line)
+#   system('xdotool', 'key', 'Return')
+# end

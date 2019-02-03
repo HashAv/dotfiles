@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+
+# gem install --user clipboard
+require 'clipboard'
+
+# require 'i18n'
+# I18n.config.available_locales = :en # otherwise crashes with `I18n::InvalidLocale: :en is not a valid locale`
+# def trans(text)
+#   I18n.transliterate(text).upcase
+# end
+
+so_path = Clipboard.paste
+so_path2 = so_path.gsub(' ', '\ ')
+
+WIN_KEY = 'Super_L'
+
+system('xdotool', 'key', 'Super_L+Return')
+
+time_for_terminal_window_to_open = 0.2
+sleep(time_for_terminal_window_to_open)
+system('xdotool', 'type', '--delay', '0', " mkdir #{so_path2}")
+system('xdotool', 'key', 'Return')
+system('xdotool', 'key', 'ctrl+d')
+
+system('xdotool', 'key', 'ctrl+l')
+system('xdotool', 'key', 'ctrl+c')
+so_url = Clipboard.paste
+system('xdotool', 'key', 'ctrl+t')
+system('xdotool', 'key', 'ctrl+v')
+system('xdotool', 'type', '--delay', '0', ".pdf")
+system('xdotool', 'key', 'Return')
+
+pdf_path = so_path + '.pdf'
+Clipboard.copy(pdf_path)
+time_for_pdf_to_show = 4
+sleep(time_for_pdf_to_show)
+system('xdotool', 'key', 'ctrl+s')
+
+exit
+#xdotool key --clearmodifiers 'Super_L+KP_7'
+system('xdotool', 'key', '--clearmodifiers', 'Super_L+KP_7')
+system('xdotool', 'key', '--clearmodifiers', 'ctrl+n')
+# 2.times do
+#   system('xdotool', 'key', 'Tab')
+# end
+
+# system('xdotool', 'type', '--delay', '0', "sav@inklusive.fr")
+# 4.times do
+#   system('xdotool', 'key', 'Tab')
+# end
+# system('xdotool', 'key', 'space')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Right')
+# 2.times do
+#   system('xdotool', 'key', 'Tab')
+# end
+
+# system('xdotool', 'type', '--delay', '0', trans(j.fetch("address_name")))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', trans(j.fetch("line1")))
+# system('xdotool', 'key', 'Tab')
+# line2_3 = if j["line3"]
+#             "#{j['line2']}, #{j['line3']}"
+#           else
+#             j['line2'] || ''
+#           end
+# system('xdotool', 'type', '--delay', '0', trans(line2_3))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', j.fetch('zip_code'))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', trans(j.fetch('city')))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "") # SERVICE
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "") # NOM
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "") # PRÉNOM
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', j.fetch('tel'))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', "space")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', "Down")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "INKLUSIVE")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', trans("1394 Route de Cavaillon"))
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "13750")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "PLAN D'ORGON")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "0607283916")
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'key', 'Tab')
+# system('xdotool', 'type', '--delay', '0', "RÉF")

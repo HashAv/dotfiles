@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DATE=$1
+
+if [ -z $DATE ];then
+  DATE=$(date +%F)
+fi
+
+echo "--- $DATE ---"
+utt_report_projects $DATE
+echo '---'
+utt_report_details $DATE
+
+echo "Pipe into 'xsel -ib'" 1>&2

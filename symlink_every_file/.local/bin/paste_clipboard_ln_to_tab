@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+# gem install --user clipboard
+require 'clipboard'
+
+text = Clipboard.paste
+
+text.split("\n\n").each do |line|
+  system('xdotool', 'type', '--delay', '0', line)
+  system('xdotool', 'key', 'Tab')
+end

@@ -1,0 +1,19 @@
+#!/usr/bin/ruby
+
+require 'date'
+
+from = Date.parse(ARGV[0])
+category = ARGV[1]
+to = (from >> 1) - 1
+
+results = []
+days_cnt = 0
+(from..to).each do |d|
+  res = `utt_report_projects #{d} | grep #{category}`
+  next if res.empty?
+  days_cnt += 1
+  puts(d)
+  puts "    #{res}"
+end
+
+puts("days_cnt = #{days_cnt}")

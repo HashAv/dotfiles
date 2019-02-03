@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+# Usage:
+# 1 - goto: /addresses.json
+# 2 - save to: /tmp/addresses.json
+# 3 - export: ./json_to_twinkle /tmp/addresses.json > ~/.twinkle/twinkle.ab
+
+require 'json'
+
+path = ARGV[0]
+
+fail 'Must give path' if path.nil?
+
+j = JSON.parse(File.read(path))
+
+j.each do |a|
+  # prénom|titre|nom|123|remarque
+  tels = a.fetch('tel')&.split(';')
+  tels ||= []
+  name = a.fetch('internal_name').gsub(/ \[.+/, '')
+  tels.each do |t|
+    t.strip!
+    num, name2, rest = t.split('(', 2)
+    num.strip!
+    # if num
+    #   num.gsub!(' ', '')
+    # end
+    name2 = if name2
+              name2[0..-2]
+            end
+    if name2 && name2.size > 30
+      name2 = nil # some special comment probably
+    end
+    attrs = [
+      nil,
+      name,
+      name2,
+      num,
+      nil,
+    ]
+    puts attrs.join('|')
+  end
+end
