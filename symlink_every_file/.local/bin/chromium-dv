@@ -1,4 +1,3 @@
 #!/bin/bash
 
-# Shim, rofi does not read this dir (ubuntu 16.04)
-exo-open ~/.local/share/applications/chromium-dev.desktop
+chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-dev/ "$@"

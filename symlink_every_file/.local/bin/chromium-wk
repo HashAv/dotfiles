@@ -1,7 +1,16 @@
 #!/bin/bash
 
-# Shim, rofi does not read this dir (ubuntu 16.04)
-cd ~ && exo-open ~/.local/share/applications/chromium-work.desktop
-#!/bin/bash
+# To make thunderbird behave, force it to use /usr/bin/xdg-open!!!
+# https://community.linuxmint.com/tutorial/view/1391
+#
+# Thunderbird > Edit > Preferences > Config Editor
+# Set to true
+# network.protocol-handler.warn-external.http
+# network.protocol-handler.warn-external.https
+# network.protocol-handler.warn-external.ftp
+#
+# I couldn't find a way to pass $1 in my chromium-wk script
+# Then the associated app can be changed with Edit > Preferences > Attachments > Incoming
 
-#/usr/bin/chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-work/ "$@"
+
+chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-work/ "$@"
