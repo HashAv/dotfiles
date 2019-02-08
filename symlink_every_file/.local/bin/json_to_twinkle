@@ -31,11 +31,19 @@ j.each do |a|
     if name2 && name2.size > 30
       name2 = nil # some special comment probably
     end
+
+    stripped_num = num.gsub('.', '').gsub(' ', '')
+    final_num = if stripped_num.size == 10
+                  stripped_num
+                else
+                  num
+                end
+
     attrs = [
       nil,
       name,
       name2,
-      num,
+      final_num,
       nil,
     ]
     puts attrs.join('|')
