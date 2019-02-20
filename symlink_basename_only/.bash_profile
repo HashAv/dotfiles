@@ -110,3 +110,5 @@ if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hou
   echo "Removing non consecutive bash history duplicates"
   ruby -i -e 'puts readlines.reverse.uniq.reverse' ~/.bash_history
 fi
+
+[ -d ~/.local/bin/completion ] && source ~/.local/bin/completion/*
