@@ -3,8 +3,12 @@
 require 'date'
 
 from = Date.parse(ARGV[0])
-category = ARGV[1]
-to = (from >> 1) - 1
+to = Date.parse(ARGV[1])
+category = ARGV[2]
+
+if category.nil?
+  abort("#{File.basename($0)} FROM TO CATEGORY")
+end
 
 results = []
 days_cnt = 0
