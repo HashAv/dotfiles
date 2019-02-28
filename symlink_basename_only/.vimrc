@@ -21,7 +21,14 @@ if has("gui_running")
   endif
 endif
 
-set guifont=Monospace\ 16
+set guifont=Monospace\ 14
+" Resize fonts in gvim
+Plugin 'fontzoom.vim'
+let g:fontzoom_no_default_key_mappings = 1
+map <M-=> :Fontzoom!<cr>
+map <M--> <Plug>(fontzoom-smaller)
+map <M-+> <Plug>(fontzoom-larger)
+
 
 if &term == "screen-256color" "tmux sessions
   " Enter with <C-V>key
