@@ -2,9 +2,11 @@
 
 require 'readline'
 
+puts(`du -sh ~/Dropbox/PrivSync/Documents/Logs/utt.log`)
+
 add_hist = false
 
-system('utt') || abort('pip install --user utt')
+system('which utt >/dev/null') || abort('pip install --user utt')
 
 categories_today = `utt_report_projects`.lines.map do
   |l| l.split(')').last.strip + ': '
