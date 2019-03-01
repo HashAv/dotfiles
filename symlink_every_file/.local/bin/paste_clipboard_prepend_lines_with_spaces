@@ -10,7 +10,6 @@ new_lines =  text.split("\n").map do |line|
   line.prepend('    ')
 end
 
-require 'pry' ; binding.pry
 Clipboard.copy(new_lines.join("\n"))
 system('xdotool', 'key', 'Shift_L+Insert')
 Clipboard.copy(text)

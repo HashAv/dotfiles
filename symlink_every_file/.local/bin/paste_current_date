@@ -5,7 +5,6 @@
 # Put the selected string (without the trailing newline) into the paste buffer.
 #xdotool type $(/bin/date '+%F (%A)')
 # Paste into the current application.
-#xdotool key ctrl+v    #gui paste
-#xdotool key ctrl+shift+v #cli
+#xdotool key Shift_L+Insert # gui + terminal
 STRING=$(/bin/date '+%F (%A)')
 xdotool type --delay 0 "$STRING"

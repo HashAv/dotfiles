@@ -26,7 +26,7 @@ system('xdotool', 'key', 'ctrl+l')
 system('xdotool', 'key', 'ctrl+c')
 so_url = Clipboard.paste
 system('xdotool', 'key', 'ctrl+t')
-system('xdotool', 'key', 'ctrl+v')
+system('xdotool', 'key', 'Shift_L+Insert')
 system('xdotool', 'type', '--delay', '0', ".pdf")
 system('xdotool', 'key', 'Return')
 
