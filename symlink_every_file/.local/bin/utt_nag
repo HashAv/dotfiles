@@ -5,6 +5,8 @@
 require 'date'
 require 'logger'
 
+closed_ids = []
+
 LOGGER = Logger.new(STDOUT)
 
 MINUTE = 60
@@ -47,6 +49,8 @@ end
 
 NAG_EVERY_MIN = nil_or_int(ENV['NAG_EVERY_MIN'])# override, for week-ends
 
+notification_id = nil
+# File.read('/tmp/notification_id').strip
 if File.exist?("/tmp/notification_id")
   File.unlink("/tmp/notification_id")
 end
@@ -86,6 +90,14 @@ loop do
   overdue_sec = Integer(now - require_update_on)
   if now < require_update_on
     LOGGER.info("[NOT_DIRTY] UTT is not dirty, next update in: #{human_sec(overdue_sec*-1)}")
+    curr_id = File.read('/tmp/notification_id').strip rescue nil
+    if curr_id  != notification_id && !closed_ids.include?(curr_id)
+      puts "Closing old ID"
+      `notify-send.sh -u critical --close=#{curr_id}`
+      closed_ids << curr_id
+    else
+      puts "Curr ID OK"
+    end
   else
     LOGGER.info("[DIRTY] UTT is dirty, overdue: #{human_sec(overdue_sec)}s")
     notification_id = `notify-send.sh -u critical --print-id "UTT needs updating"`
