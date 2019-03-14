@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+# This script is useful to dump environment variables to a custom path, for envdir
+# Ex: extract swift/openstack auth variables (after having used the OVH auth script)
+#   env | grep OS_ > ~/.envdir/restic/my_host_to_backup
+
+env_vars = ARGF.readlines.each_with_object({}) do |l, h|
+  name, val = l.split('=')
+  h[name] = val.chomp
+end
+
+env_vars.each do |k, v|
+  next if File.exist?(k) # do not overwrite by default
+  File.write(k, v)
+end
