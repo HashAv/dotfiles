@@ -81,7 +81,7 @@ Find.find(symlink_every_file_path).each do |path|
   elsif File.file?(path)
     ensure_file_is_symlinked(path, to_path(path, symlink_every_file_path))
   else
-    fail 'Unknown file type'
+    fail "Unknown file type for path: '#{path}'"
   end
 end
 
