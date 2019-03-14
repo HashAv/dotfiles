@@ -65,6 +65,12 @@ loop do
   notify_state = "[#{is_notify_am}, #{is_notify_pm}] [#{n}, #{start_notify_at_am}-#{end_notify_at_am}, #{start_notify_at_pm}-#{end_notify_at_pm}]"
   LOGGER.debug("[DEBUG] notify_state: #{notify_state}")
 
+  if NAG_EVERY_MIN.nil? && (today.saturday? || today.sunday?)
+    LOGGER.info("[SKIP] Weekend, will check again in 1h")
+    sleep(1*HOUR)
+    next
+  end
+
   if !is_notify_am && !is_notify_pm && !NAG_EVERY_MIN
     LOGGER.info("[SKIP] Will check again in 1s")
     sleep(1)
