@@ -32,7 +32,7 @@ def start_notify_at_am
 end
 
 def end_notify_at_am
-  today + 13*HOUR + 0*MINUTE
+  today + 12*HOUR + 0*MINUTE
 end
 
 def start_notify_at_pm
