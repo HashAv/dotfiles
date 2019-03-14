@@ -218,7 +218,7 @@ for_window [class="Gnome-terminal"] border pixel 1
 
 for_window [instance="Dunst"] floating enable sticky enable
 # for_window [instance="twinkle"] floating enable sticky enable
-bindsym $mod+Shift+s sticky toggle
+#bindsym $mod+Shift+s sticky toggle
 
 set $mode_launcher Launch: [f]irefox [t]hunderbird
 bindsym $mod+shift+o mode "$mode_launcher"
@@ -256,6 +256,7 @@ bindsym button5 nop
 # mkdir ~/Images/Screenshots first, or fails weirdly
 bindsym Print exec scrot --focused '%Y-%m-%d_%H:%M:%S.png' --exec 'mv $f ~/Images/Screenshots/ && notify-send -t 1000 -u low "Saved to ~/Images/Screenshots/$f"'
 bindsym Shift+Print exec shutter -s
+bindsym $mod+Shift+s exec shutter -s
 # assign [class="Shutter"] 9
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && pkill -RTMIN+1 i3blocks
