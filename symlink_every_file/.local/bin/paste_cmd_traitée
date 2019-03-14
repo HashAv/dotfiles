@@ -6,13 +6,13 @@ Bonjour,
 
 Nous avons bien traité votre commande.
 
-Cdt,
+Cdt
 EOS
 
 
 text.split("\n").each do |line|
   if line.empty?
-    2.times do
+    1.times do
       system('xdotool', 'key', 'Return')
     end
     #system('xdotool', 'key', 'BackSpace')
