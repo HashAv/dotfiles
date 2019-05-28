@@ -4,7 +4,7 @@
 # Put the selected string (without the trailing newline) into the paste buffer.
 #/bin/date '+%F %T (%A)' | xsel --clipboard --input
 
-STRING=$(/bin/date '+%F %T (%A) [Benjamin]')
+STRING=$(/bin/date '+%F \d\d:\d\d:\d\d \(%A\) \[Benjamin\]')
 xdotool type --delay 0 "$STRING"
 # Paste into the current application.
 #xdotool key Shift_L+Insert # gui + terminal

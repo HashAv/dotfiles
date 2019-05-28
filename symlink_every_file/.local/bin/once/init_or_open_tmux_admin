@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+if system('tmux', 'attach', '-t', 'Admin:0')
+  exit
+end
+
+system('tmux', 'new', '-d', '-s', 'Admin')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'backups', '-t', 'Admin:8')
+system('tmux', 'send-keys', 'backup_to_restic_server_loop', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'wallpaper', '-t', 'Admin:9')
+system('tmux', 'select-window', '-t', 'Reminders:wallpaper')
+system('tmux', 'send-keys', 'while true;do ~/Private2/bin/wallpapers/new_wallpaper_bing; sleep 24h;done', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'syndaemon', '-t', 'Admin:10')
+system('tmux', 'select-window', '-t', 'Admin:syndaemon')
+system('tmux', 'send-keys', 'syndaemon -i 0.2 ', 'C-m')
+
+sleep 1
+system('tmux', 'new-window', '-n', 'dunst', '-t', 'Admin:11')
+system('tmux', 'select-window', '-t', 'Admin:dunst')
+system('tmux', 'send-keys', 'while true; do pkill dunst ; dunst -print ; sleep 1 ; done', 'C-m')
+
+sleep 1
+system('tmux', 'select-window', '-t', 'Admin:0')
+system('tmux', 'attach', '-t', 'Admin:0')
