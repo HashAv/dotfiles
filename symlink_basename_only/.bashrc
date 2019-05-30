@@ -185,6 +185,13 @@ function cd_into() {
   fi
 }
 
+function ncal2less() {
+  # When piping, ncal does not generate highling sequences, but rather the following sequence:
+  # UNDERSCORE BACKSLASH NUM UNDERSCORE BACKSLASH NUM?
+  # this function replaces that with a colored (yellow) highlighting instead
+  ncal "$@" | sed 's/_\x08\([0-9]\)_\x08\([0-9 ]\)/\x1b[1;33m\1\2\x1b[1;m/' | less -RS
+}
+
 function clear_gems() {
   gem list | grep -Ev 'test\-unit|bundler|rdoc|rake|psych|io\-console|bigdecimal|json|minitest|pry|tmuxinator' | cut -d' ' -f1 | xargs gem uninstall -Iax
 }

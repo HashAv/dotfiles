@@ -265,23 +265,23 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && pkill -RTMI
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMicMute exec amixer -q set Mic toggle
 
-set $audiomenu "volume:  [+]10%  [-]10%  [m]ute  [r]eset"
-bindsym $mod+F12         mode $audiomenu
-
-
+# Document this line, does not seem to work on Ubuntu 1604
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+2 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+2 i3blocks
 
-mode $audiomenu {
-    bindsym r             exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%
-    bindsym plus          exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-    bindsym KP_Add        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-    bindsym minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-    bindsym KP_Subtract   exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-    bindsym m             exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym Return        mode "default"
-    bindsym Escape        mode "default"
-}
+# set $audiomenu "volume:  [+]10%  [-]10%  [m]ute  [r]eset"
+# bindsym $mod+F12         mode $audiomenu
+
+# mode $audiomenu {
+#     bindsym r             exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%
+#     bindsym plus          exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+#     bindsym KP_Add        exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+#     bindsym minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+#     bindsym KP_Subtract   exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+#     bindsym m             exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#     bindsym Return        mode "default"
+#     bindsym Escape        mode "default"
+# }
 # Use extra monitor
 # xrandr --auto --output VGA-1 --left-of LVDS-1
 # xrandr --auto --output VGA-1 --above LVDS-1
@@ -293,8 +293,9 @@ bindsym $mod+Control+Right move workspace to output right
 bindsym $mod+Control+Up move workspace to output up
 bindsym $mod+Control+Down move workspace to output down
 
-bindsym $mod+Shift+F11 exec synclient TouchPadOff=0
 bindsym $mod+F11 exec synclient TouchPadOff=1
+#bindsym $mod+Shift+F11 exec synclient TouchPadOff=0
+bindsym $mod+F12 exec synclient TouchPadOff=0
 
 exec_always urxvt -name admin -e ~/.local/bin/once/init_or_open_tmux_admin
 exec_always urxvt -name time-tracker -bg '#C11' -e ~/.local/bin/once/init_or_open_tmux_utt

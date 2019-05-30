@@ -109,5 +109,5 @@ loop do
     notification_id = `notify-send.sh -u critical --print-id "UTT needs updating"`
     File.write("/tmp/notification_id", notification_id)
   end
-  sleep(1)
+  sleep(1*MINUTE)
 end
