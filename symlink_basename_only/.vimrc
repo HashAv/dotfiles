@@ -357,8 +357,8 @@ let g:syntastic_always_populate_loc_list = 1
 
 Plugin 'EasyMotion'
 let g:EasyMotion_leader_key = '<F10>'
-let g:EasyMotion_mapping_F = '<F8>'
-let g:EasyMotion_mapping_f = '<F9>'
+" let g:EasyMotion_mapping_F = '<F8>'
+" let g:EasyMotion_mapping_f = '<F9>'
 " let g:EasyMotion_mapping_f = '<C-F>'
 " let g:EasyMotion_mapping_F = '<C-B>'
 " let g:EasyMotion_mapping_k = 'k'
@@ -426,17 +426,17 @@ autocmd FileType ledger set formatprg=~/code/github.com/benjamin-thomas/manage-l
 autocmd FileType ledger imap <buffer> <F2> <CR>Assets:Clearing<ESC>gqip
 " sa -> same account
 autocmd FileType ledger imap <buffer> ^sa <ESC>yypWC
-autocmd FileType ledger imap <buffer> ^gr_ <C-R>=strftime("%Y-%m-%d")<CR> ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr0 <ESC>:call InsertDate(0)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr1 <ESC>:call InsertDate(1)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr2 <ESC>:call InsertDate(2)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr3 <ESC>:call InsertDate(3)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr4 <ESC>:call InsertDate(4)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr5 <ESC>:call InsertDate(5)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr6 <ESC>:call InsertDate(6)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr7 <ESC>:call InsertDate(7)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr8 <ESC>:call InsertDate(8)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
-autocmd FileType ledger imap <buffer> ^gr9 <ESC>:call InsertDate(9)<CR>A ! Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr_ <C-R>=strftime("%Y-%m-%d")<CR> Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr0 <ESC>:call InsertDate(0)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr1 <ESC>:call InsertDate(1)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr2 <ESC>:call InsertDate(2)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr3 <ESC>:call InsertDate(3)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr4 <ESC>:call InsertDate(4)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr5 <ESC>:call InsertDate(5)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr6 <ESC>:call InsertDate(6)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr7 <ESC>:call InsertDate(7)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr8 <ESC>:call InsertDate(8)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
+autocmd FileType ledger imap <buffer> ^gr9 <ESC>:call InsertDate(9)<CR>A Utile<CR>; <C-R>gExp:gr<C-X><C-O><SPACE><SPACE>
 
 " Expense -> Assets:Bank
 autocmd FileType ledger inoremap <buffer> <F4> <CR>  Assets:Bank<ESC>gqipgqap
@@ -445,7 +445,12 @@ autocmd FileType ledger inoremap <buffer> <F4> <CR>  Assets:Bank<ESC>gqipgqap
 " Overwrite last line of transaction with clipboard content, for ofx2ledger
 "autocmd FileType ledger noremap <buffer> <F6> }-"zyEV"+p}-dE"zPgqip
 "autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>"zyEV"+p}-dE"zPgqip
-autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>V"+p:nohlsearch<CR>
+
+" F6 copy/paste helper for ofxsync
+" autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>V"+p:nohlsearch<CR>
+autocmd FileType ledger noremap <buffer> <F6> }?  [A-Z]<CR>V"+p:nohlsearch<CR>jr,ddpkJxkkddp
+autocmd FileType ledger map <buffer>  <F7> :call ledger#transaction_state_toggle(line('.'), ' *!')<CR>
+
 
 " copy paste date of transaction above, and increment `cnt` times
 function! InsertDate(cnt)
@@ -453,22 +458,20 @@ function! InsertDate(cnt)
   call speeddating#increment(a:cnt)
 endfunction
 
-autocmd FileType ledger imap <buffer> ^_ <C-R>=strftime("%Y-%m-%d")<CR> !<SPACE>
+autocmd FileType ledger imap <buffer> ^_ <C-R>=strftime("%Y-%m-%d")<CR><SPACE>
 " Specify param manually
 autocmd FileType ledger imap <buffer> ^? <ESC>:call InsertDate()<LEFT>
 
-autocmd FileType ledger imap <buffer> ^0 <ESC>:call InsertDate(0)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^1 <ESC>:call InsertDate(1)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^2 <ESC>:call InsertDate(2)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^3 <ESC>:call InsertDate(3)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^4 <ESC>:call InsertDate(4)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^5 <ESC>:call InsertDate(5)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^6 <ESC>:call InsertDate(6)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^7 <ESC>:call InsertDate(7)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^8 <ESC>:call InsertDate(8)<CR>A !<SPACE>
-autocmd FileType ledger imap <buffer> ^9 <ESC>:call InsertDate(9)<CR>A !<SPACE>
-
-autocmd FileType ledger map <buffer>  <F7> :call ledger#transaction_state_toggle(line('.'), '! ')<CR>
+autocmd FileType ledger imap <buffer> ^0 <ESC>:call InsertDate(0)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^1 <ESC>:call InsertDate(1)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^2 <ESC>:call InsertDate(2)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^3 <ESC>:call InsertDate(3)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^4 <ESC>:call InsertDate(4)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^5 <ESC>:call InsertDate(5)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^6 <ESC>:call InsertDate(6)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^7 <ESC>:call InsertDate(7)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^8 <ESC>:call InsertDate(8)<CR>A<SPACE>
+autocmd FileType ledger imap <buffer> ^9 <ESC>:call InsertDate(9)<CR>A<SPACE>
 
 " set formatprg=astyle\ --indent=spaces=2
 Plugin 'https://github.com/kburdett/vim-nuuid'
@@ -535,7 +538,7 @@ colorscheme molokai
 hi MatchParen cterm=none ctermfg=green ctermbg=none
 
 nmap <F7> :set hlsearch!<CR>
-" set pastetoggle=<F8>
+set pastetoggle=<F8>
 
 nnoremap n nzz
 nnoremap N Nzz
