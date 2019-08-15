@@ -224,3 +224,5 @@ echo "Ensure tasks_runner is running"
 # run-parts ~/Private2/bin/tasks
 
 alias utt_edit="vim -c 'normal G$' ~/.local/share/utt/utt.log"
+
+export CDPATH="~/code/bitbucket.org/benjamin-thomas/:~/code/github.com/benjamin-thomas/:~/code/go/src/github.com/benjamin-thomas/"
