@@ -489,6 +489,9 @@ Plugin 'AnsiEsc.vim'
 Plugin 'leafo/moonscript-vim'
 autocmd bufEnter *.moon set ft=moon
 
+" no more :set paste!
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
