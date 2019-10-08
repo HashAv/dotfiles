@@ -1,25 +1,28 @@
 #!/usr/bin/env ruby
 
-if system('tmux', 'attach', '-t', 'Reminders:cli')
-  exit
-end
+# ~/.local/bin/once/init_or_open_tmux_reminders
+system('tmuxinator start reminders')
 
-sleep 5
-system('tmux', 'new', '-d', '-s', 'Reminders', '-n', 'cli')
+# if system('tmux', 'attach', '-t', 'Reminders:cli')
+#   exit
+# end
 
-sleep 1
-system('tmux', 'new-window', '-n', 'notifier', '-t', 'Reminders:1')
-system('tmux', 'send-keys', 'reminders --notify', 'C-m')
+# sleep 5
+# system('tmux', 'new', '-d', '-s', 'Reminders', '-n', 'cli')
 
-sleep 1
-system('tmux', 'select-window', '-t', 'Reminders:cli')
-system('tmux', 'send-keys', 'reminders', 'C-m')
+# sleep 1
+# system('tmux', 'new-window', '-n', 'notifier', '-t', 'Reminders:1')
+# system('tmux', 'send-keys', 'reminders --notify', 'C-m')
 
-sleep 1
-system('tmux', 'new-window', '-n', 'tasks', '-t', 'Reminders:2')
-system('tmux', 'select-window', '-t', 'Reminders:tasks')
-system('tmux', 'send-keys', 'tasks_runner', 'C-m')
+# sleep 1
+# system('tmux', 'select-window', '-t', 'Reminders:cli')
+# system('tmux', 'send-keys', 'reminders', 'C-m')
 
-sleep 1
-system('tmux', 'select-window', '-t', 'Reminders:cli')
-system('tmux', 'attach', '-t', 'Reminders:cli')
+# sleep 1
+# system('tmux', 'new-window', '-n', 'tasks', '-t', 'Reminders:2')
+# system('tmux', 'select-window', '-t', 'Reminders:tasks')
+# system('tmux', 'send-keys', 'tasks_runner', 'C-m')
+
+# sleep 1
+# system('tmux', 'select-window', '-t', 'Reminders:cli')
+# system('tmux', 'attach', '-t', 'Reminders:cli')
