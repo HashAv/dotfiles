@@ -8,6 +8,16 @@ endsnippet
 
 snippet ct "CREATE TABLE" !b
 CREATE TABLE ${1:plural_table_name} (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+  , $2
+
+  , created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC')
+  , updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC')
+);
+endsnippet
+
+snippet ct2 "CREATE TABLE" !b
+CREATE TABLE ${1:plural_table_name} (
     id SERIAL PRIMARY KEY
   , $2
 
