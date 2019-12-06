@@ -21,6 +21,9 @@ j.each do |a|
   tels.each do |t|
     t.strip!
     num, name2, rest = t.split('(', 2)
+    if num.nil?
+      abort("nil num on line #{a}")
+    end
     num.strip!
     # if num
     #   num.gsub!(' ', '')

@@ -10,6 +10,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # See xmodmap and xev output
+# If Alt/Win keys seem to get messed up, try setting on of those:
+#   sudo kbd_mode -s
+#   sudo kbd_mode -k
+# Somehow, UTF8 (default) or ASCII mode triggers that weird bug/mangling problem
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -245,6 +249,9 @@ bindsym $mod+control+d exec --no-startup-id "rofi -show ssh"
 for_window [class="Gnome-terminal"] border pixel 1
 
 for_window [instance="Dunst"] floating enable sticky enable
+
+# Below not working properly for twinkle OSD and external monitor
+# Otherwise not needed
 # for_window [instance="twinkle"] floating enable sticky enable
 #bindsym $mod+Shift+s sticky toggle
 
@@ -311,19 +318,7 @@ bindsym --release Caps_Lock exec pkill -SIGRTMIN+2 i3blocks
 #     bindsym Escape        mode "default"
 # }
 # Use extra monitor
-# xrandr --auto --output VGA1 --left-of LVDS1
-# xrandr --auto --output VGA1 --right-of LVDS1
-# xrandr --auto --output VGA1 --above LVDS1
-# xrandr --auto --output VGA1 --off
-# If monitor does not turn on, this worked (then I had to reput above|left|etc.)
-#   xrandr --auto --output VGA1 --auto
-# Maybe should be instead?
-#   xrandr --output VGA1 --auto
-# To change the resolution:
-#  1. List available resolutions:
-#    xrandr
-#  2. Copy paste the chosen resolution:
-#    xrandr --output VGA1 --mode 1440x900
+#  Use arandr rather than xrandr, *much* easier to setup
 #
 # i3-msg move workspace to output left
 # move container to output left|right|down|up|current|primary|<output>
@@ -356,3 +351,5 @@ for_window [instance="^reminders$"] resize set 1200 600
 for_window [instance="^reminders$"] border pixel 5
 
 for_window [workspace="10"] floating disable # Annoying TeamViewer
+
+bindsym $mod+n exec --no-startup-id rofi-pass

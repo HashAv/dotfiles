@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# https://github.com/gotbletu/shownotes/blob/master/snippy.sh
+
+# Put the selected string (without the trailing newline) into the paste buffer.
+#xdotool type $(/bin/date '+%F (%A)')
+# Paste into the current application.
+#xdotool key Shift_L+Insert # gui + terminal
+# date '+%a %d %b %Hh'
+STRING=$(/bin/date '+%a %d %b %Hh%M, Benjamin')
+xdotool type --delay 0 "($STRING)"

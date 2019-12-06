@@ -144,7 +144,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 function source_env() {
   for FPATH in "$@";do
@@ -226,3 +226,7 @@ echo "Ensure tasks_runner is running"
 alias utt_edit="vim -c 'normal G$' ~/.local/share/utt/utt.log"
 
 export CDPATH="~/code/bitbucket.org/benjamin-thomas/:~/code/github.com/benjamin-thomas/:~/code/go/src/github.com/benjamin-thomas/"
+
+if [ -f /var/run/reboot-required ];then
+  echo 'Reboot required'
+fi
