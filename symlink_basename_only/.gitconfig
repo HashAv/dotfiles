@@ -6,7 +6,7 @@
 	st = status
 	d = diff
 	br = branch
-	l = log -20 --decorate --oneline --graph
+	l = log -20 --decorate --oneline --graph --branches
 [core]
 	editor = vim
 	excludesfile = /home/benjamin/.gitignore_global
