@@ -144,7 +144,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f ~/.fzf.bash ];then
+  if [ $(which fzf) ];then
+    source ~/.fzf.bash
+  fi
+fi
 
 function source_env() {
   for FPATH in "$@";do
