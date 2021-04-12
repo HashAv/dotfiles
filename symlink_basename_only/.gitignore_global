@@ -5,3 +5,11 @@
 .byebug_history
 .bash_history
 .lesshst
+
+# Rubymine
+.idea/
+.rakeTasks
+.generators
+
+# idea
+*.iml

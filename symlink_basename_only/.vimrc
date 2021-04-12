@@ -353,10 +353,13 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list = 1
+" setlocal formatprg=rubocop\ -a\ --stdin\ %\ \|sed\ '1,/====================/d'
 " let g:syntastic_go_checkers = []
 
 Plugin 'EasyMotion'
 let g:EasyMotion_leader_key = '<F10>'
+let g:EasyMotion_mapping_f = '<C-C>'
+
 " let g:EasyMotion_mapping_F = '<F8>'
 " let g:EasyMotion_mapping_f = '<F9>'
 " let g:EasyMotion_mapping_f = '<C-F>'
@@ -492,6 +495,31 @@ autocmd bufEnter *.moon set ft=moon
 " no more :set paste!
 Plugin 'ConradIrwin/vim-bracketed-paste'
 
+" Interactive tables
+" Activate with: ':TableModeEnable'
+" Then start line with: '|'
+" To create a line separator, start line with: '||'
+"
+" To create a table quickly, type. 1,2,3 visual select then <leader>tt
+" To right align a column replace '-' with a ':' just before the ending pipe at the ---- line
+" Middle align is not available
+" <leader>tr to realign
+Plugin 'dhruvasagar/vim-table-mode'
+
+" Plugin 'kotarak/vimpire'
+Plugin 'tpope/vim-fireplace'
+
+"Plugin 'jpalardy/vim-slime'
+"let g:slime_target = "tmux"
+
+" 0.1 is the second pane within the current window 0, whether it's horizontal
+" or vertical
+"let g:slime_default_config = {"socket_name": "default", "target_pane": "0.1"}
+
+Plugin 'fvictorio/vim-extract-variable'
+
+Plugin 'wakatime/vim-wakatime'
+
 " Not related to ycm per se but this closes the preview 'scratch' buffer after
 " leaving insert mode -- the best option I'v found so far.
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -531,7 +559,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 
-autocmd Filetype javascript setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set t_Co=256
 set bg=dark

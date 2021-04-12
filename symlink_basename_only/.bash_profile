@@ -1,4 +1,7 @@
 # include .bashrc if it exists
+echo "DEBUG bash_profile 1"
+echo $PATH | ruby -ne 'puts $_.split(":")' | grep soft
+
 if [ -f "$HOME/.bashrc" ]; then
 . "$HOME/.bashrc"
 fi
@@ -28,6 +31,11 @@ if [ -d "$HOME/.luarocks" ] ; then
     PATH="$HOME/.luarocks/bin:$PATH"
 fi
 
+# https://gradle.org/install/
+if [ -d "/opt/gradle" ];then
+  PATH="$PATH:/opt/gradle/gradle-6.1.1/bin"
+fi
+
 [ -d $HOME/.local/software/node/bin ] && PATH="$PATH:$HOME/.local/software/node/bin"
 
 GEM_BIN_PATH=$(gem env gempath | ruby -ne 'puts $_.strip.split(":").map { |dir| File.join(dir, "bin")}.join(":")')
@@ -39,9 +47,9 @@ else
   echo "~/.bash_profile: Could not generate GEM_BIN_PATH"
 fi
 
-export GOPATH=$HOME/code/go
-export GOROOT=$HOME/.local/software/go/
-export PATH=$PATH:$GOPATH/bin
+#export GOPATH=$HOME/code/go
+#export GOROOT=$HOME/.local/software/go/
+#export PATH=$PATH:$GOPATH/bin
 
 if [ -f $HOME/.config/exercism/exercism_completion.bash ]; then
   . $HOME/.config/exercism/exercism_completion.bash
@@ -112,3 +120,5 @@ if ! [ $(find "$TOUCH_PATH" -mmin $(( -1 * 60 * 4 )) 2>/dev/null) ];then # 4 hou
 fi
 
 [ -d ~/.local/bin/completion ] && source ~/.local/bin/completion/*
+
+eval "$(rbenv init -)"

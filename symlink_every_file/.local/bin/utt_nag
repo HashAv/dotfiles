@@ -88,7 +88,7 @@ loop do
                       end
                       fail 'Could not get ctime'
                     end
-  require_update_on = last_updated_on + (NAG_EVERY_MIN || 5) * MINUTE
+  require_update_on = last_updated_on + (NAG_EVERY_MIN || 15) * MINUTE
   # elapsed_sec = Time.now - File.ctime(File.expand_path('~/.local/share/utt/utt.log'))
   # dirty = !`find ~/.local/share/utt/utt.log -mmin +15`.empty?
   # if elapsed_sec > (NAG_EVERY_MIN || 5)*MINUTE

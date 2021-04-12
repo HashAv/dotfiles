@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+echo "DEBUG bashrc 1"
+echo $PATH | ruby -ne 'puts $_.split(":")' | grep soft
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -69,6 +72,8 @@ else
 fi
 unset color_prompt force_color_prompt
 
+export PS1_ALT='\[\033[38;5;245m\](\W)\[\033[00m\] '
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -116,13 +121,19 @@ alias be='bundle exec'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias batfull='upower -i /org/freedesktop/UPower/devices/battery_BAT0 && echo "---" && acpi -V | grep --color=never ^Battery'
-alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | egrep "state:|percentage:" | ruby -ne "puts \$_.split.map { |s| s.ljust(15)}.join" && echo "---" && acpi -V | grep --color=never ^Battery'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | egrep "state:|percentage:" | ruby -ne "puts \$_.split.map { |s| s.ljust(15)}.join" && echo "---" && acpi -V | grep --color=never ^Battery'
 
 alias rr='if [ -f /var/run/reboot-required  ]; then echo "Reboot required"; else echo "No reboot needed"; fi'
 alias rrr='find /etc/update-motd.d/{00-header,98-reboot}* | xargs -L1 bash'
 #security upgrade required
 alias sur='apt-get upgrade --dry-run | grep -i security || echo NO_SECURITY_UPDATES_REQUIRED'
 alias weather='curl http://wttr.in | less -RS'
+
+alias gt='gradle test && notify-send "Gradle test run OK" || notify-send -u critical "Gradle test run FAILED"'
+
+function cheat() {
+  curl cheat.sh/$1
+}
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -145,6 +156,8 @@ if ! shopt -oq posix; then
 fi
 
 if [ -f ~/.fzf.bash ];then
+  # Not sure why I have to add path manually here
+  export PATH="$PATH:~/.fzf/bin/"
   if [ $(which fzf) ];then
     source ~/.fzf.bash
   fi
@@ -211,10 +224,12 @@ function so() {
   echo "Now use Alt-C to search for shipping order folders"
 }
 
-export GOPATH=~/code/go
-export GOROOT=~/.local/software/go
+# unset GOPATH
+#export GOPATH=~/code/go
+# echo "bashrc: GOPATH=$GOPATH"
+export GOROOT=~/go/go1.16.2/
 
-export PATH=$PATH:~/.local/software/go/bin/:~/code/go/bin/
+export PATH=$PATH:~/go/go1.16.2/bin
 
 export LEDGER_FILE=~/Private2/Banking/main.ledger
 export LEDGER_FILE_EXPORT=~/Private2/Banking/export/main.json
@@ -229,8 +244,29 @@ echo "Ensure tasks_runner is running"
 
 alias utt_edit="vim -c 'normal G$' ~/.local/share/utt/utt.log"
 
-export CDPATH="~/code/bitbucket.org/benjamin-thomas/:~/code/github.com/benjamin-thomas/:~/code/go/src/github.com/benjamin-thomas/"
+function ifconfig_no_docker() {
+  ifconfig | ruby -ne 'print $_ unless /^(veth|br|tun|lxc|docker)/../^$/'
+}
+
+#export CDPATH="~/code/bitbucket.org/benjamin-thomas/:~/code/github.com/benjamin-thomas/:~/code/go/src/github.com/benjamin-thomas/"
 
 if [ -f /var/run/reboot-required ];then
   echo 'Reboot required'
 fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=/home/benjamin/.nimble/bin:$PATH
+
+export PATH="$PATH:~/go/bin/"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/benjamin/.sdkman"
+[[ -s "/home/benjamin/.sdkman/bin/sdkman-init.sh" ]] && source "/home/benjamin/.sdkman/bin/sdkman-init.sh"
+
+# This line delays the terminal init quite a bit + generates weird error messages, seems to generate HTTP requests...
+# source <(sdk completion bash)
+
+alias snappy-dev-env-init="degit benjamin-thomas/java-snappy-dev-env"
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
