@@ -24,3 +24,10 @@ URxvt.font:     xft:mono:medium:size=13:antialias=true
 # https://stackoverflow.com/questions/43305190/how-to-change-the-default-shortcuts-for-copy-paste-in-urxvt
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+# Below is required for thor + nvidia GPU + Samsung monitor
+# https://wiki.archlinux.org/title/HiDPI
+#   For Xft.dpi, using integer multiples of 96 usually works best, e.g. 192 for 200% scaling.
+# 120 works best for me though:
+#   96 * 1,25 = 120
+Xft.dpi: 120
