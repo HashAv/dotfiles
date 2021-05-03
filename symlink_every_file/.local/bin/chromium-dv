@@ -1,4 +1,0 @@
-#!/bin/bash
-
-exec chromium-browser --password-store=basic --user-data-dir=.config/google-chrome-dev/ "$@"
-#exec chromium-browser --ignore-certificate-errors --password-store=basic --user-data-dir=.config/google-chrome-dev/ "$@"
