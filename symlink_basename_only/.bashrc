@@ -130,6 +130,7 @@ alias sur='apt-get upgrade --dry-run | grep -i security || echo NO_SECURITY_UPDA
 alias weather='curl http://wttr.in | less -RS'
 
 alias gt='gradle test && notify-send "Gradle test run OK" || notify-send -u critical "Gradle test run FAILED"'
+alias nv='nvim.nightly'
 
 function cheat() {
   curl cheat.sh/$1
@@ -270,3 +271,25 @@ alias snappy-dev-env-init="degit benjamin-thomas/java-snappy-dev-env"
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+export CPU_MODEL=$(cat /proc/cpuinfo | grep 'model name' | head -1 | ruby -ne 'puts $_.split(":")[1].strip')
+if [[ "$CPU_MODEL" == "AMD Phenom(tm) II X4 965 Processor" ]];then
+  echo "Bashrc: overriding the sorbet executable via env var"
+  export SRB_SORBET_EXE=~/code/github.com/sorbet/sorbet/bazel-bin/main/sorbet
+fi
+
+function gl() {
+  # Alternate git log shortcut
+  # Must be a bash function because of the piping to `column`
+  # Not that flexible, use `tig` is probably better
+  # NOTE: lines **must** end with \n or `column` returns an odd "line too long" error
+  LINES=$1
+  if [[ -z $1 ]];then
+    LINES=20
+  fi
+  # --decorate --oneline --graph --branches
+  LANG=en git log -"$LINES" \
+    --pretty=format:"%C(yellow)%h|%C(green)%ad|%C(reset)%s%C(red)%d%n" \
+    --date=relative --color=always \
+    | column -t -s'|'
+}
